@@ -9,7 +9,7 @@ export default () => {
   const [sliderRef] = useKeenSlider({
     loop: true,
     mode: "free",
-    slides: { origin: "center", perView: 4, spacing: 10 },
+    slides: { origin: "center", perView: 4.5, spacing: 10 },
     range: {
       min: -5,
       max: 5,
@@ -17,7 +17,7 @@ export default () => {
   })
 
   return (
-        <div ref={sliderRef} className="keen-slider">
+        <div ref={sliderRef} className="keen-slider" style={{marginBottom:'20px'}}>
           {Experiences.map((item) => (
               <div key={item.id} className="keen-slider__slide">
                 <ExperienceCard

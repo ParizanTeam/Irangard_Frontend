@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { IconButton, Rating } from '@mui/material';
-import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import { Favorite } from '@mui/icons-material';
 import './style.scss';
 
