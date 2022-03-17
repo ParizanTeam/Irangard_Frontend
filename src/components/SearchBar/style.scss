@@ -1,0 +1,55 @@
+@import '/src/theme/main.scss';
+.myBackg{
+    width: 900px;
+    //padding: 5px;
+    border-radius: 5px;
+    @media (max-width: 1200px) {
+        width: 800px;
+    }
+    @media (max-width: 1000px) {
+        width: 700px;
+    }
+    @media (max-width: 900px) {
+        width: 600px;
+    }
+    @media (max-width: 600px) {
+        width: 500px;
+    }
+}
+.HeadB{
+    //border-style: groove ;
+    //border-color: orangered;
+    border-radius: 5px;
+    width: 900px;
+    height: 560px;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+    @media (max-width: 1200px) {
+        width: 800px;
+    }
+    @media (max-width: 1000px) {
+        width: 700px;
+    }
+    @media (max-width: 900px) {
+        width: 600px;
+    }
+    @media (max-width: 600px) {
+        width: 500px;
+    }
+}
+.SearchB{
+    margin: auto;
+    margin-top: 345px;
+    width: 600px;
+    //padding: 5px;
+    //border-style: groove ;
+    //border-color: orangered;
+    border-radius: 5px;
+    @media (max-width: 1000px) {
+        width: 500px;
+    }
+    @media (max-width: 600px) {
+        width: 400px;
+    }
+}
