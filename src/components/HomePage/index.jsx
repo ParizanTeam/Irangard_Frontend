@@ -6,6 +6,7 @@ import Map from 'src/components/Map';
 import SearchBar from 'src/components/SearchBar/index';
 import ExperienceSlider from 'src/components/ExperienceSlider/index';
 import Footer from 'src/components/Footer';
+import Testimonial from '../Testimonial';
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <SearchBar />
       <CitySlider />
       <Map />
+      <Testimonial />
       <ExperienceSlider />
       <Footer />
     </>

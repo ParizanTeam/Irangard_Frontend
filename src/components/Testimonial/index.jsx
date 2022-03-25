@@ -1,100 +1,81 @@
-import { useState } from 'react';
-import './styles.scss';
+import React, { useState } from 'react';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import './styles.scss';
 
-function Testimonial() {
+const data = [
+  {
+    id: 0,
+    text: 'استفاده از ایرانگرد واقعا برای من لذت‌بخشه. تقریبا هر روز ازش استفاده می‌کنم و با دیدن تجربه‌ها و سفرنامه‌ها، خودم رو توی مکان‌های مختلف متصور میشم.',
+    author: 'کاربر افشار',
+  },
+  {
+    id: 1,
+    text: 'من معمولا زیاد سفر می‌کنم و هر بار که میخوام برم سفر، با ایرانگرد جاذبه‌های گردشگری مقصدم رو بررسی می‌کنم و با توجه به پیشنهاد‌ها و توصیه‌های افراد، برنامه سفرم رو تنظیم می‌کنم.',
+    author: 'کاربر فراهانی',
+  },
+  {
+    id: 2,
+    text: 'واقعا تبریک می‌گم به تیم عالی و خوش‌ذوق ایرانگرد که یه خوبی مکلن‌های مختلف رو معرفی می‌کنند و تجربه کاربری فوق‌العاده‌ای رو برای کاربر فراهم می‌کنن.',
+    author: 'کاربر طاهریان',
+  },
+  {
+    id: 3,
+    text: 'ویژگی‌ها و قابلیت‌هایی که ایرانگرد در اختیار آدم قرار میده، واقعا شگفت‌انگیزه. به هر کسی که میخواد بره سفر، حتما توصیه می‌کنم.',
+    author: 'کاربر علیپور',
+  },
+  {
+    id: 4,
+    text: 'من همیشه دغدغه زیادی برای انتخاب رستورن‌ها، اقامتگاه‌ها و ... داشتم و از وقتی که از ایرانگرد استفاده می‌کنم، خیالم راحت شده.',
+    author: 'کاربر رشیدی',
+  },
+];
+const Testimonial = () => {
+  const [index, setIndex] = useState(0);
+  const rightBtn = () => {
+    const parent = document.querySelector('.testimonials__cards-container');
+    const frontCard = document.getElementById(data[index].id);
+    document.getElementById(data[index].id).remove();
+    parent.append(frontCard);
+    const newIndex = (index + 1) % data.length;
+    setIndex(newIndex);
+  };
 
-    const [index, setIndex] = useState(0);
-    const data = [
-        {
-            "id": 0,
-            "text": "نادین سافت رو من یه تیم برنامه‌نویس نمیدونم. من در روز بارها با اون‌ها حرف می‌زنم و درخواست‌های زیادی از دوستانم دارم. نادین سافت همیشه به صدای من گوش کرده و امکانات مورد نیازم رو اضافه کرده. من اون‌ها رو دوستان صمیمی خودم می‌دونم. هر ایده‌ای برای پیاده‌سازی دارید با نادین سافت درمیون بزارید. ایده شما و دانش اونا باعث ایجاد یک راهکار حرفه‌ای میشه.",
-            "title1": "جناب اقای نظیفی",
-            "title2": "مدیریت باشگاه مشتریان کارخانه لوازم خانگی پارس"
-        },
-        {
-            "id": 1,
-            "text": "دستشان درد نکند؛ کار و رفتار حرفه ای از ویژگی های بازر این شرکت است. جوان بودن، عدم شناخت کافی و … سبب شده بود که در ابتدای همکاری نگران هایی زیادی پیرامون پروژه وجود داشته باشد. اما بعد اولین نسخه متوجه تجربه خوبشان در کار حرفه ای شدیم.",
-            "title1": "جناب آقای دکتر کاظمی",
-            "title2": "مدیر واحد فناوری اطلاعات سازمان صدا و سیما"
-        },
-        {
-            "id": 2,
-            "text": "نادین سافت رو من یه تیم برنامه‌نویس نمیدونم. من در روز بارها با اون‌ها حرف می‌زنم و درخواست‌های زیادی از دوستانم دارم. نادین سافت همیشه به صدای من گوش کرده و امکانات مورد نیازم رو اضافه کرده. من اون‌ها رو دوستان صمیمی خودم می‌دونم. هر ایده‌ای برای پیاده‌سازی دارید با نادین سافت درمیون بزارید. ایده شما و دانش اونا باعث ایجاد یک راهکار حرفه‌ای میشه.",
-            "title1": "جناب اقای نظیفی",
-            "title2": "مدیریت باشگاه مشتریان کارخانه لوازم خانگی پارس"
-        },
-        {
-            "id": 3,
-            "text": "دستشان درد نکند؛ کار و رفتار حرفه ای از ویژگی های بازر این شرکت است. جوان بودن، عدم شناخت کافی و … سبب شده بود که در ابتدای همکاری نگران هایی زیادی پیرامون پروژه وجود داشته باشد. اما بعد اولین نسخه متوجه تجربه خوبشان در کار حرفه ای شدیم.",
-            "title1": "جناب آقای دکتر کاظمی",
-            "title2": "مدیر واحد فناوری اطلاعات سازمان صدا و سیما"
-        },
-        {
-            "id": 4,
-            "text": "نادین سافت رو من یه تیم برنامه‌نویس نمیدونم. من در روز بارها با اون‌ها حرف می‌زنم و درخواست‌های زیادی از دوستانم دارم. نادین سافت همیشه به صدای من گوش کرده و امکانات مورد نیازم رو اضافه کرده. من اون‌ها رو دوستان صمیمی خودم می‌دونم. هر ایده‌ای برای پیاده‌سازی دارید با نادین سافت درمیون بزارید. ایده شما و دانش اونا باعث ایجاد یک راهکار حرفه‌ای میشه.",
-            "title1": "جناب اقای نظیفی",
-            "title2": "مدیریت باشگاه مشتریان کارخانه لوازم خانگی پارس"
-        },
-        {
-            "id": 5,
-            "text": "دستشان درد نکند؛ کار و رفتار حرفه ای از ویژگی های بازر این شرکت است. جوان بودن، عدم شناخت کافی و … سبب شده بود که در ابتدای همکاری نگران هایی زیادی پیرامون پروژه وجود داشته باشد. اما بعد اولین نسخه متوجه تجربه خوبشان در کار حرفه ای شدیم.",
-            "title1": "جناب آقای دکتر کاظمی",
-            "title2": "مدیر واحد فناوری اطلاعات سازمان صدا و سیما"
-        }
-
-    ];
-
-    const rightBtn = () => {
-        const frontCard = document.getElementById(data[index].id);
-        document.getElementById(data[index].id).remove();
-        document.getElementById("cc").append(frontCard);
-
-        const newIndex = (index + 1) % 6;
-        setIndex(newIndex);
-
-    }
-
-
-    const leftBtn = () => {
-
-        if (index > 0) {
-
-            const parent = document.getElementById("cc")
-            const child = document.getElementById(data[index - 1].id);
-            parent.insertBefore(child, parent.firstChild);
-
-            var newIndex = index - 1;
-            setIndex(newIndex);
-        }
-    }
-    return (
-        <div dir="ltr" className="background-everything">
-            <div className="cards-container" id="cc">
-                {data.map((c) => (
-                    <div className="card" key={c.id} id={c.id}>
-                        <div>
-                            <p>{c.text}</p>
-                            <h6 className="text-a">{c.title1}</h6>
-                            <h6 className="text-a">{c.id}</h6>
-                        </div>
-                    </div>
-                ))}
-
+  const leftBtn = () => {
+    const parent = document.querySelector('.testimonials__cards-container');
+    const child = document.getElementById(data[(index + data.length - 1) % data.length].id);
+    parent.insertBefore(child, parent.firstChild);
+    const newIndex = (index + data.length - 1) % data.length;
+    setIndex(newIndex);
+  };
+  return (
+    <div className="testimonials">
+      <div className="testimonials__container">
+        <h2 className="testimonials__title">درباره ایرانگرد چه می‌گویند:</h2>
+        <div className="background-everything">
+          <div className="testimonials__cards-container">
+            {data.map(card => (
+              <div className="testimonials__card" key={card.id} id={card.id}>
+                <div>
+                  <p className="testimonials__card-description">{card.text}</p>
+                  <h6 className="testimonials__card-author">{card.author}</h6>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="testimonials__buttons-wrapper">
+            <div className="testimonials__buttons" onClick={rightBtn}>
+              بعدی
+              <KeyboardBackspaceIcon className="testimonials__next-btn" />
             </div>
-            <div className="make-center">
-
-            <KeyboardBackspaceIcon onClick={leftBtn} id="pastBtn" />
-            <KeyboardBackspaceIcon onClick={rightBtn} id="nextBtn" />
+            <div className="testimonials__buttons" onClick={leftBtn}>
+              <KeyboardBackspaceIcon className="testimonials__prev-btn" />
+              قبلی
             </div>
-            <div>
-
-            </div>
+          </div>
         </div>
-    );
-}
-
-
-
+      </div>
+    </div>
+  );
+};
 
 export default Testimonial;
