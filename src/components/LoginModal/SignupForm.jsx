@@ -46,12 +46,12 @@ const SignupS3 = () => {
   };
 
   const s3_submit = userData => {
+    const formData = new FormData();
+    formData.append('username',  localStorage.getItem('username'));
+    formData.append('password', userData.password);
+    formData.append('re_password', userData.confirmPassword);
     toast.promise(
-      checkCode.mutateAsync({
-        username: localStorage.getItem('username'),
-        password: userData.password,
-        re_password: userData.confirmPassword,
-      }),
+      checkCode.mutateAsync(formData),
       {
         loading: 'در حال بررسی...',
         success: 'حساب شما با موفقیت ساخته شد.',
