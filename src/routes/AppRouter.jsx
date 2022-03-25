@@ -1,18 +1,13 @@
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-  } from "react-router-dom";
-  
-import NotFoundPage from "../components/NotFoundPage";
-import Login from "../components/LoginModal";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from 'src/components/HomePage';
+import NotFoundPage from 'src/components/NotFoundPage';
+
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}/>
-        <Route path="*" element={<NotFoundPage />}/>
-
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
