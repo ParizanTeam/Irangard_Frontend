@@ -5,12 +5,14 @@ import {
   } from "react-router-dom";
   
 import NotFoundPage from "../components/NotFoundPage";
+import Login from "../components/LoginModal";
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<HomePage />}/> */}
+        <Route path="/" element={<Login />}/>
         <Route path="*" element={<NotFoundPage />}/>
+
       </Routes>
     </BrowserRouter>
   );

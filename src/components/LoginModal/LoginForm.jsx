@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useMutation } from 'react-query';
 import { baseUrl } from '../../utils/constants';
 import toast from 'react-hot-toast';
+import { ErrorMessage, TabHeader } from './Common';
 
 export default function LoginForm() {
   const {
@@ -38,26 +39,34 @@ export default function LoginForm() {
   const password = register('password', { required: true });
 
   return (
-    <div className="MyTab" title="..ورود..">
-      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form__group field">
-          <input type="input" className="form__field" {...username} id="username" placeholder=" نام‌کاربری یا ایمیل" />
-          <label htmlFor="username" className="form__label">
-            نام‌کاربری یا ایمیل
-          </label>
-          {errors?.username?.type === 'required' && <p>این فیلد باید پر شود.</p>}
-        </div>
+    <>
+      <TabHeader title="ورود به حساب‌کاربری" />
+      <div className="MyTab" title="..ورود..">
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="form__group field">
+            <input
+              type="input"
+              className="form__field"
+              {...username}
+              id="username"
+              placeholder=" نام‌کاربری یا ایمیل"
+            />
+            <label htmlFor="username" className="form__label">
+              نام‌کاربری یا ایمیل
+            </label>
+            {errors['username'] && <ErrorMessage error={errors['username']} />}
+          </div>
 
-        <div className="form__group field">
-          <input type="input" className="form__field" {...password} id="password" placeholder="رمز عبور" />
-          <label htmlFor="password" className="form__label">
-            رمز عبور
-          </label>
-          {errors?.password?.type === 'required' && <p>این فیلد باید پر شود.</p>}
-        </div>
-
-        <input className="submit-btn" type="submit" value="ورود " disabled={isLoading} />
-      </form>
-    </div>
+          <div className="form__group field">
+            <input type="input" className="form__field" {...password} id="password" placeholder="رمز عبور" />
+            <label htmlFor="password" className="form__label">
+              رمز عبور
+            </label>
+            {errors['password'] && <ErrorMessage error={errors['password']} />}
+          </div>
+          <input className="submit-btn" type="submit" value="ورود " disabled={isLoading} />
+        </form>
+      </div>
+    </>
   );
 }

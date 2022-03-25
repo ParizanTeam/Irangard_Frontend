@@ -1,7 +1,5 @@
 import React from 'react';
 import './style.scss';
-import HeaderImg from '../../assets/images/loginHead.jpg';
-import HeaderImg2 from '../../assets/images/loginHead2.jpg';
 import FooterImg from '../../assets/images/LoginBottom.jpg';
 import { Dialog, DialogContent } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
@@ -11,6 +9,7 @@ import LoginForm from './LoginForm';
 import { Tab, TabsList,TabPanel } from './CustomTabs';
 
 export default function LoginModal() {
+  const {formTitle,setFormTitle}= React.useState("");
   return (
     <div>
       <Toaster />
@@ -21,16 +20,11 @@ export default function LoginModal() {
               <Tab>ورود</Tab>
               <Tab>ثبت نام</Tab>
             </TabsList>
-            <div className="myHeader">
-              <img src={HeaderImg} alt="Hello" className="HeaderImg" />
-              <img src={HeaderImg2} alt="Hello" className="HeaderImg" />
-            </div>
-
             <TabPanel value={0}>
-              <LoginForm />
+              <LoginForm setTitle={setFormTitle}/>
             </TabPanel>
             <TabPanel value={1}>
-              <SignupForm />
+              <SignupForm setTitle={setFormTitle} />
             </TabPanel>
             <img src={FooterImg} alt="Goodbye" className="FooterImg" />
           </TabsUnstyled>
