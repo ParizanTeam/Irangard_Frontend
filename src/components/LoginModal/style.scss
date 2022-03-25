@@ -1,0 +1,154 @@
+@import '/src/theme/main.scss';
+.main {
+  text-align: center;
+}
+.HeaderImg {
+  width: 95px;
+}
+.FooterImg {
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.myHeader {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MyTab {
+  overflow-y: hidden;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+$primary: #52143a;
+$secondary: #52143a67;
+$white: #fff;
+$gray: #707070;
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $gray;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary, $secondary);
+  border-image-slice: 1;
+}
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.submit-btn {
+  background-color: $primary;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  text-decoration: none;
+  margin-top: 50px;
+  cursor: pointer;
+  &:disabled {
+    background-color: $secondary;
+  }
+}
+
+.error-msg {
+  color: rgb(131, 0, 0);
+  margin-top: 10px;
+}
+.tab-header-title{
+  color:$primary;
+  font-size:  3vmin;
+}
+.custom-styles {
+  direction: ltr;
+  --ReactInputVerificationCode-itemWidth: 2.5rem;
+  --ReactInputVerificationCode-itemHeight: 3.5rem;
+
+  .ReactInputVerificationCode__item {
+    position: relative;
+    color: #262626;
+    font-weight: 500;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 2px;
+      background-color: #ebebeb;
+      transition: background-color 0.2s ease-out;
+    }
+  }
+
+  .ReactInputVerificationCode__item,
+  .ReactInputVerificationCode__item.is-active {
+    box-shadow: none;
+  }
+
+  .ReactInputVerificationCode__item.is-active:after {
+    background-color: $primary;
+  }
+}
+
+
