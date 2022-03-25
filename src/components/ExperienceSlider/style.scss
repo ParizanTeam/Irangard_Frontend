@@ -1,0 +1,91 @@
+.experience-card {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: right;
+  border: 1px solid #000;
+  height: 400px;
+  color: #000;
+
+  &__img {
+    width: 100%;
+    min-height: 180px;
+  }
+
+  &__rating-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 800;
+    color: rgb(37, 0, 14);
+    line-height: 1.5;
+    padding: 0 16px;
+  }
+
+  &__description {
+    padding: 8px 16px;
+    font-size: 14px;
+    height: 100%;
+  }
+
+  &__user-name {
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  &__footer {
+    border-top: 1px solid #000;
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    padding: 12px;
+    align-items: center;
+  }
+
+  &__user-img {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  @media (max-width: 768px) {
+    height: 360px;
+    &__img {
+      min-height: 140px;
+    }
+    &__rating-wrapper {
+      padding: 0 16px;
+    }
+  }
+}
+
+.fav-icon {
+  color: #000;
+}
+
+.filled-fav-icon {
+  color: #ee324d;
+}
+
+.home-experiences {
+  max-width: 1200px;
+  margin: 16px auto 64px;
+  padding: 16px;
+
+  &__title {
+    color: #000;
+    font-size: 26px;
+    font-weight: 800;
+    text-align: right;
+    margin: 16px 0 32px;
+  }
+}
