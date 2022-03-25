@@ -1,60 +1,36 @@
-@import '/src/theme/main.scss';
-.myBackg{
-    position: absolute;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto;
-    width: 900px;
-    //padding: 5px;
-    border-radius: 5px;
-    @media (max-width: 1200px) {
-        width: 800px;
-    }
-    @media (max-width: 1000px) {
-        width: 700px;
-    }
-    @media (max-width: 900px) {
-        width: 600px;
-    }
-    @media (max-width: 600px) {
-        width: 500px;
-    }
-}
-.HeadB{
-    //border-style: groove ;
-    //border-color: orangered;
-    border-radius: 5px;
-    width: 900px;
-    height: 560px;
-    object-fit: cover;
-    position: absolute;
-    z-index: -1;
-    @media (max-width: 1200px) {
-        width: 800px;
-    }
-    @media (max-width: 1000px) {
-        width: 700px;
-    }
-    @media (max-width: 900px) {
-        width: 600px;
-    }
-    @media (max-width: 600px) {
-        width: 500px;
-    }
-}
-.SearchB{
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+  position: relative;
+  margin-bottom: 16px;
+  &__img {
     margin: auto;
-    margin-top: 345px;
-    width: 600px;
-    //padding: 5px;
-    //border-style: groove ;
-    //border-color: orangered;
-    border-radius: 5px;
-    @media (max-width: 1000px) {
-        width: 500px;
+    width: 1200px;
+    max-width: 100%;
+    border-radius: 8px;
+    min-height: 180px;
+    max-height: 360px;
+  }
+  &__search-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 760px;
+    max-width: calc(100% - 64px);
+    padding: 0 24px;
+    height: 48px;
+    border-radius: 24px;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    outline: none;
+    transition: all .3s;
+    &:focus {
+        border-radius: 8px;
+        border: 1px solid #888;
     }
-    @media (max-width: 600px) {
-        width: 400px;
-    }
+  }
 }

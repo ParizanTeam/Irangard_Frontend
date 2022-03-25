@@ -35,6 +35,7 @@ const CitySlider = () => {
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: { spacing: isMobile ? 10 : 15, perView: isMobile ? 3 : 6 },
     initial: 0,
+    rtl: true,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
     },
@@ -96,13 +97,10 @@ const CitySlider = () => {
             <>
               <Arrow
                 left
-                onClick={e => e.stopPropagation() || instanceRef.current?.prev()}
-                disabled={currentSlide === 0}
-              />
-              <Arrow
-                onClick={e => e.stopPropagation() || instanceRef.current?.next()}
                 disabled={currentSlide + slidesPerview > instanceRef.current.track.details.slides.length - 1}
+                onClick={e => e.stopPropagation() || instanceRef.current?.next()}
               />
+              <Arrow onClick={e => e.stopPropagation() || instanceRef.current?.prev()} disabled={currentSlide === 0} />
             </>
           )}
         </div>
