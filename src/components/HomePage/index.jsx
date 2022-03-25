@@ -3,8 +3,9 @@ import Helmet from 'react-helmet';
 import Header from 'src/components/Header';
 import CitySlider from 'src/components/CitySlider';
 import Map from 'src/components/Map';
-import SearchBar from '../SearchBar/index';
-import ExperienceSlider from '../ExperienceSlider/index'
+import SearchBar from 'src/components/SearchBar/index';
+import ExperienceSlider from 'src/components/ExperienceSlider/index';
+import Footer from 'src/components/Footer';
 
 const HomePage = () => {
   return (
@@ -13,10 +14,11 @@ const HomePage = () => {
         <title>ایرانگرد</title>
       </Helmet>
       <Header />
-      <SearchBar/>
+      <SearchBar />
       <CitySlider />
       <Map />
-      <ExperienceSlider/>
+      <ExperienceSlider />
+      <Footer />
     </>
   );
 };
