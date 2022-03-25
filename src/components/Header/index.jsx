@@ -2,10 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RiMarkPenLine, RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine } from 'react-icons/ri';
 import './style.scss';
+import LoginModal from '../LoginModal';
 
 const Header = () => {
+  const [open,setOpen]=React.useState(false);
+  const handleClose=()=>{
+    setOpen(false);
+  }
   return (
     <>
+      <LoginModal open={open} handleClose={handleClose} />
       <div className="header__navbar">
         <div className="header__navbar-container">
           <Link to="/" className="header__logo">
@@ -16,7 +22,7 @@ const Header = () => {
               نوشتن تجربه
               <RiMarkPenLine size={24} />
             </button>
-            <button className="header__signin-btn">ورود</button>
+            <button className="header__signin-btn" onClick={() => setOpen(true)}>ورود</button>
           </div>
         </div>
       </div>

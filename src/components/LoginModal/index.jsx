@@ -8,12 +8,12 @@ import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import { Tab, TabsList,TabPanel } from './CustomTabs';
 
-export default function LoginModal() {
+export default function LoginModal({open,handleClose}) {
   const {formTitle,setFormTitle}= React.useState("");
   return (
     <div>
       <Toaster />
-      <Dialog open={true}>
+      <Dialog open={open} onClose={handleClose} disableBackdropClick>
         <DialogContent sx={{ overflowY: 'hidden', padding: '0px' }}>
           <TabsUnstyled defaultValue={0}>
             <TabsList>
