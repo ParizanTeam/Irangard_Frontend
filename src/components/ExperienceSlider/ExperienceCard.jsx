@@ -4,12 +4,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Favorite } from '@mui/icons-material';
 import { convertNumberToPersian } from 'src/utils/formatters';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
-const ExperienceCard = ({ imgSrc, title, description, view, userImgSrc, userName }) => {
+const ExperienceCard = ({ id, imgSrc, title, description, view, userImgSrc, userName }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <div className="experience-card">
+    <Link to={`/posts/${id}`} className="experience-card">
       <img src={imgSrc} alt={title} className="experience-card__img" />
       <div className="experience-card__rating-wrapper">
         <p>{convertNumberToPersian(view)} بازدید</p>
@@ -31,7 +32,7 @@ const ExperienceCard = ({ imgSrc, title, description, view, userImgSrc, userName
         <img src={userImgSrc} alt={userName} className="experience-card__user-img" />
         <p className="experience-card__user-name">{userName.slice(0, 20)}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
