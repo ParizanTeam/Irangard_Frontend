@@ -15,7 +15,7 @@
   }
   &__search-box {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, 0);
     width: 760px;
@@ -40,5 +40,26 @@
 .main-banner{
   display: flex;
   margin: auto;
-  width:100%;
+  width: 100%;
+
+  
+  // @media (max-width: 3000px){
+  //   height:1100px;
+  // }
+  // @media (max-width: 1500px){
+  //   height:500px;
+  // }
+  // @media (max-width: 1300px){
+  //   height:450px;
+  // }
+  // @media (max-width: 1200px){
+  //   height:400px;
+  // }
+  // @media (max-width: 900px){
+  //   height:400px;
+  // }
+  // @media (max-width: 680px){
+  //   height:300px;
+  // }
 }
+
