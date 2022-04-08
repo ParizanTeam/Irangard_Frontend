@@ -8,7 +8,7 @@ const SearchBar = () => {
   return (
     <div className="search-bar">
       {/* <img src={searchBanner} alt="nature" className="search-bar__img" /> */}
-      <img src={image} alt="nature" className="main-banner" />
+      <img src={image2} alt="nature" className="main-banner" />
       <input className="search-bar__search-box" placeholder="جست‌وجو برای مقصد..." />
     </div>
   );
