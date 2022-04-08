@@ -1,6 +1,7 @@
 import React from 'react';
 import searchBanner from 'src/assets/images/searchBanner.webp';
-import image from 'src/assets/images/main5.png';
+import image from 'src/assets/images/m.png';
+import image2 from 'src/assets/images/main.jpg';
 import './style.scss';
 
 const SearchBar = () => {
