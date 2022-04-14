@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import FooterImg from '../../assets/images/LoginBottom.jpg';
+import FooterImg from '../../assets/images/LoginBottom.png';
 import { Dialog, DialogContent } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
 import TabsUnstyled from '@mui/base/TabsUnstyled';

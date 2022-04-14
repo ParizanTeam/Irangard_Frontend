@@ -6,13 +6,13 @@ import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 
 const color = {
-  50: '#e4b4d1',
+  50: '#83ffff',
 
-  200: '#2e0b20',
+  200: '#0d0b2e',
 
-  400: '#f3cfe5',
-  500: '#52143a',
-  600: '#52143a',
+  400: '#cfddf3',
+  500: '#0a1066',
+  600: '#141852',
 };
 
 export const Tab = styled(TabUnstyled)`
@@ -26,7 +26,7 @@ export const Tab = styled(TabUnstyled)`
   padding: 8px 16px;
   margin: 6px 6px;
   border-style: groove;
-  border-color: #e4b4d1;
+  border-color: #fff;
   border-radius: 5px;
   display: flex;
   justify-content: center;
