@@ -1,0 +1,10 @@
+.layout {
+  background-color: #f2f2f2;
+
+  &__container {
+    min-height: calc(100vh - 164px);
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+  }
+}

@@ -1,0 +1,175 @@
+.profile-summary {
+  background-color: #fff;
+  padding: 32px;
+  margin: 32px 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  &__img {
+    width: 96px;
+    height: 96px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__follow {
+    display: flex;
+  }
+
+  &__followers,
+  &__followings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    margin: 32px 64px;
+
+    span {
+      margin-top: 16px;
+    }
+  }
+
+  &__edit {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f8f8f8;
+    }
+
+    span {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    span:last-child {
+      border-right: 1px solid #bbb;
+    }
+  }
+}
+
+.edit-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  margin-bottom: 32px;
+  margin: auto;
+
+  h2 {
+    margin-bottom: 24px;
+  }
+
+  &__img {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 32px;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    &-edit {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  &__form-control {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  &__form-control input,
+  &__form-control textarea {
+    width: 100%;
+    resize: none;
+    border-radius: 8px;
+    padding: 12px;
+    border: none;
+    background-color: #eee;
+    margin-top: 8px;
+  }
+
+  & button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  &__save-btn {
+    border: none;
+    background-color: #34e0a1;
+    background-color: #fc275c;
+    color: #fff;
+  }
+
+  &__cancel-btn {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    margin-top: 16px;
+  }
+}
+
+.modal {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.modal::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+@media (max-width: 768px) {
+  .profile-summary {
+    flex-direction: column;
+    border-radius: 0;
+
+    &__followers,
+    &__followings {
+      margin: 32px;
+    }
+  }
+
+  .edit-profile {
+    max-width: none;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+}
