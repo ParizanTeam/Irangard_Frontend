@@ -13,11 +13,11 @@ const demo = {
   website: 'www.example.com',
   instagram: 'instagram',
 };
-const PlaceContactInfo = props => {
+const PlaceContactInfo = ({ className }) => {
   //   const { address, lat, long, phone, time, email, website, instagram } = props;
   const { address, lat, long, phone, time, email, website, instagram } = demo;
   return (
-    <div className="place-contact">
+    <div className={`place-contact ${className || ''}`}>
       <Map style={{ width: '100%', height: 240 }} />
       <a target={'_blank'} href={`https://www.google.com/maps/@${lat},${long},14z`}>
         <button className="place-contact__navigate secondary-btn">مسیریابی</button>

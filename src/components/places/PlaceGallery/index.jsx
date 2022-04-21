@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PlaceGallery = () => {
+const PlaceGallery = ({ className }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -29,7 +29,7 @@ const PlaceGallery = () => {
     setOpen(false);
   };
   return (
-    <div className="place-gallery">
+    <div className={`place-gallery ${className || ''}`}>
       <h3 className="place-gallery__title">تصاویر</h3>
       <div className="place-gallery__images">
         {images.slice(0, 3).map(image => (

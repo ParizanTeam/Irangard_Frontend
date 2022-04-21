@@ -1,0 +1,65 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 99;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+        padding: 16px;
+    }
+
+    &__logo {
+        font-size: 28px;
+        font-weight: 800;
+        color: #000;
+
+        &--green {
+            color: #34e0a1;
+        }
+    }
+
+    &__left {
+        display: flex;
+    }
+
+    &__write-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        color: #000;
+        padding: 10px 16px;
+        border-radius: 21px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 16px;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    &__signin-btn {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 16px;
+        border-radius: 21px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    }
+}

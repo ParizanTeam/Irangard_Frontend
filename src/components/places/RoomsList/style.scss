@@ -1,0 +1,35 @@
+.rooms-list {
+  margin-top: 32px;
+
+  &__body {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  thead {
+    color: #999 !important;
+  }
+
+  td {
+    border: 1px solid #ddd;
+    padding: 16px 12px;
+  }
+
+  tr td:first-child {
+    background-color: #cc0200;
+    color: #fff;
+  }
+
+  tbody {
+    font-weight: 600;
+  }
+
+  tr td:last-child {
+    background-color: #eaf9f3;
+  }
+}
