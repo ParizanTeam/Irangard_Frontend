@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { useMutation } from 'react-query';
-import { baseUrl } from '../../utils/constants';
 import toast from 'react-hot-toast';
 import { ErrorMessage, TabHeader } from './Common';
 import ReactInputVerificationCode from 'react-input-verification-code';
-
+import { useSetPassword, useActivateAccount, useCheckCode } from '../../apis/auth';
 const SignupS3 = () => {
   const {
     register,
@@ -15,7 +12,7 @@ const SignupS3 = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const checkCode = useMutation(userData => axios.post(`${baseUrl}/accounts/auth/set-password/`, userData));
+  const setPass = useSetPassword();
 
   const password = register('password', {
     required: true,
@@ -51,7 +48,7 @@ const SignupS3 = () => {
     formData.append('password', userData.password);
     formData.append('re_password', userData.confirmPassword);
     toast.promise(
-      checkCode.mutateAsync(formData),
+      setPass.mutateAsync(formData),
       {
         loading: 'در حال بررسی...',
         success: 'حساب شما با موفقیت ساخته شد.',
@@ -88,10 +85,8 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm();
 
-  // const checkUsername = useMutation(username => axios.post(`${baseUrl}/accounts/auth/check-username/`, username));
-  // const checkEmail = useMutation(email => axios.post(`${baseUrl}/accounts/auth/check-email/`, email));
-  const authActivate = useMutation(userData => axios.post(`${baseUrl}/accounts/auth/activate/`, userData));
-  const checkCode = useMutation(userData => axios.post(`${baseUrl}/accounts/auth/check-code/`, userData));
+  const authActivate = useActivateAccount();
+  const checkCode = useCheckCode();
 
   const s1_submit = userData => {
     toast

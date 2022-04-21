@@ -13,11 +13,11 @@ export default function LoginModal({open,handleClose}) {
   return (
     <div>
       <Toaster />
-      <Dialog open={open} onClose={handleClose} disableBackdropClick>
+      <Dialog open={open} onClose={handleClose}>
         <DialogContent sx={{ overflowY: 'hidden', padding: '0px' }}>
           <TabsUnstyled defaultValue={0}>
             <TabsList>
-              <Tab>ورود</Tab>
+              <Tab>ورود اعضا</Tab>
               <Tab>ثبت نام</Tab>
             </TabsList>
             <TabPanel value={0}>

@@ -159,3 +159,13 @@ $gray: #707070;
 }
 
 
+.forget-password-link{
+  margin-top: 10px;
+  align-items:  right;
+  width: 19rem;
+  color:$primary;
+  span{
+    cursor: pointer;
+    color:$secondary;
+  }
+}
