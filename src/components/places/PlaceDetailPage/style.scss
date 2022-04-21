@@ -10,6 +10,10 @@
     padding: 24px;
   }
 
+  &__gallery {
+    width: calc(100% - 364px);
+  }
+
   &__rating {
     display: flex;
     font-size: 18px;
@@ -25,6 +29,7 @@
   &__gallery-info-wrapper {
     display: flex;
     justify-content: space-evenly;
+    align-items: flex-start;
   }
 
   &__body {
@@ -32,12 +37,12 @@
   }
 
   &__about-title {
-      margin-bottom: 8px;
+    margin-bottom: 8px;
   }
 
   &__about-description {
-      font-weight: 300;
-      line-height: 2;
+    font-weight: 300;
+    line-height: 2;
   }
 }
 
@@ -49,6 +54,10 @@
     &__gallery-info-wrapper {
       flex-direction: column;
       align-items: center;
+    }
+
+    &__gallery {
+      width: 100%;
     }
 
     &__info {
