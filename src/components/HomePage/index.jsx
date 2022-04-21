@@ -7,6 +7,8 @@ import SearchBar from 'src/components/SearchBar/index';
 import ExperienceSlider from 'src/components/ExperienceSlider/index';
 import Footer from 'src/components/Footer';
 import Testimonial from 'src/components/Testimonial';
+import PlaceContactInfo from '../places/PlaceContactInfo';
+import PlaceGallery from '../places/PlaceGallery';
 
 const HomePage = () => {
   return (
@@ -14,6 +16,8 @@ const HomePage = () => {
       <Helmet>
         <title>ایرانگرد</title>
       </Helmet>
+      <PlaceGallery />
+      <PlaceContactInfo />
       <Header />
       <SearchBar />
       <CitySlider />
