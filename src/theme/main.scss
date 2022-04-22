@@ -46,6 +46,7 @@ $color-highlight: lighten($c-gray-95, 7%);
 .skeleton {
   position: relative;
   overflow: hidden;
+  border-radius: 4px;
   background: $c-gray-95;
 
   &:after {
