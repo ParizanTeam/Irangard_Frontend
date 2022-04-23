@@ -1,8 +1,8 @@
 import React from 'react';
-import { formatPrice } from '../../../utils/formatters';
+import { convertNumberToPersian, formatPrice } from '../../../utils/formatters';
 import './style.scss';
 
-const RoomsList = () => {
+const RoomsList = ({ rooms }) => {
   return (
     <div className="rooms-list">
       <h3 className="rooms-list__title">انواع اتاق‌ها</h3>
@@ -16,21 +16,13 @@ const RoomsList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>یک تخته لوکس</td>
-              <td>۱</td>
-              <td>{formatPrice('۲۰۰۰۰۰')}</td>
-            </tr>
-            <tr>
-              <td>دو تخته</td>
-              <td>۲</td>
-              <td>{formatPrice('۳۰۰۰۰۰')}</td>
-            </tr>
-            <tr>
-              <td>سوئیت دو خوابه</td>
-              <td>۴</td>
-              <td>{formatPrice('۴۵۰۰۰۰')}</td>
-            </tr>
+            {rooms.map(room => (
+              <tr>
+                <td>{convertNumberToPersian(room.room_type)}</td>
+                <td>{convertNumberToPersian(room.capacity)}</td>
+                <td>{formatPrice(convertNumberToPersian(room.price))}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

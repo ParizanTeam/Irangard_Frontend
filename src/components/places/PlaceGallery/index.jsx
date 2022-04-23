@@ -2,23 +2,23 @@ import React from 'react';
 import { Dialog, Slide } from '@mui/material';
 import './style.scss';
 
-const images = [
-  'https://media-cdn.tripadvisor.com/media/photo-s/1c/d5/ae/72/la-pizza-du-moment-avec.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
-  'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
-];
+// const images = [
+//   'https://media-cdn.tripadvisor.com/media/photo-s/1c/d5/ae/72/la-pizza-du-moment-avec.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-f/1b/06/74/a7/un-gourmand-apercu.jpg',
+//   'https://media-cdn.tripadvisor.com/media/photo-l/1b/06/77/59/eclats-de-bufala-dop.jpg',
+// ];
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PlaceGallery = ({ className }) => {
+const PlaceGallery = ({ className, images = [] }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

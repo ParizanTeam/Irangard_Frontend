@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../Layout';
 import PlaceGallery from '../PlaceGallery';
 import PlaceContactInfo from '../PlaceContactInfo';
@@ -7,41 +7,49 @@ import PlaceTags from '../PlaceTags';
 import RoomsList from '../RoomsList';
 import PlaceCosts from '../PlaceCosts';
 import './style.scss';
+import { useGetPlace } from '../../../api/place';
+import { Navigate, useParams } from 'react-router-dom';
+import { convertNumberToPersian } from '../../../utils/formatters';
+import loader from '../../../assets/images/loader.gif';
 
 const props = {
   name: 'سیب ۳۶۰',
 };
 const PlaceDetailPage = () => {
   const { name } = props;
+  const params = useParams();
+  const { placeId } = params;
+
+  const { error, isLoading, data } = useGetPlace(placeId);
+  if (error) {
+    return <Navigate to={'/notFound'} />;
+  }
+
   return (
     <Layout>
-      <div className="place-detail">
-        <header className="place-detail__header">
-          <h2>{name}</h2>
-          <div className="place-detail__rating">
-            <Rating dir="ltr" readOnly defaultValue={5} max={5} />
-            <div className="place-detail__rating-value">۵</div>
+      {isLoading && <img src={loader} alt="loading..." className="place-detail__loading" />}
+      {!isLoading && (
+        <div className="place-detail">
+          <header className="place-detail__header">
+            <h2>{data.title}</h2>
+            <div className="place-detail__rating">
+              <Rating dir="ltr" readOnly defaultValue={data.rate} max={5} />
+              <div className="place-detail__rating-value">{convertNumberToPersian(data.rate)}</div>
+            </div>
+          </header>
+          <div className="place-detail__gallery-info-wrapper">
+            <PlaceGallery className="place-detail__gallery" images={data.images} />
+            <PlaceContactInfo className="place-detail__info" info={data.contact} />
           </div>
-        </header>
-        <div className="place-detail__gallery-info-wrapper">
-          <PlaceGallery className="place-detail__gallery" />
-          <PlaceContactInfo className="place-detail__info" />
+          <div className="place-detail__body">
+            <h3 className="place-detail__about-title">درباره {name}</h3>
+            <p className="place-detail__about-description">{data.description}</p>
+            <PlaceTags tags={data.tags} />
+            {data.rooms && <RoomsList rooms={data.rooms} />}
+            <PlaceCosts costs={data.optional_costs} isFree={data.is_free} />
+          </div>
         </div>
-        <div className="place-detail__body">
-          <h3 className="place-detail__about-title">درباره {name}</h3>
-          <p className="place-detail__about-description">
-            هتل لوکس پانوراما جدیدترین هتل پنج‌ستاره جزیره کیش است که در فروردین 1398 افتتاح شده‌است. هتل در بلوار رودکی
-            قرار گرفته و دسترسی بسیار راحتی به مراکز تجاری و اماکن گردشگری جزیره دارد. بازارهای زیتون، مرکز تجاری،
-            پانیذ، پردیس‌های ۱و۲، رویا مال و از سوی دیگر، اسکله قدیم، پارک ساحلی ماهیگیر، مرکز غواصی و کیبل اسکی، پارک
-            شهر زیبای کیش، تالار بزرگ شهر(محل برگزاری جشن‌ها و کنسرت‌های کیش) و کلوپ‌های تفریحی همگی در نزدیکی هتل
-            پانوراما قرار گرفته اند تا محل اقامتی ایده‌آل را برای میهمانان فراهم کنند.با اقامت در این هتل علاوه بر
-            دسترسی‌های مناسبی که خواهید داشت می‌توانید از امکانات متنوع و خدمات با کیفیت هتل بهره مند شوید.
-          </p>
-          <PlaceTags />
-          <RoomsList />
-          <PlaceCosts />
-        </div>
-      </div>
+      )}
     </Layout>
   );
 };
