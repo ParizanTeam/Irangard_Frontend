@@ -27,7 +27,7 @@ const Profile = () => {
   }, [data]);
   const [editProfileModalOpen, setEditProfileModalOpen] = useState(false);
 
-  const { followers, followings, full_name, email, username, about_me, profileImg } = formData;
+  const { followers, followings, full_name, email, username, about_me, profileImg, is_owner } = formData;
 
   const handleOpen = () => {
     setEditProfileModalOpen(true);
@@ -114,12 +114,14 @@ const Profile = () => {
                   <span>{convertNumberToPersian(followings)}</span>
                 </div>
               </div>
-              <button className="profile-summary__edit" onClick={handleOpen}>
-                <span>ویرایش پروفایل</span>
-                <span>
-                  <RiSettings5Line size={20} />
-                </span>
-              </button>
+              {is_owner && (
+                <button className="profile-summary__edit" onClick={handleOpen}>
+                  <span>ویرایش پروفایل</span>
+                  <span>
+                    <RiSettings5Line size={20} />
+                  </span>
+                </button>
+              )}
             </div>
             {about_me && (
               <div className="profile-summary__about">
