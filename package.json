@@ -6,13 +6,21 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite build && vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest",
+    "test:coverage": "jest --collect-coverage"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.4.4",
+    "@types/jest": "^27.4.1",
     "axios": "^0.26.0",
     "husky": "^7.0.4",
     "jalali-date": "^1.1.4",
@@ -34,8 +42,10 @@
     "workbox-strategies": "^6.2.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
     "@vitejs/plugin-react": "^1.0.7",
     "vite": "^2.8.6",
+    "babel-jest": "^27.5.1",
     "vite-plugin-pwa": "^0.11.2"
   }
 }

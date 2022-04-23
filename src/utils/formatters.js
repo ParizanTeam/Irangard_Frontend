@@ -27,6 +27,8 @@ export const convertNumberToEnglish = input => {
 };
 
 export const isPersianNumber = input => {
+  if(isNaN(input)===false)  return false;
+  if(input===null || input===undefined)  return false;
   for (let i = 0; i < input.length; i++) {
     let char = input.charAt(i);
     const persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -38,6 +40,7 @@ export const isPersianNumber = input => {
 };
 
 export const formatPrice = input => {
+  if(input===null || input===undefined)  return input;
   let count = 0;
   let res = '';
   input = input.toString();
@@ -50,24 +53,4 @@ export const formatPrice = input => {
     }
   }
   return res;
-};
-
-export const changeDateFormat = input => {
-  const JDate = require('jalali-date');
-  const jdate = new JDate(input.split('-'));
-  return convertNumberToPersian(jdate.format('dddd DD MMMM YYYY'));
-};
-
-export const changeDateFormat2 = input => {
-  const JDate = require('jalali-date');
-  const jdate = new JDate(input.split('-'));
-  return convertNumberToPersian(jdate.format('dddd DD MMMM'));
-};
-
-export const dateDiff = input => {
-  const JDate = require('jalali-date');
-  const jdate = new JDate(input.split('-'));
-  var msDiff = jdate.toGregorian().getTime() - new Date().getTime(); //Future date - current date
-  //days till that day
-  return Math.floor(msDiff / (1000 * 60 * 60 * 24));
 };
