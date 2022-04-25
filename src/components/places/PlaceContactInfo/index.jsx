@@ -47,15 +47,19 @@ const PlaceContactInfo = ({ className, info }) => {
           </div>
         )}
         {website && (
-          <div className="place-contact__item">
+          <div className="place-contact__item place-contact__website">
             <RiLink size={24} />
-            {website}
+            <a href={website} target="_blank">
+              {website}
+            </a>
           </div>
         )}
         {instagram && (
-          <div className="place-contact__item">
+          <div className="place-contact__item place-contact__address">
             <RiInstagramLine size={24} />
-            {instagram}
+            <a href={website} target="_blank">
+              {instagram}
+            </a>
           </div>
         )}
       </div>
