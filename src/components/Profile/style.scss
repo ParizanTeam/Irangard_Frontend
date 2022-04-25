@@ -78,6 +78,7 @@
     background-color: #fff;
     border: 1px solid #000;
     border-radius: 4px;
+    white-space: pre-wrap;
 
     h3 {
       margin-bottom: 8px;
@@ -230,6 +231,7 @@
     border: none;
     background-color: #eee;
     margin-top: 8px;
+    // white-space: pre-wrap;
   }
 
   &__form-control input:read-only,

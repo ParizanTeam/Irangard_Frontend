@@ -25,6 +25,7 @@ export default function LoginForm() {
       success: res => {
         localStorage.setItem('access-token', res.data['access']);
         localStorage.setItem('refresh-token', res.data['refresh']);
+        window.location.reload(false);
         return 'با موفقیت لاگین شدید.';
       },
       error: err => {
