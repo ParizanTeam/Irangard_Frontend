@@ -3,17 +3,19 @@
 .add-place {
   
   .starter-section {
+    background-color: white;
+    padding: 30px;
+    border:3px solid black;
     text-align: right;
-    margin-right: 30px;
     @media (min-width: 800px) {
-      width: 80%;
+      width: 65%;
       margin: auto;
     }
     .title {
-      margin-top: 40px;
+      margin-top: 20px;
     }
     .description {
-      margin-top: 20px;
+      margin-top: 40px;
       color: rgb(27, 27, 27);
     }
     .question {
@@ -29,7 +31,7 @@
       }
       span {
         .MuiChip-root {
-          background-color: white;
+          background-color: whitesmoke;
         }
         margin: 5px;
       }

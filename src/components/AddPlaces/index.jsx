@@ -15,7 +15,6 @@ import HotelForm from './Hotels';
 import DidaniForm from './Didani';
 
 const CafeForm = () => {
-
   const {
     register,
     handleSubmit,
@@ -114,9 +113,12 @@ const CafeForm = () => {
                   </label>
 
                   <div className="basic-field">
-                    <input 
-                    // value={latitude}
-                    className="field-input" id="state" placeholder="عرض مکان" />
+                    <input
+                      // value={latitude}
+                      className="field-input"
+                      id="state"
+                      placeholder="عرض مکان"
+                    />
                   </div>
                 </div>
                 <div className="coordinates__field">
@@ -125,9 +127,7 @@ const CafeForm = () => {
                   </label>
 
                   <div className="basic-field">
-                    <input 
-                    
-                    className="field-input"  id="state" placeholder="طول مکان" />
+                    <input className="field-input" id="state" placeholder="طول مکان" />
                   </div>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function Places() {
       {!place ? (
         <div className="starter-section">
           <div className="title">
-            <h1>اضافه‌کردن مکان جدید به ایرانگرد</h1>
+            <h2>اضافه‌کردن مکان جدید به ایرانگرد</h2>
           </div>
 
           <div className="description">
@@ -226,8 +226,7 @@ export default function Places() {
           </div>
         </div>
       ) : (
-        hey
-          // <PlaceForm/>
+        <PlaceForm />
       )}
     </div>
   );
