@@ -23,39 +23,9 @@ export default function CafeForm() {
   const name = register('name', { required: true, maxLength: 50 });
   const description = register('description', { required: true, maxLength: 100 });
   const rate = register('rate', { required: true });
-
-  const [state_val, setState] = React.useState(null);
-  const [city_val, setCity] = React.useState(null);
   const [rate_val, setRate] = React.useState(null);
 
-  const state = register('state', { required: true });
-  const city = register('city', { required: true });
-  const street = register('street', { maxLength: 50 });
 
-  const latitude = register('latitude', { required: true });
-  const longitude = register('longitude', { required: true });
-
-  const phone = register('phone', { maxLength: 12 });
-  const email = register('email', {
-    pattern: {
-      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-      message: 'ایمیل نامعتبر است.',
-    },
-  });
-
-  const website = register('website', {
-    pattern: {
-      value:
-        /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
-      message: 'آدرس سایت نامعتبر است.',
-    },
-  });
-
-  const handleChangeLocation = e => {
-    console.log(e);
-    setValue('latitude', e.lat);
-    setValue('longitude', e.lng);
-  };
   return (
     <div>
       <div className="header">
