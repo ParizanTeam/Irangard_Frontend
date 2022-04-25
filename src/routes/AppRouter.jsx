@@ -14,6 +14,7 @@ const AppRouter = () => {
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
         <Route path="/add-new-places"x element={<AddPlaces />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/add-new-places" element={<AddPlaces />} />
       </Routes>
     </BrowserRouter>
   );
