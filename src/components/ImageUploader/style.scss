@@ -1,39 +1,37 @@
 @import '/src/theme/main.scss';
 
-.App {
-    font-family: sans-serif;
-  }
-  
+.image-uploader {
   ul {
     margin: 0;
   }
-  
+
   span {
     font-size: 2rem;
     color: #777;
   }
-  
+
   .dropzone {
     text-align: center;
     padding: 20px;
     border: 3px dashed #07002c;
     //background-color: #fafafa;
     color: #bdbdbd;
-  
+
     margin-bottom: 20px;
   }
-  
+
   .accept {
     border-color: #107c10 !important;
   }
-  
+
   .reject {
     border-color: #d83b01 !important;
   }
 
-.txt{
+  .txt {
     font-size: large;
     margin-bottom: 10px;
     margin-top: 10px;
     color: rgb(1, 0, 20);
+  }
 }
