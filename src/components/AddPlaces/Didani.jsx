@@ -34,7 +34,7 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
   };
 
   return (
-    <div className='mainC'>
+    <div className='main'>
       <div className='sub'>
         <div className='header'>
           <img src={headerImg} alt="header" className='HeeadImg'/>
