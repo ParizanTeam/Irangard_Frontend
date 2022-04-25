@@ -43,7 +43,7 @@ const names = [
 ];
 
 
-export default function Places(){
+export default function HotelForm(){
   const {
     handleSubmit,
     formState: { errors },
@@ -80,7 +80,6 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
 
   return (
     <div className='main'>
-      <Header/>
       <div className='sub'>
         <div className='header'>
           <img src={headerIMG} alt="header" className='HeeadImg'/>
