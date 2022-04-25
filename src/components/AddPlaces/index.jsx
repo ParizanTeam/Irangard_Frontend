@@ -5,7 +5,7 @@ import { Chip } from '@mui/material';
 import { RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine } from 'react-icons/ri';
 import HotelForm from './Hotels';
 import DidaniForm from './Didani';
-import CafeForm from './Cafe';
+import CafeForm from './cafe';
 import AddPlaceCommonForm from './Common';
 import TafrihiForm from './Tafrihi';
 export default function Places() {
