@@ -53,7 +53,6 @@ const AppRouter = () => {
         <Route path="/add-new-places"x element={<AddPlaces />} />
         <Route path="/Search"x element={<PlaceFilters />} />
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/add-new-places" element={<AddPlaces />} />
       </Routes>
     </BrowserRouter>
   );
