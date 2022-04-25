@@ -12,8 +12,8 @@ const AppRouter = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
+        <Route path="/add-new-places"x element={<AddPlaces />} />
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/add-new-places" element={<AddPlaces />} />
       </Routes>
     </BrowserRouter>
   );
