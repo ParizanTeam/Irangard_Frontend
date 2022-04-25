@@ -80,7 +80,7 @@ export default function Places() {
   };
   const PlaceForm = placeForms[place];
   return (
-    <div className="mainN add-place">
+    <div className="main add-place">
       <Header />
 
       {place == null ? (
