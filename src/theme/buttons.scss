@@ -1,0 +1,16 @@
+.secondary-btn {
+  border: 1px solid #cc0200;
+  color: #cc0200;
+  background-color: #fff;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    color: #fff;
+    background-color: #cc0200;
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
+}
