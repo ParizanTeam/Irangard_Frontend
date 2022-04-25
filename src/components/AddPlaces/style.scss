@@ -140,20 +140,6 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80' width='80' height='80'%3E%3Cpath fill='%230b0663' fill-opacity='0.1' d='M14 16H9v-2h5V9.87a4 4 0 1 1 2 0V14h5v2h-5v15.95A10 10 0 0 0 23.66 27l-3.46-2 8.2-2.2-2.9 5a12 12 0 0 1-21 0l-2.89-5 8.2 2.2-3.47 2A10 10 0 0 0 14 31.95V16zm40 40h-5v-2h5v-4.13a4 4 0 1 1 2 0V54h5v2h-5v15.95A10 10 0 0 0 63.66 67l-3.47-2 8.2-2.2-2.88 5a12 12 0 0 1-21.02 0l-2.88-5 8.2 2.2-3.47 2A10 10 0 0 0 54 71.95V56zm-39 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm40-40a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM15 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm40 40a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'%3E%3C/path%3E%3C/svg%3E");
 }
 
-.mainC {
-  //text-align: center;
-  //justify-content: center;
-  //position: absolute;
-  //width: 100%;
-  //justify-content: center;
-  //height: 1060px;
-
-  background-color: #e5e5f7;
-  //opacity: 0.2;
-  background-size: 20px 20px;
-  background-image: repeating-linear-gradient(0deg, #ffa88c, #ffa88c 1px, #e5e5f7 1px, #e5e5f7);
-}
-
 .header {
   display: flex;
   width: 80%;
@@ -183,25 +169,6 @@
   cursor: pointer;
   &:disabled {
     background-color: rgb(105, 184, 215);
-  }
-  @media (max-width: 768px) {
-    margin-top: 30px;
-  }
-}
-.submit-btnC {
-  background-color: #4c1c00;
-  border-radius: 8px;
-  color: rgb(255, 211, 198);
-  font-size: 16px;
-  font-weight: 600;
-  padding: 8px 10px;
-  text-decoration: none;
-  margin-top: 50px;
-  box-shadow: rgb(21, 6, 0) 0px 2px 5px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  &:disabled {
-    background-color: rgb(66, 23, 14);
   }
   @media (max-width: 768px) {
     margin-top: 30px;
@@ -301,54 +268,3 @@
   margin-bottom: 20px;
 }
 
-.form__fieldC {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid black;
-  outline: 0;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:placeholder-shown ~ .form__label {
-    cursor: text;
-    top: 20px;
-  }
-}
-
-.form__labelC {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: black;
-}
-
-.form__fieldC:focus {
-  ~ .form__labelC {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #4c1c00;
-    font-weight: 700;
-  }
-  padding-bottom: 6px;
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #291000, #4c1c00);
-  border-image-slice: 1;
-}
-.form__fieldC {
-  &:required,
-  &:invalid {
-    box-shadow: none;
-  }
-}
