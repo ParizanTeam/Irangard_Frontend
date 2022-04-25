@@ -9,7 +9,7 @@ export default function App() {
     setFileNames(acceptedFiles.map(file => file.name));
 
   return (
-    <div className="App">
+    <div className="image-uploader">
       <Dropzone
         onDrop={handleDrop}
         accept="image/*"
