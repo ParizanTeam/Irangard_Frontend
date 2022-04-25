@@ -45,6 +45,8 @@ const SignupS3 = () => {
   const s3_submit = userData => {
     const formData = new FormData();
     formData.append('username',  localStorage.getItem('username'));
+    formData.append('email',  localStorage.getItem('email'));
+    formData.append('token',  localStorage.getItem('user-code'));
     formData.append('password', userData.password);
     formData.append('re_password', userData.confirmPassword);
     toast.promise(
@@ -114,6 +116,7 @@ export default function SignupForm() {
   const s2_submit = code => {
     if (code.length !== 6) return;
     console.log('code', code);
+    localStorage.setItem("user-code",code)
     toast
       .promise(checkCode.mutateAsync({ email: localStorage.getItem('email'), token: code }), {
         loading: 'در حال بررسی...',
