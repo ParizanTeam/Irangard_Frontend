@@ -1,6 +1,6 @@
 import React from 'react';
 import AddPlaces from '../../assets/images/coffee1.png';
-import header from '../../assets/images/Header2.jpg';
+import headerImg from '../../assets/images/Jamshid.jpg';
 import './style.scss';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { useMutation } from 'react-query';
 import { baseUrl } from '../../utils/constants';
 import toast from 'react-hot-toast';
 import ImgDragDrop from 'src/components/ImageUploader/index';
+import Header from 'src/components/Header';
 
 export default function Places(){
   const {
@@ -34,9 +35,10 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
 
   return (
     <div className='mainC'>
+      <Header/>  
       <div className='sub'>
         <div className='header'>
-          <img src={header} alt="header" className='HeeadImg'/>
+          <img src={headerImg} alt="header" className='HeeadImg'/>
         </div>
       </div>
       <div className="Tab1">
@@ -53,7 +55,7 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
                 placeholder="نام مکان مورد نظر را اینجا وارد کنید."
               />
               <label htmlFor="place-name" className="form__labelC">
-                نام مکان
+                نام جاذبه دیدنی
               </label>
             </div>
 
@@ -66,7 +68,7 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
                 placeholder="درباره مکان مورد نظر به طور مختصر بنویسید."
               />
               <label htmlFor="about-this-place" className="form__labelC">
-              درباره مکان
+              درباره این مکان
               </label>
             </div>
 
@@ -79,24 +81,21 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
                 placeholder="امتیاز مکان مورد نظر را وارد کنید."
               />
               <label htmlFor="place-stars" className="form__labelC">
-              امتیاز مکان
+              امتیاز
               </label>
             </div>  
 
             <div className="form__group1">
-            <p style={{fontSize:'20px',marginBottom:'20px'}}>عکسهای کافه/رستوران</p>
+            <p style={{fontSize:'20px',marginBottom:'20px'}}>عکسهای این جاذبه</p>
               <ImgDragDrop/>
             </div>     
             
           </div>
           
           </div>
-          <input className="submit-btnC" type="submit" value="ثبت این کافه/رستوران" disabled={isLoading} />
+          <input className="submit-btnC" type="submit" value="ثبت این جاذیه دیدنی" disabled={isLoading} />
 
         </form>
-        <div className='map'>
-          <img src={AddPlaces} alt="AddPlaces" style={{width:'180px',marginRight:'20px'}}/>
-        </div>
       </div>
     </div>
   );
