@@ -95,7 +95,7 @@ export default function Places() {
   };
 
   return (
-    <div className="main add-place">
+    <div className="mainN add-place">
       <Header />
       {!place ? (
         <div className="starter-section">       
