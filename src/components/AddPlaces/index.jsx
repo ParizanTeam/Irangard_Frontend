@@ -12,6 +12,11 @@ import { Chip } from '@mui/material';
 import { RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine } from 'react-icons/ri';
 
 const CafeForm = () => {
+
+  const [state, setState] = React.useState(null);
+  const [city, setCity] = React.useState(null);
+
+
   return (
     <div>
       <div className="header">
@@ -19,30 +24,61 @@ const CafeForm = () => {
       </div>
       <form className="add-place-form">
         <h1 className="title">نقشه</h1>
+        <div className="state-city">
+          <div className="state-city__field">
+            <label htmlFor="state" className="field__label">
+              استان
+            </label>
 
-        <div>
-          <label htmlFor="state" className="field__label">
-            استان
-          </label>
+            <Autocomplete
+              disablePortal
+              options={IranStates}
+              sx={{ width: 300 }}
+              value={state}
+              onChange={(event, newValue) => {
+                setCity(null);
+                setState(newValue);
+              }}
+              renderInput={params => (
+                <div ref={params.InputProps.ref} className="basic-field">
+                  <input
+                    {...params.inputProps}
+                    className="field-input"
+                    type="text"
+                    id="state"
+                    placeholder="استان را انتخاب کنید."
+                  />
+                </div>
+              )}
+            />
+          </div>
+          <div className="state-city__field">
+            <label htmlFor="state" className="field__label">
+              شهر
+            </label>
 
-          <Autocomplete
-            disablePortal
-            options={IranStates}
-            sx={{ width: 300 }}
-            renderInput={params => (
-              <div ref={params.InputProps.ref} className="basic-field">
-                <input
-                  {...params.inputProps}
-                  className="field-input"
-                  type="text"
-                  id="state"
-                  placeholder="استان را انتخاب کنید."
-                />
-              </div>
-            )}
-          />
+            <Autocomplete
+              disabled={!state}
+              value={city}
+              onChange={(event, newValue) => {
+                setCity(newValue);
+              }}
+              options={state ? IranCities[state.value] : []}
+              sx={{ width: 300 }}
+              renderInput={params => (
+                <div ref={params.InputProps.ref} className="basic-field">
+                  <input
+                    {...params.inputProps}
+                    className="field-input"
+                    type="text"
+                    id="state"
+                    placeholder="شهر را انتخاب کنید."
+                  />
+                </div>
+              )}
+            />
+          </div>
         </div>
-
         <div className="form__group1 field">
           <input type="input" className="form__field1" id="about" placeholder="درباره" />
           <label htmlFor="about" className="form__label1">
@@ -98,7 +134,7 @@ export default function Places() {
     <div className="main add-place">
       <Header />
       {!place ? (
-        <div className="starter-section">       
+        <div className="starter-section">
           <div className="title">
             <h1>اضافه‌کردن مکان جدید به ایرانگرد</h1>
           </div>
@@ -146,7 +182,6 @@ export default function Places() {
               </span>
             </div>
           </div>
-
         </div>
       ) : (
         <CafeForm />
