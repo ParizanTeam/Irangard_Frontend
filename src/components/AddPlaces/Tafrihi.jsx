@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 import ImgDragDrop from 'src/components/ImageUploader/index';
 import Header from 'src/components/Header';
 
-export default function Places(){
+export default function TafrihiForm(){
   const {
     handleSubmit,
     formState: { errors },
@@ -35,7 +35,6 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
 
   return (
     <div className='main'>
-      <Header/>  
       <div className='sub'>
         <div className='header'>
           <img src={headerImg} alt="header" className='HeeadImg'/>
