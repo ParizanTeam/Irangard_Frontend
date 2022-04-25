@@ -1,3 +1,4 @@
+import React from 'react';
 import './style.scss';
 import HeaderImg from '../../assets/images/loginHead.jpg';
 import HeaderImg2 from '../../assets/images/loginHead2.jpg';
