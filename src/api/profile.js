@@ -5,12 +5,16 @@ import defaultProfileImg from '../assets/images/profile.jpeg';
 
 export const useGetProfile = username =>
   useQuery('getProfile', () => {
-    const access_token = localStorage.getItem('access_token') || '';
+    const access_token = localStorage.getItem('access-token') || '';
+    let headers = {};
+    if (access_token) {
+      headers = {
+        Authorization: 'JWT ' + access_token,
+      };
+    }
     return axios
       .get(`${baseUrl}/accounts/profile/${username}`, {
-        headers: {
-          Authorization: 'JWT ' + access_token,
-        },
+        headers,
       })
       .then(res => res.data)
       .then(data => {
@@ -39,11 +43,15 @@ export const useGetProfile = username =>
 
 export const usePutProfile = async (username, body, onError, onSuccess) => {
   try {
-    const access_token = localStorage.getItem('access_token') || '';
-    const res = await axios.put(`${baseUrl}/accounts/profile/${username}/`, body, {
-      headers: {
+    let access_token = localStorage.getItem('access-token') || '';
+    let headers = {};
+    if (access_token) {
+      headers = {
         Authorization: 'JWT ' + access_token,
-      },
+      };
+    }
+    const res = await axios.put(`${baseUrl}/accounts/profile/${username}/`, body, {
+      headers,
     });
     const data = await res.data;
     onSuccess(data);
