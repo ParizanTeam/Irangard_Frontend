@@ -7,8 +7,8 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/add-new-places"x element={<AddPlaces />} />
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/add-new-places" element={<AddPlaces />} />
       </Routes>
     </BrowserRouter>
   );

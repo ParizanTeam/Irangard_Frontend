@@ -1,11 +1,10 @@
 @import '/src/theme/main.scss';
 
 .add-place {
-  
   .starter-section {
     background-color: white;
     padding: 30px;
-    border:3px solid black;
+    border: 3px solid black;
     text-align: right;
     @media (min-width: 800px) {
       width: 65%;
@@ -29,34 +28,40 @@
           flex-direction: column;
         }
       }
+      .active-chip {
+        .MuiChip-root {
+          background-color: aliceblue;
+        }
+      }
       span {
         .MuiChip-root {
           background-color: whitesmoke;
         }
+
+
         margin: 5px;
       }
     }
   }
 }
 .add-place-form {
-  
   text-align: right;
   margin-right: 10px;
   @media (min-width: 800px) {
-    width: 80%;
+    width: 65%;
     margin: auto;
   }
   &__section {
     margin-bottom: 50px;
   }
-  .upload-images{
+  .upload-images {
     margin-top: 30px;
   }
   .location-info {
     display: flex;
     &__map {
       margin-right: auto;
-      margin-left: 100px;
+      margin-left: 10px;
     }
     @media (max-width: 900px) {
       flex-direction: column;
@@ -112,7 +117,6 @@
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-   
   }
 }
 
@@ -273,4 +277,3 @@
   width: 50%;
   margin-bottom: 20px;
 }
-
