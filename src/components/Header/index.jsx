@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RiMarkPenLine, RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine } from 'react-icons/ri';
+import { RiMarkPenLine, RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine, RiAncientPavilionFill } from 'react-icons/ri';
 import './style.scss';
 import LoginModal from '../LoginModal';
 
@@ -42,6 +42,10 @@ const Header = () => {
         <Link to="experiences" className="header__nav-item">
           <div>تجربه‌ها</div>
           <RiChatQuoteLine size={24} />
+        </Link>
+        <Link to="/add-new-places" className="header__nav-item">
+          <div>+ مکان جدید</div>
+          <RiAncientPavilionFill size={24} />
         </Link>
       </div>
     </>
