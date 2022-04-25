@@ -42,7 +42,7 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
         <form onSubmit={handleSubmit(onSubmit)} style={{width:'100%'}}>
           <div className="loginForm">
           <div className='r1'>
-            <h1 style={{fontSize:'28px',color:'#291000',marginBottom:'10px',marginTop:'10px'}}>اطلاعات تکمیلی</h1>
+            <h1 style={{fontSize:'28px',color:'#000329',marginBottom:'10px',marginTop:'10px'}}>اطلاعات تکمیلی</h1>
             <div className="form__group1 field">
             <input
                 type="input"
@@ -57,8 +57,8 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
             </div>
 
             <div className="form__group1 field">
-              <input type="input" className="form__fieldC"  id="about" placeholder="درباره" />
-              <label htmlFor="about" className="form__labelC">
+              <input type="input" className="form__field1"  id="about" placeholder="درباره" />
+              <label htmlFor="about" className="form__label1">
                 درباره
               </label>
             </div>
@@ -66,12 +66,12 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
             <div className="form__group1 field">
               <input
                 type="input"
-                className="form__fieldC"
+                className="form__field1"
                 
                 id="score"
                 placeholder="امتیاز"
               />
-              <label htmlFor="score" className="form__labelC">
+              <label htmlFor="score" className="form__label1">
               امتیاز
               </label>
             </div>
@@ -95,8 +95,8 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
             </div>
 
             <div className="form__group1 field">
-              <input type="input" className="form__fieldC"  id="about" placeholder="درباره" />
-              <label htmlFor="about" className="form__labelC">
+              <input type="input" className="form__field1"  id="about" placeholder="درباره" />
+              <label htmlFor="about" className="form__label1">
                 درباره
               </label>
             </div>
@@ -104,18 +104,18 @@ const { mutateAsync, isLoading } = useMutation(loginData =>
             <div className="form__group1 field">
               <input
                 type="input"
-                className="form__fieldC"
+                className="form__field1"
                 
                 id="score"
                 placeholder="امتیاز"
               />
-              <label htmlFor="score" className="form__labelC">
+              <label htmlFor="score" className="form__label1">
               امتیاز
               </label>
             </div>
           </div>
           </div>
-          <input className="submit-btnC" type="submit" value="ثبت مکان" disabled={isLoading} />
+          <input className="submit-btn2" type="submit" value="ثبت مکان" disabled={isLoading} />
 
         </form>
         <div className='map'>
