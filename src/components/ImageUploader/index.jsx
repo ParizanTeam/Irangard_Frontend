@@ -3,7 +3,7 @@ import "./style.scss";
 
 import Dropzone from "react-dropzone";
 
-export default function App() {
+export default function ImageUploader() {
   const [fileNames, setFileNames] = useState([]);
   const handleDrop = acceptedFiles =>
     setFileNames(acceptedFiles.map(file => file.name));

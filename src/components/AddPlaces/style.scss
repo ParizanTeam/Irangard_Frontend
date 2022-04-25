@@ -39,6 +39,7 @@
   }
 }
 .add-place-form {
+  
   text-align: right;
   margin-right: 10px;
   @media (min-width: 800px) {
@@ -47,6 +48,9 @@
   }
   &__section {
     margin-bottom: 50px;
+  }
+  .upload-images{
+    margin-top: 30px;
   }
   .location-info {
     display: flex;
@@ -97,9 +101,8 @@
       &:focus {
         border-color: black;
       }
-      &:required,
       &:invalid {
-        border-color: red;
+        border-color: #c00;
       }
     }
   }
