@@ -4,6 +4,7 @@ import NotFoundPage from 'src/components/NotFoundPage';
 import Profile from 'src/components/Profile';
 import PlaceDetailPage from '../components/places/PlaceDetailPage';
 
+import AddPlaces from 'src/components/AddPlaces';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -12,6 +13,7 @@ const AppRouter = () => {
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/add-new-places" element={<AddPlaces />} />
       </Routes>
     </BrowserRouter>
   );
