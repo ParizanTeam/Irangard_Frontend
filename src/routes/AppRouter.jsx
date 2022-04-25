@@ -18,6 +18,8 @@ import StaticsPage from 'src/components/AdminPanel/StaticsPage';
 import Chat from 'src/components/Chat';
 import ChatLayout from 'src/components/Chat/ChatLayout';
 import CityExperiences from '../components/CityExperiences';
+
+import AddPlaces from 'src/components/AddPlaces';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -48,6 +50,7 @@ const AppRouter = () => {
         <Route path="/panel/addremove" element={<AddRemoveUser />} />
         <Route path="/launcher" element={<ChatLayout />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/add-new-places" element={<AddPlaces />} />
       </Routes>
     </BrowserRouter>
   );
