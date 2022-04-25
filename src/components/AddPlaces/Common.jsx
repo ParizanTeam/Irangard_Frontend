@@ -82,6 +82,7 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
                         <input
                           {...state}
                           {...params.inputProps}
+                          autocomplete="off"
                           className="field-input"
                           type="text"
                           id="state"
@@ -113,6 +114,7 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
                           className="field-input"
                           type="text"
                           id="city"
+                          autocomplete="off"
                           placeholder="شهر را انتخاب کنید."
                         />
                       </div>
