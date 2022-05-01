@@ -44,22 +44,19 @@ const SignupS3 = () => {
 
   const s3_submit = userData => {
     const formData = new FormData();
-    formData.append('username',  localStorage.getItem('username'));
-    formData.append('email',  localStorage.getItem('email'));
-    formData.append('token',  localStorage.getItem('user-code'));
+    formData.append('username', localStorage.getItem('username'));
+    formData.append('email', localStorage.getItem('email'));
+    formData.append('token', localStorage.getItem('user-code'));
     formData.append('password', userData.password);
     formData.append('re_password', userData.confirmPassword);
-    toast.promise(
-      setPass.mutateAsync(formData),
-      {
-        loading: 'در حال بررسی...',
-        success: 'حساب شما با موفقیت ساخته شد.',
-        error: err => {
-          if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
-          return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
-        },
-      }
-    );
+    toast.promise(setPass.mutateAsync(formData), {
+      loading: 'در حال بررسی...',
+      success: 'حساب شما با موفقیت ساخته شد.',
+      error: err => {
+        if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
+        return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+      },
+    });
   };
   return (
     <form className="login-form" onSubmit={handleSubmit(s3_submit)}>
@@ -77,15 +74,28 @@ const SignupS3 = () => {
     </form>
   );
 };
-export default function SignupForm() {
+
+
+
+
+
+export default function SignupForm({ handleFormIsDirty }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [vertiCode, setVertiCode] = useState('');
-
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isDirty },
+  } = useForm({
+    defaultValues: {
+      username: '',
+      email: '',
+    },
+  });
+  useEffect(() => {
+    handleFormIsDirty(isDirty);
+  }, [isDirty]);
+
 
   const authActivate = useActivateAccount();
   const checkCode = useCheckCode();
@@ -116,7 +126,7 @@ export default function SignupForm() {
   const s2_submit = code => {
     if (code.length !== 6) return;
     console.log('code', code);
-    localStorage.setItem("user-code",code)
+    localStorage.setItem('user-code', code);
     toast
       .promise(checkCode.mutateAsync({ email: localStorage.getItem('email'), token: code }), {
         loading: 'در حال بررسی...',
