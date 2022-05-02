@@ -4,8 +4,9 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { ErrorMessage, TabHeader } from './Common';
 import { useLogin, useForgetPass } from '../../apis/auth';
+import BlueMailImg from '../../assets/images/blueMail.png';
 
-const ForgetPassForm = () => {
+const ForgetPassForm = ({setFormTitle}) => {
   const {
     register,
     handleSubmit,
@@ -13,11 +14,12 @@ const ForgetPassForm = () => {
   } = useForm();
 
   const email = register('email', { required: true });
-  const { mutateAsync, isLoading } = useForgetPass();
+  const { mutateAsync, isLoading, isSuccess } = useForgetPass();
   const onSubmit = userData => {
     toast.promise(mutateAsync(userData), {
       loading: 'در حال بررسی...',
       success: res => {
+        setFormTitle("ایمیل خود را چک کنید")
         return 'ایمیل با موفقیت برای شما ارسال شد.';
       },
       error: err => {
@@ -29,17 +31,23 @@ const ForgetPassForm = () => {
   };
   return (
     <>
-      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-        <div>لطفا ایمیل خود را وارد کنید.</div>
-        <div className="form__group field">
-          <input type="input" className="form__field" {...email} id="email" placeholder=" ایمیل" />
-          <label htmlFor="email" className="form__label">
-            ایمیل
-          </label>
-          {errors['email'] && <ErrorMessage error={errors['email']} />}
+      {isSuccess ? (
+        <div className="check-email">
+          <img src={BlueMailImg} alt="عکس ایمیل" className="check-email__image" />
         </div>
-        <input className="submit-btn" type="submit" value="ورود " disabled={isLoading} />
-      </form>
+      ) : (
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          <div>لطفا ایمیل خود را وارد کنید.</div>
+          <div className="form__group field">
+            <input type="input" className="form__field" {...email} id="email" placeholder=" ایمیل" />
+            <label htmlFor="email" className="form__label">
+              ایمیل
+            </label>
+            {errors['email'] && <ErrorMessage error={errors['email']} />}
+          </div>
+          <input className="submit-btn" type="submit" value="ورود " disabled={isLoading} />
+        </form>
+      )}
     </>
   );
 };
@@ -82,7 +90,7 @@ export default function LoginForm() {
       <TabHeader title={formTitle} />
       <div className="MyTab" title="..ورود..">
         {fp ? (
-          <ForgetPassForm />
+          <ForgetPassForm setFormTitle={setFT}/>
         ) : (
           <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form__group field">

@@ -18,11 +18,11 @@ const SignupS3 = () => {
     required: true,
     minLength: {
       value: 6,
-      message: 'نام‌کاربری باید ییشتر از ۶ کارکتر باشد.',
+      message: 'رمز عبور باید ییشتر از ۶ کارکتر باشد.',
     },
     maxLength: {
       value: 50,
-      message: 'نام‌کاربری باید کمتر از ۵۰ کارکتر باشد.',
+      message: 'رمز عبور باید کمتر از ۵۰ کارکتر باشد.',
     },
   });
   const confirmPassword = register('confirmPassword', {

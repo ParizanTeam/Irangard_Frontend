@@ -122,9 +122,9 @@ $gray: #707070;
   color: rgb(131, 0, 0);
   margin-top: 10px;
 }
-.tab-header-title{
-  color:$primary;
-  font-size:  3vmin;
+.tab-header-title {
+  color: $primary;
+  font-size: 3vmin;
 }
 .custom-styles {
   direction: ltr;
@@ -158,21 +158,16 @@ $gray: #707070;
   }
 }
 
-
-.forget-password-link{
+.forget-password-link {
   margin-top: 10px;
-  align-items:  right;
+  align-items: right;
   width: 19rem;
-  color:$primary;
-  span{
+  color: $primary;
+  span {
     cursor: pointer;
-    color:$secondary;
+    color: $secondary;
   }
 }
-
-
-
-
 
 .confirm-modal {
   background-color: white;
@@ -189,17 +184,15 @@ $gray: #707070;
 
   &__title {
     line-height: 1.25rem;
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 400;
-
-
   }
 
   &__description {
     margin-bottom: 16px;
   }
 
-  &__buttons{
+  &__buttons {
     padding-top: 20px;
     display: flex;
     position: relative;
@@ -245,5 +238,45 @@ $gray: #707070;
     &:hover {
       background-color: #df5555;
     }
+  }
+}
+
+.check-email {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  &__image {
+    width: 300px;
+    margin-left: -70px;
+  }
+}
+
+.reset-password {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  &__description{
+    padding-top: 10px;
+  }
+  &__image {
+    max-width: 600px;
+
+    
+    @media (max-width: 600px) {
+      width: 100vw;
+    }
+  }
+  form{
+    width: 600px;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 }

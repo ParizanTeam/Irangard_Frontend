@@ -4,7 +4,10 @@ import { baseUrl } from '../utils/constants';
 
 export const useLogin = () => useMutation(loginData => axios.post(`${baseUrl}/accounts/auth/jwt/create`, loginData));
 
-export const useForgetPass = () => useMutation(email => axios.post(`${baseUrl}/accounts/auth/reset-password/`, email));
+export const useForgetPass = () => useMutation(data => axios.post(`${baseUrl}/accounts/auth/reset-password/`, data));
+
+
+export const useResetPass = () => useMutation(data => axios.post(`${baseUrl}/accounts/auth/reset-password/confirm//`, data));
 
 export const useSetPassword = () =>
   useMutation(userData => axios.post(`${baseUrl}/accounts/auth/set-password/`, userData));
