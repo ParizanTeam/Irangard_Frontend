@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './style.scss';
+import ReactInputVerificationCode from 'react-input-verification-code';
 import toast from 'react-hot-toast';
 import { TabHeader, LoginModalForm } from './Common';
-import BlueMailImg from '../../assets/images/blueMail.png';
-import ReactInputVerificationCode from 'react-input-verification-code';
 import { useLogin, useForgetPass, useSetPassword, useActivateAccount, useCheckCode } from '../../apis/auth';
+import BlueMailImg from '../../assets/images/blueMail.png';
+import './style.scss';
 
 export const LoginForm = () => {
   const [fp, setFP] = React.useState(false);
@@ -26,7 +26,7 @@ export const LoginForm = () => {
       error: err => {
         if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
         if (err.response.status === 401) return 'رمز یا نام‌کاربری اشتباه است.';
-        else return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+        else return `مشکلی پیش آمد، دوباره امتحان کنید.`;
       },
     });
   };
@@ -42,7 +42,7 @@ export const LoginForm = () => {
       error: err => {
         if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
         if (err.response.status === 404) return 'حساب کاربری با این ایمیل یافت نشد.';
-        else return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+        else return `مشکلی پیش آمد، دوباره امتحان کنید.`;
       },
     });
   };
@@ -99,7 +99,7 @@ export const SignupForm = ({ handleFormIsDirty }) => {
           if (resp.status === 400) {
             if (problem === 'username') return 'نام کاربری تکراری است.';
             else if (problem === 'email') return 'این ایمیل قبلا در سیستم ثبت شده است.';
-          } else return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+          } else return `مشکلی پیش آمد، دوباره امتحان کنید.`;
         },
       })
       .then(x => setCurrentStep(1));
@@ -117,7 +117,7 @@ export const SignupForm = ({ handleFormIsDirty }) => {
           let resp = err.response;
           if (resp.status === 400) {
             return 'کد صحیح نمیباشد.';
-          } else return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+          } else return `مشکلی پیش آمد، دوباره امتحان کنید.`;
         },
       })
       .then(x => setCurrentStep(2));
@@ -138,7 +138,7 @@ export const SignupForm = ({ handleFormIsDirty }) => {
       success: 'حساب شما با موفقیت ساخته شد.',
       error: err => {
         if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
-        return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+        return `مشکلی پیش آمد، دوباره امتحان کنید.`;
       },
     });
   };

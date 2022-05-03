@@ -1,12 +1,12 @@
 import React from 'react';
-import './style.scss';
 import toast from 'react-hot-toast';
+import { useLocation } from 'react-router-dom';
 import { LoginModalForm } from './Common';
 import { useResetPass } from '../../apis/auth';
-import { useLocation } from 'react-router-dom';
-import ForgetPassImg from '../../assets/images/forgetPass.jpg';
 import Navbar from '../Navbar';
-import Footer from 'src/components/Footer';
+import Footer from '../Footer';
+import ForgetPassImg from '../../assets/images/forgetPass.jpg';
+import './style.scss';
 
 export default function ForgetPassword() {
   const location = useLocation();
@@ -27,7 +27,7 @@ export default function ForgetPassword() {
       success: 'رمز شما با موفقیت تغییر یافت.',
       error: err => {
         if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
-        return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
+        return `مشکلی پیش آمد، دوباره امتحان کنید.`;
       },
     });
   };

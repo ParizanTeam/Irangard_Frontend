@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-
-import './style.scss';
-import FooterImg from '../../assets/images/LoginBottom.png';
-import { Button, Dialog, DialogContent } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
 import { TabsUnstyled, TabsListUnstyled, TabPanelUnstyled, TabUnstyled } from '@mui/base';
-import { LoginForm, SignupForm } from './Forms';
+import { Button, Dialog, DialogContent } from '@mui/material';
 import { Modal, Fade, Backdrop } from '@mui/material';
 import { styled } from '@mui/system';
+import { LoginForm, SignupForm } from './Forms';
+import FooterImg from '../../assets/images/LoginBottom.png';
+import './style.scss';
 
 const Tabs = styled(TabsUnstyled)``;
 const TabsList = styled(TabsListUnstyled)``;

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import './style.scss';
 import { useForm } from 'react-hook-form';
 import HeaderImg from '../../assets/images/loginHead.jpg';
 import HeaderImg2 from '../../assets/images/loginHead2.jpg';
+import './style.scss';
 const commonErrors = {
   required: 'این فیلد باید پر شود.',
 };
