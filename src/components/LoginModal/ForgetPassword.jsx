@@ -39,7 +39,7 @@ export default function ForgetPassword() {
         <h1 className="reset-password__title">فراموشی رمز</h1>
         <p className="reset-password__description">رمز جدید برای خود انتخاب کنید.</p>
         <div className="reset-password__form">
-          <LoginModalForm fields={['password', 're_password']} submit={submit}  isLoading={false}/>
+          <LoginModalForm fields={['password', 're_password']} onSubmit={submit}  isLoading={false}/>
         </div>
         <img src={ForgetPassImg} className="reset-password__image" />
       </div>

@@ -4,10 +4,15 @@ import './style.scss';
 import FooterImg from '../../assets/images/LoginBottom.png';
 import { Button, Dialog, DialogContent } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
+import { TabsUnstyled, TabsListUnstyled, TabPanelUnstyled, TabUnstyled } from '@mui/base';
 import { LoginForm, SignupForm } from './Forms';
-import { Tab, TabsList, TabPanel } from './CustomTabs';
 import { Modal, Fade, Backdrop } from '@mui/material';
+import { styled } from '@mui/system';
+
+const Tabs = styled(TabsUnstyled)``;
+const TabsList = styled(TabsListUnstyled)``;
+const TabPanel = styled(TabPanelUnstyled)``;
+const Tab = styled(TabUnstyled)``;
 
 const ConfirmModal = ({ onDiscardChanges, open, onClose }) => {
   return (
@@ -42,7 +47,7 @@ const ConfirmModal = ({ onDiscardChanges, open, onClose }) => {
 export default function LoginModal({ open, handleClose }) {
   const [formIsDirty, setFormIsDirty] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-  
+
   const handleCloseLoginModal = (discardChanges = false) => {
     if (formIsDirty && !discardChanges) setShowWarning(true);
     if (!formIsDirty || discardChanges) handleClose();
@@ -61,10 +66,10 @@ export default function LoginModal({ open, handleClose }) {
               handleCloseLoginModal(true);
             }}
           />
-          <TabsUnstyled defaultValue={0}>
-            <TabsList>
-              <Tab>ورود اعضا</Tab>
-              <Tab>ثبت نام</Tab>
+          <Tabs defaultValue={0}>
+            <TabsList className="login-modal__TabsList">
+              <Tab className="login-modal__Tab">ورود اعضا</Tab>
+              <Tab className="login-modal__Tab">ثبت نام</Tab>
             </TabsList>
             <TabPanel value={0}>
               <LoginForm />
@@ -73,7 +78,7 @@ export default function LoginModal({ open, handleClose }) {
               <SignupForm handleFormIsDirty={setFormIsDirty} />
             </TabPanel>
             <img src={FooterImg} alt="Goodbye" className="login-modal__FooterImg" />
-          </TabsUnstyled>
+          </Tabs>
         </DialogContent>
       </Dialog>
     </div>

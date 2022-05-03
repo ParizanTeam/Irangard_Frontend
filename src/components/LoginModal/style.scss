@@ -17,8 +17,51 @@
       margin-top: 50px;
     }
   }
+  &__Tab{
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: transparent;
+    width: 100%;
+    height: 35px;
+    padding: 8px 16px;
+    margin: 6px 6px;
+    border-style: groove;
+    border-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: #cfddf3;
+    }
+    &:focus {
+      color: #fff;
+      border-radius: 3px;
+      outline: 2px solid #0d0b2e;
+      outline-offset: 2px;
+    }
 
-  &__tabHeader {
+    &.Mui-selected{
+      background-color: #83ffff;
+      color: #141852;
+    }
+  
+  }
+  &__TabsList{
+    min-width: 200px;
+    height: 50px;
+    background-color: #0a1066;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+    margin-right: 0.15px;
+  }
+  &__TabHeader {
     margin: 10px;
     display: flex;
     flex-direction: row;
@@ -26,7 +69,7 @@
     align-items: center;
   }
 
-  &__tab{
+  &__TabContent{
     overflow-y: hidden;
     margin: 0px;
     display: flex;

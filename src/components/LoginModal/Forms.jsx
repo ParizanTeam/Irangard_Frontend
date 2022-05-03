@@ -50,13 +50,13 @@ export const LoginForm = () => {
   return (
     <>
       <TabHeader title={formTitle} />
-      <div className="login-modal__tab" title="..ورود..">
+      <div className="login-modal__TabContent" title="..ورود..">
         {!fp && (
           <LoginModalForm
             isLogin={true}
             onForgetPassClick={() => setFP(true)}
             fields={['user_email', 'password']}
-            submit={login_submit}
+            onSubmit={login_submit}
             isLoading={login.isLoading}
           />
         )}
@@ -67,7 +67,7 @@ export const LoginForm = () => {
             </div>
           ) : (
             <>
-              <LoginModalForm fields={['email']} submit={email_submit} isLoading={forgetPass.isLoading} />
+              <LoginModalForm fields={['email']} onSubmit={email_submit} isLoading={forgetPass.isLoading} />
             </>
           ))}
       </div>
@@ -147,11 +147,11 @@ export const SignupForm = ({ handleFormIsDirty }) => {
     <>
       <TabHeader title="بیا یه ایرانگرد شو" />
 
-      <div className="login-modal__tab" title="..ثبت نام..">
+      <div className="login-modal__TabContent" title="..ثبت نام..">
         {currentStep === 0 && (
           <LoginModalForm
             fields={['username', 'email']}
-            submit={submit_step1}
+            onSubmit={submit_step1}
             onDirty={handleFormIsDirty}
             isLoading={authActivate.isLoading}
           />
@@ -173,7 +173,7 @@ export const SignupForm = ({ handleFormIsDirty }) => {
         )}
 
         {currentStep === 2 && (
-          <LoginModalForm fields={['password', 're_password']} submit={submit_step3} isLoading={setPass.isLoading} />
+          <LoginModalForm fields={['password', 're_password']} onSubmit={submit_step3} isLoading={setPass.isLoading} />
         )}
       </div>
     </>

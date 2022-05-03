@@ -21,7 +21,7 @@ export const ErrorMessage = ({ error }) => {
 };
 export const TabHeader = ({ title }) => {
   return (
-    <div className="login-modal__tabHeader">
+    <div className="login-modal__TabHeader">
       <img src={HeaderImg} alt="Hello" className="login-modal__HeaderImg" />
       <div className="tab-header-title"> {title}</div>
       <img src={HeaderImg2} alt="Hello" className="login-modal__HeaderImg" />
@@ -94,7 +94,7 @@ export const getFields = (watch, field_list) => {
   return field_list.map(x => ({ id: x, ...fields[x] }));
 };
 
-export const LoginModalForm = ({ fields, submit,isLoading, onDirty, isLogin = false,onForgetPassClick }) => {
+export const LoginModalForm = ({ fields, onSubmit,isLoading, onDirty, isLogin = false,onForgetPassClick }) => {
   const {
     register,
     handleSubmit,
@@ -110,7 +110,7 @@ export const LoginModalForm = ({ fields, submit,isLoading, onDirty, isLogin = fa
     if (onDirty) onDirty(isDirty);
   }, [isDirty]);
   return (
-    <form className="login-modal-form" onSubmit={handleSubmit(submit)}>
+    <form className="login-modal-form" onSubmit={handleSubmit(onSubmit)}>
       {getFields(watch, fields).map(field => {
         return (
           <div key={field.id} className="form__group field">
