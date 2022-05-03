@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './style.scss';
-import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { ErrorMessage } from './Common';
+import { LoginModalForm } from './Common';
 import { useResetPass } from '../../apis/auth';
 import { useLocation } from 'react-router-dom';
 import ForgetPassImg from '../../assets/images/forgetPass.jpg';
-import Header from 'src/components/Header';
+import Navbar from '../Navbar';
 import Footer from 'src/components/Footer';
 
 export default function ForgetPassword() {
@@ -15,41 +14,7 @@ export default function ForgetPassword() {
   const token = query.get('token').slice(0, -1);
   const uid = query.get('uid');
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
   const setPass = useResetPass();
-
-  const password = register('password', {
-    required: true,
-    minLength: {
-      value: 6,
-      message: 'رمز عبور باید ییشتر از ۶ کارکتر باشد.',
-    },
-    maxLength: {
-      value: 50,
-      message: 'رمز عبور باید کمتر از ۵۰ کارکتر باشد.',
-    },
-  });
-  const confirmPassword = register('confirmPassword', {
-    required: true,
-    validate: val => {
-      if (watch('password') != val) {
-        return 'تکرار رمز با رمز‌عبور یکسان نمی‌باشد.';
-      }
-    },
-  });
-  const fields = {
-    password: { ...password },
-    confirmPassword: { ...confirmPassword },
-  };
-  const labels = {
-    password: 'رمز‌عبور',
-    confirmPassword: 'تکرار رمز‌عبور',
-  };
 
   const submit = userData => {
     const data = {
@@ -68,27 +33,17 @@ export default function ForgetPassword() {
   };
   return (
     <>
-      <Header />
+      <Navbar />
 
       <div className="reset-password">
-        <h1>فراموشی رمز</h1>
+        <h1 className="reset-password__title">فراموشی رمز</h1>
         <p className="reset-password__description">رمز جدید برای خود انتخاب کنید.</p>
-
-          <form onSubmit={handleSubmit(submit)}>
-            {Object.entries(fields).map(([inputName, inputRegister]) => (
-              <div key={inputName} className="form__group field">
-                <input type="input" className="form__field" placeholder={inputName} id={inputName} {...inputRegister} />
-                <label htmlFor={inputName} className="form__label">
-                  {labels[inputName]}
-                </label>
-                {errors[inputName] && <ErrorMessage error={errors[inputName]} />}
-              </div>
-            ))}
-
-            <input className="submit-btn" type="submit" value="ثبت" />
-          </form>
+        <div className="reset-password__form">
+          <LoginModalForm fields={['password', 're_password']} submit={submit}  isLoading={false}/>
+        </div>
         <img src={ForgetPassImg} className="reset-password__image" />
       </div>
+
       <Footer />
     </>
   );

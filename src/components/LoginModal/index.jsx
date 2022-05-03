@@ -5,11 +5,9 @@ import FooterImg from '../../assets/images/LoginBottom.png';
 import { Button, Dialog, DialogContent } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
-import SignupForm from './SignupForm';
-import LoginForm from './LoginForm';
+import { LoginForm, SignupForm } from './Forms';
 import { Tab, TabsList, TabPanel } from './CustomTabs';
 import { Modal, Fade, Backdrop } from '@mui/material';
-import { OpenInBrowser } from '@mui/icons-material';
 
 const ConfirmModal = ({ onDiscardChanges, open, onClose }) => {
   return (
@@ -44,7 +42,8 @@ const ConfirmModal = ({ onDiscardChanges, open, onClose }) => {
 export default function LoginModal({ open, handleClose }) {
   const [formIsDirty, setFormIsDirty] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-  const handleCloseLoginModal = (discardChanges=false) => {
+  
+  const handleCloseLoginModal = (discardChanges = false) => {
     if (formIsDirty && !discardChanges) setShowWarning(true);
     if (!formIsDirty || discardChanges) handleClose();
   };
@@ -58,7 +57,7 @@ export default function LoginModal({ open, handleClose }) {
             open={showWarning}
             onClose={() => setShowWarning(false)}
             onDiscardChanges={() => {
-              setShowWarning(false)
+              setShowWarning(false);
               handleCloseLoginModal(true);
             }}
           />
@@ -73,7 +72,7 @@ export default function LoginModal({ open, handleClose }) {
             <TabPanel value={1}>
               <SignupForm handleFormIsDirty={setFormIsDirty} />
             </TabPanel>
-            <img src={FooterImg} alt="Goodbye" className="FooterImg" />
+            <img src={FooterImg} alt="Goodbye" className="login-modal__FooterImg" />
           </TabsUnstyled>
         </DialogContent>
       </Dialog>
