@@ -6,10 +6,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Modal } from '@mui/material';
 import ExperiencesList from '../ExperiencesList';
 import Layout from '../Layout';
+import Followers from '../Followers';
 import { convertNumberToPersian } from '../../utils/formatters';
 import { useGetProfile, usePutProfile } from '../../api/profile';
-import './style.scss';
 import { baseUrl } from 'src/utils/constants';
+import './style.scss';
 
 const Profile = () => {
   const { username: usernameQuery } = useParams();
@@ -17,6 +18,8 @@ const Profile = () => {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [followersModalOpen, setFollowersModalOpen] = useState(false);
+  const [followingsModalOpen, setFollowingsModalOpen] = useState(false);
   const { isLoading, error, data } = useGetProfile(usernameQuery);
   const [experiences, setExperiences] = useState([]);
   const [experiencesLoading, setExperiencesLoading] = useState(false);
@@ -125,11 +128,11 @@ const Profile = () => {
                 <p className="profile-summary__username">{username}</p>
               </div>
               <div className="profile-summary__follow">
-                <div className="profile-summary__followers">
+                <div className="profile-summary__followers" onClick={() => setFollowersModalOpen(true)}>
                   دنبال‌کنندگان
                   <span>{convertNumberToPersian(followers)}</span>
                 </div>
-                <div className="profile-summary__followings">
+                <div className="profile-summary__followings" onClick={() => setFollowingsModalOpen(true)}>
                   دنبال‌شوندگان
                   <span>{convertNumberToPersian(followings)}</span>
                 </div>
@@ -233,6 +236,16 @@ const Profile = () => {
                 </button>
               </form>
             </Modal>
+            <Followers
+              label="لیست دنبال‌کنندگان"
+              open={followersModalOpen}
+              onClose={() => setFollowersModalOpen(false)}
+            />
+            <Followers
+              label="لیست دنبال‌شوندگان"
+              open={followingsModalOpen}
+              onClose={() => setFollowingsModalOpen(false)}
+            />
           </div>
         </>
       )}
