@@ -66,7 +66,7 @@ function ExperienceDetail() {
         <h2 className="experience-detail__title-2">خلاصه</h2>
         <p className="experience-detail__summary-body">{xp.summary}</p>
         <h2 className="experience-detail__title-2">متن تجربه</h2>
-        <RichText editorClassName="experience-detail__body-editor" hideToolbar defaultContent={xp.content} />
+        <RichText readOnly editorClassName="experience-detail__body-editor" hideToolbar defaultContent={xp.content} />
         <Comments />
       </div>
     </Layout>

@@ -7,7 +7,14 @@ import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './style.scss';
 
-function RichText({ defaultContent, onChange = () => {}, label, hideToolbar = false, editorClassName }) {
+function RichText({
+  defaultContent,
+  onChange = () => {},
+  label,
+  hideToolbar = false,
+  editorClassName,
+  readOnly = false,
+}) {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
 
   // load default content to editor
@@ -31,6 +38,7 @@ function RichText({ defaultContent, onChange = () => {}, label, hideToolbar = fa
       {label && <label className="rich-text__label">{label}</label>}
       <div className={classNames('rich-text__editor', editorClassName)}>
         <Editor
+          readOnly={readOnly}
           toolbarStyle={{ display: hideToolbar ? 'none' : '' }}
           editorClassName="rich-text__editor-body"
           editorState={editorState}
