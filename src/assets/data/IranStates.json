@@ -1,0 +1,126 @@
+[
+    {
+        "label": "اردبيل",
+        "value": "Ardabil"
+    },
+    {
+        "label": "اصفهان",
+        "value": "Isfahan"
+    },
+    {
+        "label": "البرز",
+        "value": "Alborz"
+    },
+    {
+        "label": "ايلام",
+        "value": "Ilam"
+    },
+    {
+        "label": "آذربايجان شرقي",
+        "value": "Azrbayjanshrghi"
+    },
+    {
+        "label": "آذربايجان غربي",
+        "value": "Azrbayjanghrbi"
+    },
+    {
+        "label": "بوشهر",
+        "value": "Bushehr"
+    },
+    {
+        "label": "تهران",
+        "value": "Tehran"
+    },
+    {
+        "label": "چهارمحال وبختياري",
+        "value": "Chaharmhalobkhtiari"
+    },
+    {
+        "label": "خراسان جنوبي",
+        "value": "Khorasanjonubi"
+    },
+    {
+        "label": "خراسان رضوي",
+        "value": "Khorasanrazavi"
+    },
+    {
+        "label": "خراسان شمالي",
+        "value": "Khorasanshomali"
+    },
+    {
+        "label": "خوزستان",
+        "value": "Khozestan"
+    },
+    {
+        "label": "زنجان",
+        "value": "Zanjan"
+    },
+    {
+        "label": "سمنان",
+        "value": "Semnan"
+    },
+    {
+        "label": "سيستان وبلوچستان",
+        "value": "Sistanvabalochestan"
+    },
+    {
+        "label": "فارس",
+        "value": "Fars"
+    },
+    {
+        "label": "قزوين",
+        "value": "Ghazvin"
+    },
+    {
+        "label": "قم",
+        "value": "Qom"
+    },
+    {
+        "label": "كردستان",
+        "value": "Kordestan"
+    },
+    {
+        "label": "كرمان",
+        "value": "Kerman"
+    },
+    {
+        "label": "كرمانشاه",
+        "value": "Kermanshah"
+    },
+    {
+        "label": "كهگيلويه وبويراحمد",
+        "value": "Kohgiloyhoboyrahmad"
+    },
+    {
+        "label": "گلستان",
+        "value": "Golestan"
+    },
+    {
+        "label": "گيلان",
+        "value": "Gilan"
+    },
+    {
+        "label": "لرستان",
+        "value": "Lorestan"
+    },
+    {
+        "label": "مازندران",
+        "value": "Mazandaran"
+    },
+    {
+        "label": "مركزي",
+        "value": "Markazi"
+    },
+    {
+        "label": "هرمزگان",
+        "value": "Hormozgan"
+    },
+    {
+        "label": "همدان",
+        "value": "Hamedan"
+    },
+    {
+        "label": "يزد",
+        "value": "Yazd"
+    }
+]
