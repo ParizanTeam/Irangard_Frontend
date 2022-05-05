@@ -1,35 +1,31 @@
 import React from 'react';
-import headerImg from '../../assets/images/Header1.jpg';
 import './style.scss';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import Autocomplete from '@mui/material/Autocomplete';
-import { IranStates, IranCities, CafeTags } from './info.js';
-import { Chip, Rating, TextField } from '@mui/material';
 import Map from 'src/components/Map';
 import { ErrorMessage } from 'src/components/LoginModal/Common';
-
+import IranStates from 'src/assets/data/IranStates.json';
 export default function AddPlaceCommonForm({ setMoreInfo }) {
   const {
     register,
+    resetField,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
-  } = useForm({ shouldUseNativeValidation: true });
+  } = useForm({ shouldUseNativeValidation: true, defaultValues: { state: '', city: '' } });
 
   const onSubmit = userData => {
-    console.log('hey')
+    console.log('hey');
     setMoreInfo(true);
-    
   };
 
-  const [state_val, setState] = React.useState(null);
-  const [city_val, setCity] = React.useState(null);
+  const [cities, setCities] = React.useState([]);
 
   const state = register('state', { required: true });
   const city = register('city', { required: true });
   const street = register('street', { maxLength: 50 });
-
   const latitude = register('latitude', { required: true });
   const longitude = register('longitude', { required: true });
 
@@ -52,11 +48,11 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
   const handleChangeLocation = e => {
     setValue('latitude', e.lat);
     setValue('longitude', e.lng);
-    console.log("errors",errors)
+    console.log('errors', errors);
   };
   return (
     <div>
-      <form className="add-place-form" onSubmit={handleSubmit(onSubmit)} novalidate="" >
+      <form className="add-place-form" onSubmit={handleSubmit(onSubmit)} novalidate="">
         <div className="add-place-form__section">
           <h1 className="title">نقشه</h1>
           <div className="location-info">
@@ -70,19 +66,20 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
                   <Autocomplete
                     disablePortal
                     options={IranStates}
-                    value={state_val}
+                    value={watch('state')}
                     onChange={(event, newValue) => {
-                      setCity(null);
-                      setState(newValue);
-                      setValue('city', null);
                       setValue('state', newValue);
+                      fetch(`src/assets/data/cities/${watch('state').value}.json`).then(res =>
+                        res.json().then(x => setCities(x))
+                      );
+                      resetField('city');
                     }}
                     renderInput={params => (
                       <div ref={params.InputProps.ref} className="basic-field">
                         <input
                           {...state}
                           {...params.inputProps}
-                          autocomplete="off"
+                          autoComplete="off"
                           className="field-input"
                           type="text"
                           id="state"
@@ -97,15 +94,13 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
                   <label htmlFor="city" className="field__label">
                     شهر
                   </label>
-
                   <Autocomplete
-                    disabled={!state_val}
-                    value={city_val}
+                    disabled={!watch('state')}
+                    value={watch('city')}
                     onChange={(event, newValue) => {
-                      setCity(newValue);
                       setValue('city', newValue);
                     }}
-                    options={state_val ? IranCities[state_val.value] : []}
+                    options={cities}
                     renderInput={params => (
                       <div ref={params.InputProps.ref} className="basic-field">
                         <input
@@ -114,7 +109,7 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
                           className="field-input"
                           type="text"
                           id="city"
-                          autocomplete="off"
+                          autoComplete="off"
                           placeholder="شهر را انتخاب کنید."
                         />
                       </div>
@@ -159,7 +154,13 @@ export default function AddPlaceCommonForm({ setMoreInfo }) {
               </div>
             </div>
             <div className="location-info__map">
-              <Map onChoose={handleChangeLocation} />
+              {watch('city') && (
+                <Map
+                  onChoose={handleChangeLocation}
+                  defaultLat={watch('city')?.lat}
+                  defaultLong={watch('city')?.long}
+                />
+              )}
             </div>
           </div>
         </div>
