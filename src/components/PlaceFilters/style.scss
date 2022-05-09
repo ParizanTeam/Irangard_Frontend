@@ -1,0 +1,84 @@
+.search-places {
+  background-color: whitesmoke;
+
+  &__header {
+    position: sticky;
+    top: 0px;
+    padding-top: 30px;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  &__tabs {
+    @media (min-width: 800px) {
+      width: 80%;
+    }
+    margin: 40px auto 0px;
+  }
+  &__filters {
+    display: flex;
+    margin: auto;
+    @media (min-width: 800px) {
+      gap: 40px;
+      width: 80%;
+    }
+    @media (max-width: 800px) {
+      gap: 20px;
+      width: 95%;
+      flex-direction: column;
+    }
+  }
+  .search-btn {
+    border: none;
+    height: 100%;
+    width: 100%;
+    background-color: #004f32;
+    border-radius: 32px;
+    -webkit-transition: background-color 0.2s linear;
+    -o-transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear;
+    cursor: pointer;
+    @media (min-width: 800px) {
+      margin: 0px 30px;
+    }
+    &:hover {
+      background-color: #00aa6c;
+    }
+    p {
+      margin: 0;
+      vertical-align: middle;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      display: inline-block;
+    }
+  }
+}
+
+.green-field {
+  position: relative;
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+  .field-input {
+    outline: 0;
+    padding: 14px;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+
+    &:focus {
+      border-radius: 0;
+      border-color: #00aa6c;
+      outline: #00aa6c solid 1px;
+    }
+
+    padding-right: 30px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+  }
+}

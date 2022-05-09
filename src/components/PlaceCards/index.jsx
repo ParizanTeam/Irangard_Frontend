@@ -1,14 +1,12 @@
 import React from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useKeenSlider } from 'keen-slider/react';
-import { Rating } from '@mui/material';
-import EventNoteIcon from '@mui/icons-material/EventNote';
-import Experiences from 'src/components/FilterCards/Data.js';
+import Experiences from './Data.js';
 import Card from './card';
 import 'keen-slider/keen-slider.min.css';
 import './style.scss';
 
-const Filter = () => {
+const PlaceCards = () => {
     const isMobile = useMediaQuery('(max-width: 480px)');
     const isTablet = useMediaQuery('(max-width: 768px)');
     const [sliderRef] = useKeenSlider({
@@ -20,11 +18,10 @@ const Filter = () => {
   
     return (
       <div className="home-experiences">
-        <h2 className="home-experiences__title">نتیجه جست و جوی شما</h2>
-        <div ref={sliderRef} className="coloumn">
+        <div ref={sliderRef} className="flex-column">
           {Experiences.map(item => (
             <div key={item.id} className="">
-              <Card classData={item} />
+              <Card placeData={item} />
             </div>
           ))}
         </div>
@@ -32,5 +29,5 @@ const Filter = () => {
     );
   };
   
-  export default Filter;
+  export default PlaceCards;
   

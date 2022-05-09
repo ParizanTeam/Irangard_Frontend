@@ -2,8 +2,8 @@ import React from 'react';
 import 'keen-slider/keen-slider.min.css';
 import './style.scss';
 
-const ClassCard = ({ classData }) => {
-  const { imgSrc, view, title, description, teacherImg, teacherName, experiencesNumber, date, price } = classData;
+const PlaceCard = ({ placeData }) => {
+  const { imgSrc, title, description, experiencesNumber, } = placeData;
   return (
     <>
       <div className="class-card">
@@ -29,4 +29,4 @@ const ClassCard = ({ classData }) => {
   );
 };
 
-export default ClassCard;
+export default PlaceCard;

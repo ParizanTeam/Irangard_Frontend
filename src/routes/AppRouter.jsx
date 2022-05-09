@@ -20,6 +20,7 @@ import ChatLayout from 'src/components/Chat/ChatLayout';
 import CityExperiences from '../components/CityExperiences';
 
 import AddPlaces from 'src/components/AddPlaces';
+import PlaceFilters from 'src/components/PlaceFilters';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -50,6 +51,7 @@ const AppRouter = () => {
         <Route path="/panel/addremove" element={<AddRemoveUser />} />
         <Route path="/launcher" element={<ChatLayout />} />
         <Route path="/add-new-places"x element={<AddPlaces />} />
+        <Route path="/Search"x element={<PlaceFilters />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
