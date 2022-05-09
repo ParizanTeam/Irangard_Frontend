@@ -5,6 +5,7 @@ import Profile from 'src/components/Profile';
 import PlaceDetailPage from '../components/places/PlaceDetailPage';
 
 import AddPlaces from 'src/components/AddPlaces';
+import PlaceFilters from 'src/components/PlaceFilters';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ const AppRouter = () => {
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
         <Route path="/add-new-places"x element={<AddPlaces />} />
+        <Route path="/Search"x element={<PlaceFilters />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
