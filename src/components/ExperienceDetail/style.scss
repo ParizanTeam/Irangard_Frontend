@@ -90,10 +90,31 @@
   .rich-text__editor-body {
     padding: 0;
   }
+
+  &__author-info {
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    border-left: 16px solid #ff725d;
+    color: #333;
+    margin: 16px 0 32px;
+  }
+
+  &__author-img {
+    width: 96px;
+    height: 96px;
+    margin-left: 32px;
+  }
 }
 
 @media (max-width: 768px) {
   .experience-detail {
     padding: 16px;
+
+    &__author-img {
+      margin-left: 16px;
+    }
   }
 }

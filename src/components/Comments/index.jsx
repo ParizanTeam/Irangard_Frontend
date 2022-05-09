@@ -1,30 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 import Button from '../Button';
 import TextArea from '../TextArea';
 import Comment from '../Comment';
+import { baseUrl } from '../../utils/constants';
 import './style.scss';
 
-function Comments() {
+function Comments({ experienceId }) {
   const [body, setBody] = useState('');
-  const demo = {
-    text: 'سلام وقت بخیر سفرنامه بسیار زیبا ، دقیق شما را خواندم و از آن بسیار لذت بردم چقدر نگارش روان و خودمانی داشتید و اتفاقات سفر را از دریچه دید شنا کاملا حس کردم امیدوارم همواره موفق و پایدار باشید و باز هم مطالب متنوع و جدید از شما بخونیم',
-    name: 'فرناز رضایی',
-    image: 'https://last-cdn.com/v1/avatars/2019/07/12/fWwvzJ3ZZUymW4PpDpvcscogmI1MXQ7JaRh88sAN.jpeg',
-    time: '07 اردیبهشت 1401',
+  const [bodyError, setBodyError] = useState('');
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/experiences/${experienceId}/comments`)
+      .then(res => res.data)
+      .then(data => {
+        console.log(data);
+        setComments(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+  const handleAddComment = async e => {
+    e.preventDefault();
+    if (body.trim() === '') {
+      setBodyError('متن نظر نمی‌تواند خالی باشد.');
+      return;
+    }
+    const token = localStorage.getItem('access-token');
+    if (!token) {
+      toast.error('برای ثبت نظر باید وارد شوید.');
+      return;
+    }
+    setLoading(true);
+    await axios
+      .post(
+        `${baseUrl}/experiences/${experienceId}/comments/`,
+        {
+          text: body,
+        },
+        {
+          headers: {
+            Authorization: `JWT ${token}`,
+          },
+        }
+      )
+      .then(res => res.data)
+      .then(data => {
+        setComments(old => [data, ...old]);
+        toast.success('نظر شما با موفقیت ثبت شد.');
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error('مشکلی در سامانه رخ داده‌است.');
+      });
+    setLoading(false);
   };
+
   return (
     <div className="comments">
+      <Toaster />
       <h2 className="comments__title">افزودن نظر</h2>
-      <form>
-        <TextArea placeholder="متن نظر..." label="متن نظر:" value={body} onChange={e => setBody(e.target.value)} />
-        <Button className="comments__send-btn">
+      <form onSubmit={handleAddComment}>
+        <TextArea
+          placeholder="متن نظر..."
+          label="متن نظر:"
+          value={body}
+          onChange={e => {
+            if (e.target.value.trim() !== '') {
+              setBodyError('');
+            }
+            setBody(e.target.value);
+          }}
+          error={bodyError}
+        />
+        <Button className="comments__send-btn" type="submit" disabled={loading}>
           ارسال نظر
         </Button>
       </form>
       <h2 className="comments__title">نظرات کاربران</h2>
+      {comments.length === 0 && <p className="comments__no-comment">نظری برای این تجربه ثبت نشده‌است.</p>}
       <div className="comments__list">
-        {new Array(10).fill(null).map((_, index) => (
-          <Comment key={index} comment={demo} />
+        {comments.map(comment => (
+          <Comment key={comment.id} comment={comment} experienceId={experienceId} />
         ))}
       </div>
     </div>

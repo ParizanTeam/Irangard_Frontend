@@ -27,8 +27,8 @@ export const convertNumberToEnglish = input => {
 };
 
 export const isPersianNumber = input => {
-  if(isNaN(input)===false)  return false;
-  if(input===null || input===undefined)  return false;
+  if (isNaN(input) === false) return false;
+  if (input === null || input === undefined) return false;
   for (let i = 0; i < input.length; i++) {
     let char = input.charAt(i);
     const persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -40,7 +40,7 @@ export const isPersianNumber = input => {
 };
 
 export const formatPrice = input => {
-  if(input===null || input===undefined)  return input;
+  if (input === null || input === undefined) return input;
   let count = 0;
   let res = '';
   input = input.toString();
@@ -53,4 +53,8 @@ export const formatPrice = input => {
     }
   }
   return res;
+};
+
+export const formatDate = date => {
+  return new Date(date).toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
 };

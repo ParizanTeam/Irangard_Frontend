@@ -8,6 +8,7 @@ function Input(
     error,
     type = 'text',
     className,
+    containerClassName,
     onChange = () => {},
     placeholder,
     readOnly,
@@ -33,7 +34,7 @@ function Input(
   );
 
   return (
-    <div className="input__container">
+    <div className={classNames('input__container', containerClassName)}>
       {label && (
         <label>
           <span className="input-label">{label}</span>
