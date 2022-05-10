@@ -12,11 +12,14 @@ import { convertNumberToPersian } from '../../utils/formatters';
 import { baseUrl } from 'src/utils/constants';
 import './style.scss';
 
+let cancelToken;
+
 function AddExperience() {
   const [title, setTitle] = useState('');
   const [titleError, setTitleError] = useState('');
   const [rateValue, setRateValue] = useState(3);
   const [place, setPlace] = useState('');
+  const [places, setPlaces] = useState([]);
   const [placeError, setPlaceError] = useState('');
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
@@ -44,8 +47,25 @@ function AddExperience() {
     }
   };
 
-  const handlePlaceChange = e => {
+  const handlePlaceChange = async e => {
     setPlace(e.target.value);
+    if (typeof cancelToken != typeof undefined) {
+      cancelToken.cancel();
+    }
+
+    //Save the cancel token for the current request
+    cancelToken = axios.CancelToken.source();
+
+    axios
+      .get(`${baseUrl}/places/?search=${e.target.value}`, { cancelToken: cancelToken.token })
+      .then(res => res.data)
+      .then(data => {
+        console.log(data.results);
+        setPlaces(data.results);
+      })
+      .catch(error => {
+        console.log(error);
+      });
     if (e.target.value === '') {
       setPlaceError('مکان تجربه نمی‌تواند خالی باشد.');
     } else {
@@ -71,7 +91,7 @@ function AddExperience() {
     const body = new FormData();
     body.append('date_created', date);
     body.append('title', title);
-    body.append('place', place);
+    body.append('place', place.id);
     body.append('summary', summary);
     body.append('rate', rateValue);
     body.append('body', content);
@@ -104,14 +124,30 @@ function AddExperience() {
       <div className="add-experience">
         <Toaster />
         <h1 className="add-experience__title">نوشتن تجربه</h1>
-        <Input
-          label="انتخاب مکان:"
-          placeholder="مکان..."
-          value={place}
-          onChange={handlePlaceChange}
-          onBlur={handlePlaceChange}
-          error={placeError}
-        />
+        <div className="add-experience__places-box">
+          <Input
+            label="انتخاب مکان:"
+            placeholder="مکان..."
+            value={place.title}
+            onChange={handlePlaceChange}
+            onBlur={handlePlaceChange}
+            error={placeError}
+          />
+          {place.title && (
+            <div className="add-experience__place-selected">
+              <div className="add-experience__place-title">{place.title}</div>
+              <div className="add-experience__place-city">{place.contact?.city}</div>
+            </div>
+          )}
+          <div className="add-experience__places">
+            {places.map(plc => (
+              <div className="add-experience__place" onClick={() => setPlace(plc)}>
+                <div className="add-experience__place-title">{plc.title}</div>
+                <div className="add-experience__place-city">{plc.contact.city}</div>
+              </div>
+            ))}
+          </div>
+        </div>
         <Button className="add-experience__choose-img-btn" onClick={() => imageRef.current.click()}>
           <input
             type="file"

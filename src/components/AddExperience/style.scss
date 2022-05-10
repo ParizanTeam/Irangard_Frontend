@@ -34,4 +34,29 @@
     direction: ltr;
     margin-top: 16px;
   }
+
+  &__place {
+    padding: 16px;
+    border-radius: 8px;
+    margin: 8px 0;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &__place-selected {
+    padding: 16px;
+    border-radius: 8px;
+    margin: 8px 0;
+    border: 1px solid purple;
+    background-color: rgb(246, 234, 246);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &__place-title {
+    font-size: 14px;
+  }
+
+  &__place-city {
+    color: #888;
+    font-size: 12px;
+  }
 }
