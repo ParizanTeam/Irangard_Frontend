@@ -13,11 +13,11 @@ import './style.scss';
 
 const PlaceFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [placeType, setPlaceType] = useState('1');
-  const [state, setState] = useState(null);
-  const [city, setCity] = useState(null);
+  const [placeType, setPlaceType] = useState(searchParams.get('place_type') || 'all');
+  const [state, setState] = useState(searchParams.get('state') || '');
+  const [city, setCity] = useState(searchParams.get('city') || '');
   const [cities, setCities] = React.useState([]);
-  const [query, setQuery] = useState(searchParams.get('q'));
+  const [q, setQ] = useState(searchParams.get('q') || '');
 
   const greenTheme = createTheme({
     palette: {
@@ -32,6 +32,13 @@ const PlaceFilters = () => {
 
   const handleTabChange = (event, newValue) => {
     setPlaceType(newValue);
+    let d = searchParams;
+    if (newValue === 'all') {
+      d.delete('place_type');
+    } else {
+      d.set('place_type', newValue);
+    }
+    setSearchParams(d);
   };
 
   return (
@@ -47,11 +54,13 @@ const PlaceFilters = () => {
                   className="field-input"
                   type="text"
                   id="mainSearch"
-                  value={query}
+                  value={q}
                   onChange={e => {
                     let v = e.target.value;
-                    setQuery(v);
-                    setSearchParams({ q: v });
+                    setQ(v);
+                    let d = searchParams;
+                    d.set('q', v);
+                    setSearchParams(d);
                   }}
                   placeholder="جست‌و‌جو برای مقصد..."
                 />
@@ -65,7 +74,7 @@ const PlaceFilters = () => {
                     value={state}
                     onChange={(event, newValue) => {
                       setState(newValue);
-                      fetch(`src/assets/data/cities/${state.value}.json`).then(res =>
+                      fetch(`assets/data/cities/${newValue.value}.json`).then(res =>
                         res.json().then(x => setCities(x))
                       );
                       setCity(null);
@@ -118,12 +127,12 @@ const PlaceFilters = () => {
               </div>
             </div>
             <div className="search-places__tabs">
-              <Tabs value={placeType} onChange={handleTabChange}variant="scrollable">
-                <Tab label="همه نتایج" value="1" />
-                <Tab label="رستوران‌ها" value="2" />
-                <Tab label="اقامتگاه‌ها" value="3" />
-                <Tab label="مراکز تفریحی" value="4" />
-                <Tab label="جاذبه‌های‌دیدنی" value="5" />
+              <Tabs value={placeType} onChange={handleTabChange} variant="scrollable">
+                <Tab label="همه نتایج" value="all" />
+                <Tab label="رستوران‌ها" value="0" />
+                <Tab label="اقامتگاه‌ها" value="1" />
+                <Tab label="مراکز تفریحی" value="2" />
+                <Tab label="جاذبه‌های‌دیدنی" value="3" />
               </Tabs>
             </div>
           </div>
@@ -131,8 +140,7 @@ const PlaceFilters = () => {
           <div>
             <PlaceCards />
           </div>
-      <Footer />
-
+          <Footer />
         </div>
       </IconContext.Provider>
     </ThemeProvider>
