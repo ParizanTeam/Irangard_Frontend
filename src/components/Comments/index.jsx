@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Button from '../Button';
 import TextArea from '../TextArea';
 import Comment from '../Comment';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import './style.scss';
 
 function Comments({ experienceId }) {

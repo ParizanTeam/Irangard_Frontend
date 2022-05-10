@@ -8,7 +8,7 @@ import Comments from '../Comments';
 import RichText from '../RichText';
 import Loader from '../Loader';
 import { convertNumberToPersian, formatDate } from '../../utils/formatters';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import defaultXpImg from '../../assets/images/defaultXpImg.png';
 import './style.scss';
 

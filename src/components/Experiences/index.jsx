@@ -4,7 +4,7 @@ import Layout from '../Layout';
 import Loader from '../Loader';
 import ExperiencesList from '../ExperiencesList';
 import ExperienceFilters from '../ExperienceFilters';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import './style.scss';
 
 function Experiences() {

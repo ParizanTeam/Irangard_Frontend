@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import Button from '../Button';
 import Input from '../Input';
 import './style.scss';
@@ -37,12 +37,12 @@ function ExperienceFilters({ setExperiences }) {
         />
 
         {/* TODO: handle more filters */}
-        {/* <Input
+        <Input
           placeholder="جستجو در مکان..."
           label="جستجو بر اساس مکان:"
           value={placeSearch}
           onChange={e => setPlaceSearch(e.target.value)}
-        /> */}
+        />
         <Button type="submit" variant="blue" className="filters__search-btn" disabled={textSearchLoading}>
           جستجو
         </Button>

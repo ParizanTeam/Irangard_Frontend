@@ -9,7 +9,7 @@ import Layout from '../Layout';
 import { convertNumberToPersian } from '../../utils/formatters';
 import { useGetProfile, usePutProfile } from '../../api/profile';
 import './style.scss';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 
 const Profile = () => {
   const { username: usernameQuery } = useParams();

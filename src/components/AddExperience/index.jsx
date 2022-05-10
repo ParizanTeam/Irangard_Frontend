@@ -9,7 +9,7 @@ import RichText from '../RichText';
 import Button from '../Button';
 import TextArea from '../TextArea';
 import { convertNumberToPersian } from '../../utils/formatters';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import './style.scss';
 
 function AddExperience() {

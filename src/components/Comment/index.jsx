@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Button from '../Button';
 import TextArea from '../TextArea';
 import { formatDate } from '../../utils/formatters';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import './style.scss';
 
 function Comment({ comment, experienceId }) {
