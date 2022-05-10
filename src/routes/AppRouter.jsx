@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from 'src/components/HomePage';
 import NotFoundPage from 'src/components/NotFoundPage';
 import Profile from 'src/components/Profile';
+import AddExperience from '../components/AddExperience';
+import ExperienceDetail from '../components/ExperienceDetail';
+import Experiences from '../components/Experiences';
 import PlaceDetailPage from '../components/places/PlaceDetailPage';
 import ForgetPassword from 'src/components/LoginModal/ForgetPassword';
 
@@ -13,6 +16,9 @@ const AppRouter = () => {
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
         <Route path="/reset-password" element={<ForgetPassword />} />
+        <Route path="/experiences" element={<Experiences />} />
+        <Route path="/experiences/new" element={<AddExperience />} />
+        <Route path="/experiences/:id" element={<ExperienceDetail />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

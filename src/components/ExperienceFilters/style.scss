@@ -1,0 +1,21 @@
+.filters {
+  padding: 16px;
+  background-color: #444;
+  margin: 16px 0 0;
+  border-radius: 8px;
+  color: #fff;
+
+  &__search-box {
+    width: 100%;
+  }
+
+  &__search-box-title {
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  &__search-btn {
+    padding: 10px;
+    margin-top: 16px;
+  }
+}

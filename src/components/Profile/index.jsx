@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { RiSettings5Line } from 'react-icons/ri';
 import toast, { Toaster } from 'react-hot-toast';
 import { Modal } from '@mui/material';
-import { convertNumberToPersian } from '../../utils/formatters';
+import ExperiencesList from '../ExperiencesList';
 import Layout from '../Layout';
+import { convertNumberToPersian } from '../../utils/formatters';
 import { useGetProfile, usePutProfile } from '../../api/profile';
 import './style.scss';
+import { baseUrl } from 'src/utils/constants';
 
 const Profile = () => {
   const { username: usernameQuery } = useParams();
@@ -15,6 +18,8 @@ const Profile = () => {
   const [errors, setErrors] = useState({});
   const [updateLoading, setUpdateLoading] = useState(false);
   const { isLoading, error, data } = useGetProfile(usernameQuery);
+  const [experiences, setExperiences] = useState([]);
+  const [experiencesLoading, setExperiencesLoading] = useState(false);
   if (error) {
     console.log('error', error.response);
     navigate('/notFound');
@@ -25,6 +30,21 @@ const Profile = () => {
       setFormData(data);
     }
   }, [data]);
+
+  useEffect(async () => {
+    setExperiencesLoading(true);
+    await axios
+      .get(`${baseUrl}/experiences/?user__username=${usernameQuery}`)
+      .then(res => res.data)
+      .then(data => {
+        console.log(data);
+        setExperiences(data.results);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    setExperiencesLoading(false);
+  }, []);
   const [editProfileModalOpen, setEditProfileModalOpen] = useState(false);
 
   const { followers, followings, full_name, email, username, about_me, profileImg, is_owner } = formData;
@@ -216,6 +236,7 @@ const Profile = () => {
           </div>
         </>
       )}
+      {!experiencesLoading && <ExperiencesList experiences={experiences} />}
     </Layout>
   );
 };

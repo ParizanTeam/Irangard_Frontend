@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { Rating } from '@mui/material';
 import Layout from '../../Layout';
 import PlaceGallery from '../PlaceGallery';
 import PlaceContactInfo from '../PlaceContactInfo';
-import { Rating } from '@mui/material';
 import PlaceTags from '../PlaceTags';
 import RoomsList from '../RoomsList';
 import PlaceCosts from '../PlaceCosts';
-import './style.scss';
+import Loader from '../../Loader';
 import { useGetPlace } from '../../../api/place';
-import { Navigate, useParams } from 'react-router-dom';
 import { convertNumberToPersian } from '../../../utils/formatters';
-import loader from '../../../assets/images/loader.gif';
+import './style.scss';
 
 const props = {
   name: 'سیب ۳۶۰',
@@ -27,7 +27,7 @@ const PlaceDetailPage = () => {
 
   return (
     <Layout>
-      {isLoading && <img src={loader} alt="loading..." className="place-detail__loading" />}
+      {isLoading && <Loader />}
       {!isLoading && (
         <div className="place-detail">
           <header className="place-detail__header">

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiMarkPenLine } from 'react-icons/ri';
 import LoginModal from '../LoginModal';
 import './style.scss';
 
 const Navbar = ({}) => {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
   const handleClose = () => {
     setOpen(false);
   };
@@ -30,7 +31,7 @@ const Navbar = ({}) => {
             ایران<span className="header__logo--green">گرد</span>
           </Link>
           <div className="header__navbar-left">
-            <button className="header__write-btn">
+            <button className="header__write-btn" onClick={() => navigate('/experiences/new')}>
               نوشتن تجربه
               <RiMarkPenLine size={24} />
             </button>

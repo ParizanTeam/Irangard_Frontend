@@ -27,7 +27,7 @@ export const useGetProfile = username =>
           about_me = '',
           is_owner = false,
         } = data;
-        const profileImg = data?.image ? `${baseUrl}${data.image}` : defaultProfileImg;
+        const profileImg = data?.image ? data.image : defaultProfileImg;
         return {
           followers,
           followings,
