@@ -1,54 +1,31 @@
 import React from 'react';
 import headerImg from '../../assets/images/Header1.jpg';
 import './style.scss';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import Autocomplete from '@mui/material/Autocomplete';
-import { IranStates, IranCities, CafeTags } from './info.js';
+import { CafeTags } from './info.js';
 import { Chip, Rating, TextField } from '@mui/material';
-import Map from 'src/components/Map';
-import { useAddPlace } from '../../apis/places';
 import { ErrorMessage } from 'src/components/LoginModal/Common';
 import ImgDragDrop from 'src/components/ImageUploader/index';
+import { useFormContext } from 'react-hook-form';
 
 export default function CafeForm() {
   const {
     register,
-    handleSubmit,
+    watch,
     setValue,
-    getValues,
     formState: { errors },
-  } = useForm({ shouldUseNativeValidation: true });
-
-  const { mutateAsync, isLoading } = useAddPlace();
-  const onSubmit = userData => {
-    toast.promise(mutateAsync(userData), {
-      loading: 'در حال بررسی...',
-      success: res => {
-        localStorage.setItem('access-token', res.data['access']);
-        localStorage.setItem('refresh-token', res.data['refresh']);
-        return 'با موفقیت لاگین شدید.';
-      },
-      error: err => {
-        if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
-        if (err.response.status === 401) return 'رمز یا نام‌کاربری اشتباه است.';
-        else return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
-      },
-    });
-  };
+  } = useFormContext();
 
   const name = register('name', { required: true, maxLength: 50 });
   const description = register('description', { required: true, maxLength: 100 });
-  const rate = register('rate', { required: true });
-  const [rate_val, setRate] = React.useState(null);
-
+  const rate = register('rate');
 
   return (
     <div>
       <div className="header">
         <img src={headerImg} alt="header" className="HeeadImg" />
       </div>
-      <form className="add-place-form" onSubmit={handleSubmit(onSubmit)} novalidate="">
+      <div className="add-place-form">
         <div className="add-place-form__section">
           <h2 className="title">درباره‌ی مکان</h2>
           <div className="basic-field">
@@ -85,19 +62,16 @@ export default function CafeForm() {
               name="simple-controlled"
               size={'large'}
               precision={0.5}
-              value={rate_val}
+              value={watch('rate')}
               onChange={(event, newValue) => {
-                setRate(newValue);
                 setValue('rate', newValue);
               }}
             />
           </div>
           <div style={{ marginTop: '30px' }}>
-            <label htmlFor="website" className="field__label" >
+            <label htmlFor="website" className="field__label">
               تگ‌های مکان
             </label>
-
-          
 
             <Autocomplete
               multiple
@@ -111,9 +85,10 @@ export default function CafeForm() {
               }
               renderInput={params => (
                 <TextField
-                sx={{width:'700px',bgcolor:'white'}}
-                
-                {...params} placeholder="تگ های مکان را انتخاب کنید." />
+                  sx={{ width: '700px', bgcolor: 'white' }}
+                  {...params}
+                  placeholder="تگ های مکان را انتخاب کنید."
+                />
               )}
             />
           </div>
@@ -121,8 +96,8 @@ export default function CafeForm() {
             <ImgDragDrop />
           </div>
         </div>
-        <input className="submit-btn2" type="submit" value="ثبت مکان" />
-      </form>
+      </div>
+      <input type="submit" className="submit-btn2" value="ثبت اطلاعات" />
     </div>
   );
 }
