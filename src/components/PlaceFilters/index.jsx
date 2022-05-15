@@ -10,6 +10,7 @@ import Footer from 'src/components/Footer';
 import PlaceCards from 'src/components/PlaceCards';
 import IranStates from 'src/assets/data/IranStates.json';
 import './style.scss';
+import Navbar from '../Navbar';
 
 const PlaceFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +44,7 @@ const PlaceFilters = () => {
 
   return (
     <ThemeProvider theme={greenTheme}>
+      <Navbar/>
       <IconContext.Provider value={{ color: '#00aa6c', size: '1.3em' }}>
         <div className="search-places">
           <div className="search-places__header">

@@ -19,13 +19,7 @@ export default function CafeForm() {
   const name = register('name', { required: true, maxLength: 50 });
   const description = register('description', { required: true, maxLength: 100 });
   const rate = register('rate');
-
-  const name = register('name', { required: true, maxLength: 50 });
-  const description = register('description', { required: true, maxLength: 100 });
-  const rate = register('rate', { required: true });
-  const [rate_val, setRate] = React.useState(null);
-
-
+  
   return (
     <div>
       <div className="header">
