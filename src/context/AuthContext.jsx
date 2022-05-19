@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
   const [isSpecial, setIsSpecial] = useState(false);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
+  const updateInfo = useCallback(() => {
     apiInstance
       .get('/accounts/information')
       .then(res => res.data)
@@ -25,14 +25,21 @@ export function AuthProvider({ children }) {
       });
   }, []);
 
+  useEffect(() => {
+    updateInfo();
+  }, []);
+
   const login = useCallback((access_token, refresh_token) => {
-    setIsLoggedIn(true);
     localStorage.setItem('access-token', access_token);
     localStorage.setItem('refresh-token', refresh_token);
+    updateInfo();
   }, []);
 
   const logout = useCallback(() => {
+    setUser(null);
     setIsLoggedIn(false);
+    setIsAdmin(false);
+    setIsSpecial(false);
     localStorage.removeItem('access-token');
     localStorage.removeItem('refresh-token');
   }, []);
@@ -48,7 +55,7 @@ export function AuthProvider({ children }) {
           isAdmin,
           isSpecial,
         }),
-        [login, logout, isLoggedIn, isAdmin, isSpecial, user]
+        [login, logout, updateInfo, isLoggedIn, isAdmin, isSpecial, user]
       )}
     >
       {children}
