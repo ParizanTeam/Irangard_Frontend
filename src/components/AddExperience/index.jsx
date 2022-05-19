@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { Rating } from '@mui/material';
-import Layout from '../Layout';
-import Input from '../Input';
-import RichText from '../RichText';
-import Button from '../Button';
-import TextArea from '../TextArea';
-import { convertNumberToPersian } from '../../utils/formatters';
+import Layout from 'src/components/Layout';
+import Input from 'src/components/Input';
+import RichText from 'src/components/RichText';
+import Button from 'src/components/Button';
+import TextArea from 'src/components/TextArea';
+import { convertNumberToPersian } from 'src/utils/formatters';
+import useAuth from 'src/context/AuthContext';
 import { baseUrl } from 'src/utils/constants';
 import './style.scss';
 
@@ -25,10 +26,10 @@ function AddExperience() {
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
   const imageRef = useRef(null);
-  const token = localStorage.getItem('access-token');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  if (!token) {
+  const auth = useAuth();
+  if (!auth.isLoggedIn) {
     return (
       <Layout title="نوشتن تجربه جدید">
         <div className="add-experience">
