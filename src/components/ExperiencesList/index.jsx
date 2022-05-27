@@ -6,6 +6,7 @@ import Button from '../Button';
 import { convertNumberToPersian, formatDate } from '../../utils/formatters';
 import defaultXpImg from '../../assets/images/defaultXpImg.png';
 import './style.scss';
+import defaultProfileImg from '../../assets/images/profile.jpeg';
 
 function ExperiencesList({ experiences }) {
   const navigate = useNavigate();
@@ -13,9 +14,7 @@ function ExperiencesList({ experiences }) {
     <div className="experiences">
       <h1 className="experiences__title">تجربه‌ها</h1>
       <div className="experiences__list">
-        {experiences.length === 0 && (
-          <p className="experiences__no-experience">هیچ تجربه‌ای پیدا نشد.</p>
-        )}
+        {experiences.length === 0 && <p className="experiences__no-experience">هیچ تجربه‌ای پیدا نشد.</p>}
         {experiences.map(xp => (
           <div key={xp.id} className="experience-list-card">
             <div className="experience-list-card__right">
@@ -55,7 +54,11 @@ function ExperiencesList({ experiences }) {
             <div className="experience-list-card__author">
               <Link to={`/profile/${xp.user_username}`}>
                 <div className="experience-list-card__author-info">
-                  <img className="experience-list-card__author-img" src={xp.user_image} alt={xp.user_username} />
+                  <img
+                    className="experience-list-card__author-img"
+                    src={xp.user_image || defaultProfileImg}
+                    alt={xp.user_username}
+                  />
                   <p className="experience-list-card__author-name">{xp.user_username}</p>
                 </div>
               </Link>

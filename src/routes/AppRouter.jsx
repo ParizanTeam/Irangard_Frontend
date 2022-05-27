@@ -5,6 +5,7 @@ import Profile from 'src/components/Profile';
 import AddExperience from '../components/AddExperience';
 import ExperienceDetail from '../components/ExperienceDetail';
 import Experiences from '../components/Experiences';
+import Feed from '../components/Feed';
 import PlaceDetailPage from '../components/places/PlaceDetailPage';
 import ForgetPassword from 'src/components/LoginModal/ForgetPassword';
 
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Route path="/experiences" element={<Experiences />} />
         <Route path="/experiences/new" element={<AddExperience />} />
         <Route path="/experiences/:id" element={<ExperienceDetail />} />
+        <Route path="/feed" element={<Feed />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

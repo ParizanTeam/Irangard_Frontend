@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
           isAdmin,
           isSpecial,
         }),
-        [login, logout, updateInfo, isLoggedIn, isAdmin, isSpecial, user]
+        [login, logout, isLoggedIn, isAdmin, isSpecial, user]
       )}
     >
       {children}
