@@ -1,3 +1,4 @@
+@import 'src/theme/main.scss';
 .place-costs {
   margin-top: 32px;
 
@@ -16,17 +17,17 @@
   }
 
   thead {
-    color: #999 !important;
+    color: $c-gray-60 !important;
   }
 
   td {
-    border: 1px solid #ddd;
+    border: 1px solid $c-greydd;
     padding: 16px 12px;
   }
 
   tr td:first-child {
-    background-color: #cc0200;
-    color: #fff;
+    background-color: $c-red;
+    color: $c-white;
   }
 
   tbody {
@@ -34,6 +35,6 @@
   }
 
   tr td:last-child {
-    background-color: #eaf9f3;
+    background-color: $c-white2;
   }
 }

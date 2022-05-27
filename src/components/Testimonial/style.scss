@@ -1,5 +1,6 @@
+@import 'src/theme/main.scss';
 .testimonials {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: $c-black-20;
   padding: 16px;
   margin-top: 16px;
 
@@ -11,7 +12,7 @@
   }
 
   &__title {
-    color: #000;
+    color: $c-black;
     font-size: 26px;
     font-weight: 800;
     text-align: right;
@@ -22,7 +23,7 @@
     min-height: 320px;
   }
   .__card {
-    background-color: #fff;
+    background-color: $c-white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,10 +36,10 @@
     max-width: 768px;
     left: 0;
     right: 0;
-    box-shadow: 0 16px 16px 0 #c0e1ed;
+    box-shadow: 0 16px 16px 0 $c-blue6;
     opacity: 0;
     transition: all 0.3s;
-    color: #6c6c6c;
+    color: $c-grey6c;
 
     &:nth-child(1) {
       transform: scale(1);
@@ -82,7 +83,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #6c6c6c;
+    color: $c-grey6c;
     cursor: pointer;
     font-weight: 600;
   }
@@ -96,8 +97,8 @@
   }
 
   &__card-image {
-    box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12),
-      0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 17px 2px $c-grey24, 0 3px 14px 2px $c-grey1f,
+      0 5px 5px -3px $c-black-40;
     width: 5em;
     height: 5em;
     object-fit: cover;

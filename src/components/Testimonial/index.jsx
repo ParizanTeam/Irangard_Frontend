@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './styles.scss';
+import './style.scss';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const data = [

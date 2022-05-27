@@ -1,5 +1,7 @@
+@import 'src/theme/main.scss';
+
 .city-slider {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: $c-black-20;
   padding: 16px;
   height: 400px;
   &__container {
@@ -7,7 +9,7 @@
     margin: auto;
   }
   &__title {
-    color: #000;
+    color: $c-black;
     font-size: 26px;
     font-weight: 800;
     text-align: right;
@@ -28,8 +30,8 @@
     &-text {
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.2);
-      color: #fff;
+      background-color: $c-black-40;
+      color: $c-white;
       font-size: 22px;
       font-weight: 500;
       display: flex;
@@ -52,8 +54,8 @@
     top: 50%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
-    fill: #ccc;
-    background-color: #fff;
+    fill: $c-gray-80;
+    background-color: $c-white;
     padding: 10px;
     cursor: pointer;
   }

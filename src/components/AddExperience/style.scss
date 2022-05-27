@@ -1,5 +1,7 @@
+@import 'src/theme/main.scss';
+
 .add-experience {
-  background-color: #fff;
+  background-color: $c-white;
   border-radius: 8px;
   margin: 32px 0;
   padding: 32px;
@@ -39,16 +41,16 @@
     padding: 16px;
     border-radius: 8px;
     margin: 8px 0;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px $c-grey1a;
   }
 
   &__place-selected {
     padding: 16px;
     border-radius: 8px;
     margin: 8px 0;
-    border: 1px solid purple;
-    background-color: rgb(246, 234, 246);
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid $c-purple2;
+    background-color: $c-lightpink;
+    box-shadow: 2px 4px 8px $c-grey1a;
   }
 
   &__place-title {
@@ -56,7 +58,7 @@
   }
 
   &__place-city {
-    color: #888;
+    color: $c-grey8;
     font-size: 12px;
   }
 }

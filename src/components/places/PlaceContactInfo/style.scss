@@ -1,12 +1,13 @@
+@import 'src/theme/main.scss';
 .place-contact {
-  border: 1px solid #ddd;
+  border: 1px solid $c-greydd;
   border-radius: 16px;
   overflow: hidden;
   width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 6px 8px $c-grey1a;
   z-index: 0;
   //   margin: 32px;
 
@@ -23,13 +24,13 @@
     display: flex;
     margin: 14px 0;
     align-items: flex-start;
-    color: #444;
+    color: $c-black3;
     font-size: 14px;
 
     svg {
       margin-left: 12px;
       flex-shrink: 0;
-      color: #5f9326;
+      color: $c-grass;
       margin-top: -2px;
     }
   }
@@ -38,7 +39,7 @@
   &__website {
     word-break: break-all;
     a {
-      color: rgb(47, 47, 198);
+      color: $c-blue2;
     }
   }
 }

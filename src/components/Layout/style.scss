@@ -1,5 +1,6 @@
+@import 'src/theme/main.scss';
 .layout {
-  background-color: #f2f2f2;
+  background-color: $c-white7;
 
   &__container {
     min-height: calc(100vh - 164px);

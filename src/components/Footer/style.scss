@@ -1,10 +1,11 @@
+@import 'src/theme/main.scss';
 .footer {
-  background-color: #F9F1EC;
+  background-color: $c-white1;
   padding: 32px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: $c-black2;
   font-weight: 600;
   svg {
       margin: 4px;
