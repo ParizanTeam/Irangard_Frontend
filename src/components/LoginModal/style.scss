@@ -40,7 +40,7 @@
     &:focus {
       color: $c-white;
       border-radius: 3px;
-      outline: 2px solid #0d0b2e;
+      outline: 2px solid $c-black5;
       outline-offset: 2px;
     }
 
@@ -80,13 +80,13 @@
   }
 }
 
-$primary: #161452;
-$secondary: #52143a67;
+$primary: $c-black6;
+$secondary: $c-purple3;
 $white: $c-white;
-$gray: #707070;
+$gray: $c-gray-40;
 
 .login-modal-form {
-  @include gradient_field(#161452, #52143a67);
+  @include gradient_field($c-black6, $c-purple3);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -108,7 +108,7 @@ $gray: #707070;
 }
 
 .error-msg {
-  color: rgb(131, 0, 0);
+  color: $c-brown;
   margin-top: 10px;
 }
 .tab-header-title {
@@ -161,7 +161,7 @@ $gray: #707070;
 .confirm-modal {
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px $c-gray-75;
   outline: none;
   padding: 32px;
   position: absolute;
@@ -198,11 +198,11 @@ $gray: #707070;
   &__confirm {
     background-color: $c-green1;
     color: $c-white;
-    border: 1px solid rgba(37, 93, 173, 0.25);
+    border: 1px solid $c-blue5;
     padding: 8px 16px;
     font-weight: 700;
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(41, 168, 119, 0.35);
+    box-shadow: 0 4px 10px $c-green8;
     font-size: 16px;
     margin: 16px;
     cursor: pointer;
@@ -215,7 +215,7 @@ $gray: #707070;
   &__cancel {
     background-color: $c-pink;
     color: $c-white;
-    border: 1px solid rgba(37, 93, 173, 0.25);
+    border: 1px solid $c-blue5;
     padding: 8px 16px;
     font-weight: 700;
     border-radius: 4px;
@@ -242,7 +242,7 @@ $gray: #707070;
 }
 
 .reset-password {
-  @include gradient_field(#161452, #52143a67);
+  @include gradient_field($c-black6, $c-purple3);
 
   display: flex;
   justify-content: center;

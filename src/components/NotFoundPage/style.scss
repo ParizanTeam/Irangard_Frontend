@@ -14,7 +14,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     background-image: linear-gradient(to left, $c-green4, $c-orange1);
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px $c-black-40;
     padding: 4px;
   }
   &__container-body {
@@ -57,7 +57,7 @@
     cursor: pointer;
     transition: all 0.3s;
     &:hover {
-      background-color: rgba(0, 143, 95, 0.7);
+      background-color: $c-green5;
     }
   }
   &__tile {

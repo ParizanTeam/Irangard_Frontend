@@ -26,7 +26,7 @@
     border-radius: 24px;
     font-size: 16px;
     border: none;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px $c-gray-75;
     outline: none;
     transition: all .3s;
     &:focus {

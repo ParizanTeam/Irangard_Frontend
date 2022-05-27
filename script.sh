@@ -4,7 +4,7 @@
 get_colors() {
     files=$(find src -name "style.scss")
     for file in $files; do
-        grep 'color:\s*#' "$file" | grep -o "#[A-Za-z0-9]*"
+        grep -E -o '#[A-Za-z0-9]+' "$file"
     done
 }
 

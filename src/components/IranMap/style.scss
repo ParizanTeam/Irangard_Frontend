@@ -21,34 +21,34 @@
     display: block;
   }
   .cls-1 {
-    fill: #e4e4e4;
+    fill: $c-gray-90;
   }
   .cls-2 {
     fill: $c-white;
   }
   .cls-3 {
-    fill: #93d4f1;
+    fill: $c-blue4;
   }
   .cls-4 {
-    fill: #ffedc4;
+    fill: $c-lightorange3;
   }
   .cls-5 {
-    fill: #cadd99;
+    fill: $c-green7;
   }
   .cls-6 {
-    fill: #b1c86e;
+    fill: $c-green6;
   }
   .cls-7 {
-    fill: #fddca1;
+    fill: $c-lightorange2;
   }
   .cls-8 {
-    fill: #ddb65e;
+    fill: $c-lightorange1;
   }
   .cls-9 {
-    fill: #289bc3;
+    fill: $c-blue3;
   }
   .cls-10 {
-    fill: #a46c15;
+    fill: $c-lightbrown;
   }
   a:hover :not(.cls-2) {
     opacity: 0.5;

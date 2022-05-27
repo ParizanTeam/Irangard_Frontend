@@ -25,7 +25,7 @@ textarea {
 // change scrollbar default styles
 html {
   --scrollbarBG: #f1f1f1;
-  --thumbBG: #ccc;
+  --thumbBG: $c-gray-80;
 }
 *::-webkit-scrollbar {
   width: 14px;

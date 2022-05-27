@@ -5,7 +5,7 @@
     top: 0;
     background-color: $c-white;
     z-index: 99;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px $c-grey1a;
   }
   &__navbar-container {
     display: flex;
@@ -50,7 +50,7 @@
     transition: all 0.3s;
     cursor: pointer;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
+      background-color: $c-black-20;
     }
   }
   &__signin-btn {
@@ -64,7 +64,7 @@
     cursor: pointer;
     transition: all 0.3s;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: $c-black-80;
     }
   }
 
