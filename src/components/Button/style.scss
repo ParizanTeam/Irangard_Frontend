@@ -15,6 +15,8 @@
 
 .button:disabled {
   background-color: $c-greybd;
+  color: white;
+  border: none;
 }
 
 .orange {
@@ -27,6 +29,12 @@
 
 .green {
   background-color: $c-green2;
+}
+
+.white {
+  background-color:  $c-white;
+  border: 1px solid $c-black;
+  color: $c-black;
 }
 
 .red {

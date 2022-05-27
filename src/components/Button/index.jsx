@@ -14,6 +14,7 @@ function Button({ type = 'button', variant = 'black', className, children, ...pr
           green: variant === 'green',
           red: variant === 'red',
           purple: variant === 'purple',
+          white: variant === 'white',
         },
         className
       )}

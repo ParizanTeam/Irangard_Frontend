@@ -6,6 +6,7 @@ import TextArea from '../TextArea';
 import { formatDate } from '../../utils/formatters';
 import { baseUrl } from 'src/utils/constants';
 import './style.scss';
+import defaultProfileImg from '../../assets/images/profile.jpeg';
 
 function Comment({ comment, experienceId }) {
   const [showReply, setShowReply] = useState(false);
@@ -55,7 +56,7 @@ function Comment({ comment, experienceId }) {
     <div className="comment-container">
       <Toaster />
       <div className="comment">
-        <img className="comment__avatar" src={comment.user.image} alt={comment.user.username} />
+        <img className="comment__avatar" src={comment.user.image || defaultProfileImg} alt={comment.user.username} />
         <div className="comment__info">
           <div className="comment__header">
             <div className="comment__name">{comment.user.username}</div>

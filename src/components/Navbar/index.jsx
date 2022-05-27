@@ -8,6 +8,7 @@ import './style.scss';
 const Navbar = ({}) => {
   const [open, setOpen] = React.useState(false);
   const auth = useAuth();
+  console.log('auth:', auth);
   const navigate = useNavigate();
   const handleClose = () => {
     setOpen(false);

@@ -13,6 +13,6 @@
   &:hover {
     color: $c-white;
     background-color: $c-red;
-    border: 1px solid #00000000;
+    border: 1px solid $c-black;
   }
 }

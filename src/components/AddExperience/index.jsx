@@ -12,6 +12,7 @@ import { convertNumberToPersian } from 'src/utils/formatters';
 import useAuth from 'src/context/AuthContext';
 import { baseUrl } from 'src/utils/constants';
 import './style.scss';
+import apiInstance from '../../config/axios';
 
 let cancelToken;
 
@@ -100,12 +101,8 @@ function AddExperience() {
       body.append('image', image.image);
     }
     setLoading(true);
-    await axios
-      .post(`${baseUrl}/experiences/`, body, {
-        headers: {
-          Authorization: `JWT ${token}`,
-        },
-      })
+    await apiInstance
+      .post(`${baseUrl}/experiences/`, body)
       .then(res => res.data)
       .then(data => {
         console.log(data);

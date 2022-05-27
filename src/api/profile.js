@@ -1,58 +1,40 @@
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import { baseUrl } from '../utils/constants';
 import defaultProfileImg from '../assets/images/profile.jpeg';
+import apiInstance from '../config/axios';
 
-export const useGetProfile = username =>
-  useQuery('getProfile', () => {
-    const access_token = localStorage.getItem('access-token') || '';
-    let headers = {};
-    if (access_token) {
-      headers = {
-        Authorization: 'JWT ' + access_token,
+export const useGetProfile = username => {
+  return apiInstance
+    .get(`/accounts/profile/${username}`)
+    .then(res => res.data)
+    .then(data => {
+      const {
+        follower_number = 0,
+        following_number = 0,
+        following = true,
+        full_name = '',
+        email = '',
+        username = '',
+        about_me = '',
+        id,
+        is_owner = false,
+      } = data;
+      const profileImg = data?.image ? data.image : defaultProfileImg;
+      return {
+        follower_number,
+        following_number,
+        following,
+        full_name,
+        email,
+        id,
+        username,
+        about_me,
+        profileImg,
+        is_owner,
       };
-    }
-    return axios
-      .get(`${baseUrl}/accounts/profile/${username}`, {
-        headers,
-      })
-      .then(res => res.data)
-      .then(data => {
-        const {
-          followers = 0,
-          followings = 0,
-          full_name = '',
-          email = '',
-          username = '',
-          about_me = '',
-          is_owner = false,
-        } = data;
-        const profileImg = data?.image ? data.image : defaultProfileImg;
-        return {
-          followers,
-          followings,
-          full_name,
-          email,
-          username,
-          about_me,
-          profileImg,
-          is_owner,
-        };
-      });
-  });
-
+    });
+};
 export const usePutProfile = async (username, body, onError, onSuccess) => {
   try {
-    let access_token = localStorage.getItem('access-token') || '';
-    let headers = {};
-    if (access_token) {
-      headers = {
-        Authorization: 'JWT ' + access_token,
-      };
-    }
-    const res = await axios.put(`${baseUrl}/accounts/profile/${username}/`, body, {
-      headers,
-    });
+    const res = await apiInstance.put(`/accounts/profile/${username}/`, body);
     const data = await res.data;
     onSuccess(data);
   } catch (error) {
