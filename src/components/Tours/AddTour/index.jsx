@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-multi-date-picker';
 import toast, { Toaster } from 'react-hot-toast';
 import persian from 'react-date-object/calendars/persian';
@@ -13,6 +14,8 @@ import './style.scss';
 import 'react-multi-date-picker/styles/layouts/mobile.css';
 
 function AddTour() {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState('');
   const [titleError, setTitleError] = useState('');
 
@@ -21,6 +24,9 @@ function AddTour() {
 
   const [capacity, setCapacity] = useState('');
   const [capacityError, setCapacityError] = useState('');
+
+  const [image, setImage] = useState('');
+  const imageRef = useRef(null);
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -95,21 +101,25 @@ function AddTour() {
       toast.error('لطفا فیلدهای مشخص‌شده را اصلاح کنید.');
       return;
     }
+    const body = new FormData();
+    body.append('title', title);
+    body.append('cost', cost);
+    body.append('capacity', capacity);
+    body.append('start_date', convertJalaliDateToGeorgian(startDate.toString()) + `T00:00`);
+    body.append('end_date', convertJalaliDateToGeorgian(endDate.toString()) + `T00:00`);
+    body.append('description', description);
+    if (image.image) {
+      body.append('image', image.image);
+    }
+
     setLoading(true);
-    const body = {
-      title,
-      cost,
-      capacity,
-      start_date: convertJalaliDateToGeorgian(startDate.toString()) + `T00:00`,
-      end_date: convertJalaliDateToGeorgian(endDate.toString()) + `T00:00`,
-      description,
-    };
+
     apiInstance
       .post('/tours/', body)
       .then(res => res.data)
       .then(data => {
-        console.log(data);
         toast.success('تور با موفقیت اضافه شد.');
+        navigate(`/tours/${data.id}`);
       })
       .catch(error => {
         console.log(error);
@@ -131,6 +141,22 @@ function AddTour() {
           onBlur={handleTitleChange}
           error={titleError}
         />
+        <Button className="add-tour__choose-img-btn" onClick={() => imageRef.current.click()}>
+          <input
+            type="file"
+            ref={imageRef}
+            style={{ display: 'none' }}
+            onChange={e => {
+              setImage({
+                image: e.target.files[0],
+                preview: URL.createObjectURL(e.target.files[0]),
+              });
+            }}
+            accept="image/*"
+          />
+          انتخاب عکس تور
+        </Button>
+        {image && <img className="add-tour__img" src={image.preview} />}
         <Input
           label="هزینه تور:"
           placeholder="هزینه تور..."
@@ -175,10 +201,9 @@ function AddTour() {
           label="توضیحات تور:"
           onChange={content => {
             setDescription(content);
-            console.log(content);
           }}
         />
-        <Button variant="black" onClick={handleSubmit}>
+        <Button variant="black" onClick={handleSubmit} disabled={loading}>
           ثبت تور
         </Button>
 

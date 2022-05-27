@@ -1,0 +1,82 @@
+@import 'src/theme/main.scss';
+
+.tour-detail {
+  background-color: $c-white;
+  border-radius: 8px;
+  margin: 32px 0;
+  padding: 32px;
+
+  &__title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  &__img {
+    height: 240px;
+    max-width: 100%;
+    display: block;
+    border-radius: 8px;
+    margin: 24px auto;
+  }
+
+  &__date {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__start,
+  &__end {
+    font-size: 14px;
+    margin: 8px 0;
+    font-weight: 700;
+    padding: 8px;
+    border-radius: 8px;
+    width: auto;
+  }
+
+  &__start {
+    color: #006a33;
+    background-color: #f7fafb;
+    border: 1px solid #006a33;
+    margin-left: 16px;
+  }
+
+  &__end {
+    color: #e40300;
+    background-color: #fdeded;
+    border: 1px solid #e40300;
+  }
+
+  &__capacity {
+    color: #666;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 16px 0;
+  }
+
+  &__description {
+    margin: 16px 0;
+    font-weight: 700;
+    color: #333;
+  }
+
+  &__description-editor {
+    min-height: 48px;
+    background-color: $c-white;
+    border: none;
+  }
+
+  &__book {
+    background-color: #feb714;
+    color: $c-black;
+    font-weight: 700;
+    width: auto;
+    margin: 24px 0;
+  }
+
+  &__cost {
+    color: #2979fe;
+    font-weight: 800;
+    font-size: 18px;
+  }
+}

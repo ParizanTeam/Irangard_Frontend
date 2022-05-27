@@ -9,6 +9,8 @@ import Feed from '../components/Feed';
 import PlaceDetailPage from '../components/places/PlaceDetailPage';
 import ForgetPassword from 'src/components/LoginModal/ForgetPassword';
 import AddTour from 'src/components/Tours/AddTour';
+import ToursDetailPage from 'src/components/Tours/TourDetailPage';
+import ToursList from 'src/components/Tours/ToursList';
 
 const AppRouter = () => {
   return (
@@ -21,7 +23,9 @@ const AppRouter = () => {
         <Route path="/experiences" element={<Experiences />} />
         <Route path="/experiences/new" element={<AddExperience />} />
         <Route path="/experiences/:id" element={<ExperienceDetail />} />
+        <Route path="/tours" element={<ToursList />} />
         <Route path="/tours/new" element={<AddTour />} />
+        <Route path="/tours/:id" element={<ToursDetailPage />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
