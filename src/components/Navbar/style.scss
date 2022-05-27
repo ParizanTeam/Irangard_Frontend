@@ -1,7 +1,8 @@
+@import 'src/theme/main.scss';
 .navbar {
     position: sticky;
     top: 0;
-    background-color: #fff;
+    background-color: $c-white;
     z-index: 99;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -16,10 +17,10 @@
     &__logo {
         font-size: 28px;
         font-weight: 800;
-        color: #000;
+        color: $c-black;
 
         &--green {
-            color: #34e0a1;
+            color: $c-lightgreen;
         }
     }
 
@@ -31,8 +32,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #fff;
-        color: #000;
+        background-color: $c-white;
+        color: $c-black;
         padding: 10px 16px;
         border-radius: 21px;
         border: none;
@@ -48,8 +49,8 @@
     }
 
     &__signin-btn {
-        background-color: #000;
-        color: #fff;
+        background-color: $c-black;
+        color: $c-white;
         padding: 10px 16px;
         border-radius: 21px;
         border: none;

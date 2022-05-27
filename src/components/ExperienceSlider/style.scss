@@ -1,12 +1,13 @@
+@import 'src/theme/main.scss';
 .experience-card {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   text-align: right;
-  border: 1px solid #000;
+  border: 1px solid $c-black;
   height: 400px;
-  color: #000;
+  color: $c-black;
 
   &__img {
     width: 100%;
@@ -37,12 +38,12 @@
   }
 
   &__user-name {
-    color: #000;
+    color: $c-black;
     font-size: 14px;
     font-weight: 700;
   }
   &__footer {
-    border-top: 1px solid #000;
+    border-top: 1px solid $c-black;
     background-color: rgba(0, 0, 0, 0.05);
     display: flex;
     padding: 12px;
@@ -69,11 +70,11 @@
 }
 
 .fav-icon {
-  color: #000;
+  color: $c-black;
 }
 
 .filled-fav-icon {
-  color: #ee324d;
+  color: $c-pink1;
 }
 
 .home-experiences {
@@ -82,7 +83,7 @@
   padding: 16px;
 
   &__title {
-    color: #000;
+    color: $c-black;
     font-size: 26px;
     font-weight: 800;
     text-align: right;

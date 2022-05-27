@@ -1,3 +1,4 @@
+@import 'src/theme/main.scss';
 .notfound {
   width: 100%;
   height: 100vh;
@@ -12,14 +13,14 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-image: linear-gradient(to left, #009060, #fc692d);
+    background-image: linear-gradient(to left, $c-green4, $c-orange1);
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
     padding: 4px;
   }
   &__container-body {
     width: 100%;
     height: 100%;
-    background-color: #fcf7f3;
+    background-color: $c-white10;
     border-radius: 28px;
     display: flex;
     justify-content: space-evenly;
@@ -46,8 +47,8 @@
     margin-bottom: 32px;
   }
   &__back-home-btn {
-    background-color: #009060;
-    color: #fff;
+    background-color: $c-green4;
+    color: $c-white;
     padding: 15px 24px;
     border-radius: 42px;
     border: none;
@@ -64,16 +65,16 @@
     height: 50%;
   }
   &__tile-1 {
-    background-color: #fdb024;
+    background-color: $c-yellow;
   }
   &__tile-2 {
-    background-color: #fc692d;
+    background-color: $c-orange1;
   }
   &__tile-3 {
-    background-color: #009060;
+    background-color: $c-green4;
   }
   &__tile-4 {
-    background-color: #f0ece9;
+    background-color: $c-white6;
   }
   @media (max-width: 768px) {
     &__container {

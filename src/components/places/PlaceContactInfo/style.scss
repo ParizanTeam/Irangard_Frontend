@@ -1,3 +1,4 @@
+@import 'src/theme/main.scss';
 .place-contact {
   border: 1px solid #ddd;
   border-radius: 16px;
@@ -23,13 +24,13 @@
     display: flex;
     margin: 14px 0;
     align-items: flex-start;
-    color: #444;
+    color: $c-black3;
     font-size: 14px;
 
     svg {
       margin-left: 12px;
       flex-shrink: 0;
-      color: #5f9326;
+      color: $c-grass;
       margin-top: -2px;
     }
   }

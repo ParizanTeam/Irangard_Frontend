@@ -1,3 +1,4 @@
+@import 'src/theme/main.scss';
 @import '/src/theme/main.scss';
 .login-modal {
   text-align: center;
@@ -28,31 +29,31 @@
     padding: 8px 16px;
     margin: 6px 6px;
     border-style: groove;
-    border-color: #fff;
+    border-color: $c-white;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     &:hover {
-      background-color: #cfddf3;
+      background-color: $c-lightblue;
     }
     &:focus {
-      color: #fff;
+      color: $c-white;
       border-radius: 3px;
       outline: 2px solid #0d0b2e;
       outline-offset: 2px;
     }
 
     &.Mui-selected{
-      background-color: #83ffff;
-      color: #141852;
+      background-color: $c-cyanblue;
+      color: $c-darkblue1;
     }
   
   }
   &__TabsList{
     min-width: 200px;
     height: 50px;
-    background-color: #0a1066;
+    background-color: $c-darkblue2;
     border-radius: 5px;
     margin-bottom: 10px;
     display: flex;
@@ -81,7 +82,7 @@
 
 $primary: #161452;
 $secondary: #52143a67;
-$white: #fff;
+$white: $c-white;
 $gray: #707070;
 
 .login-modal-form {
@@ -121,7 +122,7 @@ $gray: #707070;
 
   .ReactInputVerificationCode__item {
     position: relative;
-    color: #262626;
+    color: $c-black1;
     font-weight: 500;
     &:after {
       content: '';
@@ -131,7 +132,7 @@ $gray: #707070;
       bottom: 0;
       right: 0;
       height: 2px;
-      background-color: #ebebeb;
+      background-color: $c-white3;
       transition: background-color 0.2s ease-out;
     }
   }
@@ -195,7 +196,7 @@ $gray: #707070;
   }
 
   &__confirm {
-    background-color: #29a877;
+    background-color: $c-green1;
     color: $c-white;
     border: 1px solid rgba(37, 93, 173, 0.25);
     padding: 8px 16px;
@@ -207,24 +208,24 @@ $gray: #707070;
     cursor: pointer;
 
     &:hover {
-      background-color: #249468;
+      background-color: $c-green3;
     }
   }
 
   &__cancel {
-    background-color: #f15d5d;
+    background-color: $c-pink;
     color: $c-white;
     border: 1px solid rgba(37, 93, 173, 0.25);
     padding: 8px 16px;
     font-weight: 700;
     border-radius: 4px;
-    box-shadow: 0 4px 10px #f15d5d;
+    box-shadow: 0 4px 10px $c-pink;
     font-size: 16px;
     margin: 16px;
     cursor: pointer;
 
     &:hover {
-      background-color: #df5555;
+      background-color: $c-golbehi1;
     }
   }
 }

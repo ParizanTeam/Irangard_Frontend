@@ -1,5 +1,6 @@
+@import 'src/theme/main.scss';
 .experience-detail {
-  background-color: #fff;
+  background-color: $c-white;
   border-radius: 8px;
   margin: 32px 0;
   padding: 32px;
@@ -24,11 +25,11 @@
   &__rating-value {
     margin-right: 4px;
     margin-top: 2px;
-    color: #888;
+    color: $c-grey8;
   }
 
   &__place {
-    color: #888;
+    color: $c-grey8;
     display: flex;
     align-items: center;
     margin-left: 16px;
@@ -46,7 +47,7 @@
   &__likes {
     display: flex;
     align-items: center;
-    color: #ff725d;
+    color: $c-bittersweet;
 
     svg {
       margin-left: 4px;
@@ -56,7 +57,7 @@
   &__date {
     display: flex;
     align-items: center;
-    color: #888;
+    color: $c-grey8;
     margin-left: 32px;
 
     svg {
@@ -84,7 +85,7 @@
 
   &__body-editor {
     border: none;
-    background-color: #fff;
+    background-color: $c-white;
   }
 
   .rich-text__editor-body {
@@ -94,11 +95,11 @@
   &__author-info {
     display: flex;
     align-items: center;
-    border: 1px solid #eee;
+    border: 1px solid $c-white5;
     border-radius: 8px;
     overflow: hidden;
-    border-left: 16px solid #ff725d;
-    color: #333;
+    border-left: 16px solid $c-bittersweet;
+    color: $c-black2;
     margin: 16px 0 32px;
   }
 

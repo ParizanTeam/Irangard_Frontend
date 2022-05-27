@@ -1,5 +1,6 @@
+@import 'src/theme/main.scss';
 .experiences {
-  background-color: #fff;
+  background-color: $c-white;
   border-radius: 8px;
   margin: 16px 0;
   padding: 16px 24px;
@@ -13,7 +14,7 @@
     display: flex;
     margin: 16px 0;
     padding: 16px;
-    border: 1px solid #eee;
+    border: 1px solid $c-white5;
     border-radius: 4px;
     box-shadow: 0px 3px 4.75px 0.25px rgba(24, 23, 24, 0.1);
     justify-content: space-between;
@@ -61,12 +62,12 @@
     &__rating-value {
       margin-right: 4px;
       margin-top: 2px;
-      color: #888;
+      color: $c-grey8;
       font-size: 14px;
     }
 
     &__place {
-      color: #888;
+      color: $c-grey8;
       font-size: 14px;
       display: flex;
       align-items: center;
@@ -78,7 +79,7 @@
     }
 
     &__summary {
-      color: #888;
+      color: $c-grey8;
       font-size: 14px;
       line-height: 2;
     }
@@ -86,10 +87,10 @@
     &__stats {
       display: flex;
       margin: 12px 0;
-      background-color: #f4f4f4;
+      background-color: $c-white8;
       padding: 12px 16px;
       border-radius: 24px;
-      color: #666;
+      color: $c-grey6;
       align-self: flex-start;
     }
 
@@ -106,7 +107,7 @@
     &__likes {
       display: flex;
       align-items: center;
-      color: #ff725d;
+      color: $c-bittersweet;
       margin-left: 32px;
 
       svg {
@@ -137,7 +138,7 @@
       align-items: center;
       padding: 16px 28px;
       border-radius: 4px;
-      border: 1px solid #eee;
+      border: 1px solid $c-white5;
       box-shadow: 0px 3px 4.75px 0.25px rgba(24, 23, 24, 0.05);
     }
 
@@ -149,14 +150,14 @@
 
     &__author-name {
       margin-top: 12px;
-      color: #888;
+      color: $c-grey8;
     }
 
     &__continue {
       border-radius: 24px;
       padding: 12px 24px;
       width: auto;
-      background-color: #ff725d;
+      background-color: $c-bittersweet;
     }
   }
 }

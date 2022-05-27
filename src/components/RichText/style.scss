@@ -1,3 +1,4 @@
+@import 'src/theme/main.scss';
 .rich-text {
   margin: 16px 0;
 
@@ -8,18 +9,18 @@
     min-height: 400px;
     margin: 8px 0;
     border-radius: 8px;
-    color: #333;
-    background-color: #fafafa;
+    color: $c-black2;
+    background-color: $c-white9;
     margin-top: 8px;
     border: 1px solid #dbdbdb;
     outline: none;
 
     &:focus {
-      border: 1.5px solid #34495e;
+      border: 1.5px solid $c-navyblue;
     }
 
     &::placeholder {
-      color: #aaa;
+      color: $c-greya;
     }
   }
 

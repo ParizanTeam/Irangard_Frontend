@@ -1,10 +1,11 @@
+@import 'src/theme/main.scss';
 .map {
   padding: 16px;
   width: 100%;
   max-width: 1200px;
   margin: auto;
   &__title {
-    color: #000;
+    color: $c-black;
     font-size: 26px;
     font-weight: 800;
     text-align: right;
@@ -23,7 +24,7 @@
     fill: #e4e4e4;
   }
   .cls-2 {
-    fill: #fff;
+    fill: $c-white;
   }
   .cls-3 {
     fill: #93d4f1;

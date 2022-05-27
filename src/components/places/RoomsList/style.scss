@@ -1,3 +1,6 @@
+@import 'src/theme/main.scss';
+@import 'src/theme/main.scss';
+
 .rooms-list {
   margin-top: 32px;
 
@@ -12,7 +15,7 @@
   }
 
   thead {
-    color: #999 !important;
+    color: $c-gray-60 !important;
   }
 
   td {
@@ -21,8 +24,8 @@
   }
 
   tr td:first-child {
-    background-color: #cc0200;
-    color: #fff;
+    background-color: $c-red;
+    color: $c-white;
   }
 
   tbody {
@@ -30,6 +33,6 @@
   }
 
   tr td:last-child {
-    background-color: #eaf9f3;
+    background-color: $c-white2;
   }
 }

@@ -1,5 +1,6 @@
+@import 'src/theme/main.scss';
 .profile-summary {
-  background-color: #fff;
+  background-color: $c-white;
   padding: 32px;
   margin: 32px 0;
   border-radius: 8px;
@@ -49,7 +50,7 @@
   }
 
   &__edit {
-    background-color: #fff;
+    background-color: $c-white;
     border: 1px solid #bbb;
     border-radius: 4px;
     display: flex;
@@ -57,7 +58,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: #f8f8f8;
+      background-color: $c-white9;
     }
 
     span {
@@ -75,8 +76,8 @@
   &__about {
     padding: 16px 32px;
     margin: 32px 0;
-    background-color: #fff;
-    border: 1px solid #000;
+    background-color: $c-white;
+    border: 1px solid $c-black;
     border-radius: 4px;
     white-space: pre-wrap;
 
@@ -87,7 +88,7 @@
 }
 
 .profile-summary-skeleton {
-  background-color: #fff;
+  background-color: $c-white;
   padding: 32px;
   margin: 32px 0;
   border-radius: 8px;
@@ -148,8 +149,8 @@
   &__about {
     padding: 16px 32px;
     margin: 32px 0;
-    background-color: #fff;
-    border: 1px solid #000;
+    background-color: $c-white;
+    border: 1px solid $c-black;
     border-radius: 4px;
   }
 
@@ -175,7 +176,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: $c-white;
   border-radius: 16px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -209,7 +210,7 @@
       bottom: 0;
       background-color: rgba(0, 0, 0, 0.4);
       border-radius: 50%;
-      color: #fff;
+      color: $c-white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -229,17 +230,17 @@
     border-radius: 8px;
     padding: 12px;
     border: none;
-    background-color: #eee;
+    background-color: $c-white5;
     margin-top: 8px;
   }
 
   &__form-control input:read-only,
   &__form-control textarea:read-only {
-    color: #888;
+    color: $c-grey8;
   }
 
   &__error-msg {
-    color: #da1f35;
+    color: $c-redpink;
     font-size: 12px;
     margin-top: 6px;
   }
@@ -254,22 +255,22 @@
   }
 
   & button:disabled {
-    background-color: #eee;
-    color: #999;
+    background-color: $c-white5;
+    color: $c-gray-60;
     border: none;
   }
 
   &__save-btn {
     border: none;
-    background-color: #34e0a1;
-    background-color: #fc275c;
-    color: #fff;
+    background-color: $c-lightgreen;
+    background-color: $c-pink2;
+    color: $c-white;
   }
 
   &__cancel-btn {
-    background-color: #fff;
-    border: 1px solid #000;
-    color: #000;
+    background-color: $c-white;
+    border: 1px solid $c-black;
+    color: $c-black;
     margin-top: 16px;
   }
 }

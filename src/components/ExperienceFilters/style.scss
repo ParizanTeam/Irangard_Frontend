@@ -1,16 +1,17 @@
+@import 'src/theme/main.scss';
 .filters {
   padding: 16px;
-  background-color: #444;
+  background-color: $c-black3;
   margin: 16px 0 0;
   border-radius: 8px;
-  color: #fff;
+  color: $c-white;
 
   &__search-box {
     width: 100%;
   }
 
   &__search-box-title {
-    color: #fff;
+    color: $c-white;
     margin-bottom: 8px;
   }
 
