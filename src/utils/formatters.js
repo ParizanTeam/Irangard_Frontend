@@ -1,3 +1,5 @@
+import moment from 'jalali-moment';
+
 export const convertNumberToPersian = input => {
   input = `${input}`;
   const persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
@@ -57,4 +59,8 @@ export const formatPrice = input => {
 
 export const formatDate = date => {
   return new Date(date).toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+export const convertJalaliDateToGeorgian = date => {
+  return moment.from(convertNumberToEnglish(date), 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD');
 };

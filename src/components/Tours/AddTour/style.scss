@@ -1,0 +1,16 @@
+@import 'src/theme/main.scss';
+
+.add-tour {
+  background-color: $c-white;
+  border-radius: 8px;
+  margin: 32px 0;
+  padding: 32px;
+
+  &__title {
+    font-size: 24px;
+  }
+
+  .date-input {
+    display: none;
+  }
+}
