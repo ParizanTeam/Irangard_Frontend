@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { RiMarkPenLine, RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine } from 'react-icons/ri';
+import ProfileMenu from 'src/components/ProfileMenu';
+import { StyledEngineProvider } from '@mui/material/styles';
 import './style.scss';
 import LoginModal from '../LoginModal';
 
@@ -22,6 +24,9 @@ const Header = () => {
               نوشتن تجربه
               <RiMarkPenLine size={24} />
             </button>
+            <StyledEngineProvider injectFirst>
+              <ProfileMenu/>
+            </StyledEngineProvider>
             <button className="header__signin-btn" onClick={() => setOpen(true)}>ورود</button>
           </div>
         </div>
