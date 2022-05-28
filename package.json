@@ -15,7 +15,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "^.+\\.(css|scss)$": "<rootDir>/config/CSSStub.js"
+      "^.+\\.(css|scss|jpg|jpeg|png)$": "<rootDir>/config/CSSStub.js"
     },
     "testEnvironment": "jest-environment-jsdom",
     "setupFilesAfterEnv": ["<rootDir>/setupTests.js"]
