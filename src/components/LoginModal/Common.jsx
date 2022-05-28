@@ -94,7 +94,7 @@ export const getFields = (watch, field_list) => {
   return field_list.map(x => ({ id: x, ...fields[x] }));
 };
 
-export const LoginModalForm = ({ fields, onSubmit,isLoading, onDirty, isLogin = false,onForgetPassClick }) => {
+export const LoginModalForm = ({ fields, onSubmit, isLoading, onDirty, isLogin = false, onForgetPassClick }) => {
   const {
     register,
     handleSubmit,
@@ -134,7 +134,9 @@ export const LoginModalForm = ({ fields, onSubmit,isLoading, onDirty, isLogin = 
           <span onClick={onForgetPassClick}>کلیک کنید</span>
         </div>
       )}
-      <input className="submit-btn" type="submit" value={isLogin ? 'ورود' : 'ثبت'} disabled={isLoading} />
+      <button className="submit-btn" type="submit" disabled={isLoading}>
+        {isLogin ? 'ورود' : 'ثبت'}
+      </button>
     </form>
   );
 };
