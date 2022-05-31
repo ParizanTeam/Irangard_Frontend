@@ -1,7 +1,4 @@
-import { convertNumberToPersian } from '../utils/formatters';
-import { convertNumberToEnglish } from '../utils/formatters';
-import { isPersianNumber } from '../utils/formatters';
-import { formatPrice } from '../utils/formatters';
+import { convertNumberToPersian, convertNumberToEnglish, isPersianNumber, formatPrice, formatDate } from './formatters';
 
 // convertNumberToPersian
 
@@ -116,5 +113,73 @@ describe('format the number with comma (,) as a separator between every three nu
   });
   it('should not crash when input is null', () => {
     expect(formatPrice(null)).toBe(null);
+  });
+});
+
+//format date
+describe('format the date to jalali calendar', () => {
+  it('should return Invalid Date when input is empty', () => {
+    expect(formatDate('')).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is undefined', () => {
+    expect(formatDate(undefined)).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is object', () => {
+    expect(formatDate({})).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is array', () => {
+    expect(formatDate([])).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is symbol', () => {
+    expect(formatDate(Symbol)).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is not a valid string', () => {
+    expect(formatDate('a')).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is not a valid string', () => {
+    expect(formatDate('_')).toBe('Invalid Date');
+  });
+  it('should return Invalid Date when input is not a valid input', () => {
+    expect(formatDate('+-+')).toBe('Invalid Date');
+  });
+  it('should return epock Date when input is null', () => {
+    expect(formatDate(null)).toBe(
+      new Date(0).toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })
+    );
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date();
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date(0);
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date(-100);
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date(100000);
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date('08-02-2022');
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date('10-31-1990');
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
+  });
+  it('should return correct Date when input is a date', () => {
+    const date = new Date('01-01-1800');
+    const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    expect(formatDate(date)).toBe(expected);
   });
 });
