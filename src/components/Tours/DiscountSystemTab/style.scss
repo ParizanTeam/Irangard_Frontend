@@ -1,0 +1,41 @@
+@import 'src/theme/main.scss';
+
+.tour-dashboard-discounts {
+  background-color: $c-white;
+  border-radius: 8px;
+
+  &__title {
+    font-size: 20px;
+  }
+
+  &__add-btn {
+    width: auto;
+    font-size: 14px;
+  }
+
+  .date-input {
+    display: none;
+  }
+
+  &__code-card {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 12px 0;
+
+    div {
+      width: 31%;
+      text-align: center;
+    }
+  }
+
+  &__code-card-delete {
+    width: auto;
+    margin: 0;
+    font-size: 14px;
+    padding: 8px;
+  }
+}
