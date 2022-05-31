@@ -11,6 +11,12 @@
     margin-bottom: 16px;
   }
 
+  &__goto-dashboard {
+    color: $c-green2;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
   &__img {
     height: 240px;
     max-width: 100%;
@@ -78,5 +84,12 @@
     color: #2979fe;
     font-weight: 800;
     font-size: 18px;
+  }
+
+  &__register-modal {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    text-align: center;
   }
 }

@@ -11,6 +11,7 @@ import ForgetPassword from 'src/components/LoginModal/ForgetPassword';
 import AddTour from 'src/components/Tours/AddTour';
 import ToursDetailPage from 'src/components/Tours/TourDetailPage';
 import ToursList from 'src/components/Tours/ToursList';
+import TourDashboard from 'src/components/Tours/TourDashboard';
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
         <Route path="/tours" element={<ToursList />} />
         <Route path="/tours/new" element={<AddTour />} />
         <Route path="/tours/:id" element={<ToursDetailPage />} />
+        <Route path="/tours/:id/dashboard" element={<TourDashboard />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
