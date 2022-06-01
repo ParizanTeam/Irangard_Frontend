@@ -7,25 +7,25 @@ import './style.scss';
 const Header = () => {
   return (
     <>
-      <Navbar />
+      
       <div className="header__nav-items-wrapper">
         <Link to="/restaurants" className="header__nav-item">
-          <div>رستوران‌ها</div>
+          <div className='txt'>رستوران‌ها</div>
           <RiRestaurantLine size={24} />
         </Link>
         <Link to="/residences" className="header__nav-item">
-          <div>اقامتگاه‌ها</div>
+          <div className='txt'>اقامتگاه‌ها</div>
           <RiHome3Line size={24} />
         </Link>
         <Link to="tours" className="header__nav-item">
-          <div>تورها</div>
+          <div className='txt'>تورها</div>
           <RiShipLine size={24} />
         </Link>
         <Link to="experiences" className="header__nav-item">
-          <div>تجربه‌ها</div>
+          <div className='txt'>تجربه‌ها</div>
           <RiChatQuoteLine size={24} />
         </Link>
-      </div>
+        </div>
     </>
   );
 };

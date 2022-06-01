@@ -12,6 +12,9 @@ import AddTour from 'src/components/Tours/AddTour';
 import ToursDetailPage from 'src/components/Tours/TourDetailPage';
 import ToursList from 'src/components/Tours/ToursList';
 import TourDashboard from 'src/components/Tours/TourDashboard';
+import AdminPanel from '../components/AdminPanel';
+import AddRemoveUser from 'src/components/AdminPanel/AddOrRemove';
+import StaticsPage from 'src/components/AdminPanel/StaticsPage';
 
 const AppRouter = () => {
   return (
@@ -29,6 +32,9 @@ const AppRouter = () => {
         <Route path="/tours/:id" element={<ToursDetailPage />} />
         <Route path="/tours/:id/dashboard" element={<TourDashboard />} />
         <Route path="/feed" element={<Feed />} />
+        <Route path='/panel' element={<AdminPanel/>}/>
+        <Route path='/penal/statics' element={<StaticsPage/>}/>
+        <Route path='/panel/addremove' element={<AddRemoveUser/>}/>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

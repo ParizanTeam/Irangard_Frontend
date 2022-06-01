@@ -69,15 +69,17 @@
   }
 
   &__nav-items-wrapper {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 16px 0;
+    margin: 60px 0;
   }
   &__nav-item {
     display: flex;
     justify-content: space-between;
+    background-color: white;
     align-items: center;
     color: $c-black;
     flex-shrink: 0;
@@ -98,8 +100,16 @@
   }
   @media (max-width: 768px) {
     &__nav-item {
-      padding: 8px;
-      height: 48px;
+      //border: 0px solid #000;
+      //background-color: transparent;
+      width: 26px;
+      height: 26px;
+      padding: 5px;
     }
   }
-}
+  }
+  .txt{
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }

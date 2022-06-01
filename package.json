@@ -48,6 +48,7 @@
     "react-neshan-map-leaflet": "^1.2.1",
     "react-query": "^3.34.16",
     "react-router-dom": "^6.2.2",
+    "recharts": "^2.1.10",
     "sass": "^1.49.9",
     "styled-components": "^5.3.5",
     "stylis": "^4.0.10",
