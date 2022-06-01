@@ -28,15 +28,17 @@ const Navbar = ({}) => {
               نوشتن تجربه
               <RiMarkPenLine size={24} />
             </button>
-            <StyledEngineProvider injectFirst>
-              <ProfileMenu/>
-            </StyledEngineProvider>
+            {auth.isLoggedIn && (
+              <StyledEngineProvider injectFirst>
+                <ProfileMenu />
+              </StyledEngineProvider>
+            )}
             {!auth.isLoggedIn && (
               <button className="header__signin-btn" onClick={() => setOpen(true)}>
                 ورود
               </button>
             )}
-            {auth.isLoggedIn && (
+            {/* {auth.isLoggedIn && (
               <button
                 className="header__signin-btn"
                 onClick={() => {
@@ -46,7 +48,7 @@ const Navbar = ({}) => {
               >
                 خروج
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>

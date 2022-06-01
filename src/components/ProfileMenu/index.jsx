@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import {Box} from '@mui/material';
+import { Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,45 +15,38 @@ import Logout from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider';
-import axios from 'axios';
-import { baseUrl } from '../../utils/constants';
+import apiInstance from '../../config/axios';
+import useAuth from 'src/context/AuthContext';
+import defaultProfileImg from 'src/assets/images/profile.jpeg';
 import './style.scss';
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function AccountMenu() {
-
+  const auth = useAuth();
   const Pay = () => {
-    const access_token = localStorage.getItem('access_token');
-    const TK =
-    axios.get(`${baseUrl}/accounts/pay/pay/`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'JWT ' + access_token,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        const myLink = res.data.link;
-        console.log(myLink);
-        window.location.replace(myLink);
-      })
-        return 'حساب با موفقیت ارتقا یافت.';
+    apiInstance.get(`/accounts/pay/pay/`).then(res => {
+      console.log(res.data);
+      const myLink = res.data.link;
+      console.log(myLink);
+      window.location.replace(myLink);
+    });
+    return 'حساب با موفقیت ارتقا یافت.';
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -65,7 +58,7 @@ export default function AccountMenu() {
   const handleClose2 = () => setOpen2(false);
   return (
     <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="تنظیمات حساب کاربری">
           <IconButton
             onClick={handleClick}
@@ -75,10 +68,12 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>
+              <img src={auth.user.image || defaultProfileImg} />
+            </Avatar>
           </IconButton>
         </Tooltip>
-        </Box>
+      </Box>
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -115,37 +110,48 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-        <Link to="/*">
-          <ListItemIcon>
-            <AccountBoxIcon fontSize="small" />
-          </ListItemIcon>
-          پروفایل کاربر
+          <Link to={`/profile/${auth.user.username}`}>
+            <ListItemIcon>
+              <AccountBoxIcon fontSize="small" />
+            </ListItemIcon>
+            پروفایل من
           </Link>
         </MenuItem>
+        {!auth.isSpecial && (
+          <>
+            <Divider />
+            <MenuItem onClick={handleOpen2}>
+              <ListItemIcon>
+                <PersonAdd fontSize="small" />
+              </ListItemIcon>
+              ارتقا حساب کاربری
+            </MenuItem>
+          </>
+        )}
+        {auth.isAdmin && (
+          <>
+            <Divider />
+            <MenuItem>
+              <Link to="/panel">
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                پنل ادمین
+              </Link>
+            </MenuItem>
+          </>
+        )}
         <Divider />
-        <MenuItem onClick={handleOpen2}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          ارتقا حساب کاربری
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-        <Link to="/Panel">
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          پنل کاربری
-          </Link>
-        </MenuItem>
-        <Divider />
-        <MenuItem>
-        <Link to="/*">
+        <MenuItem
+          onClick={() => {
+            auth.logout();
+            window.location.reload(false);
+          }}
+        >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           خروج
-          </Link>
         </MenuItem>
       </Menu>
       <Modal
@@ -153,22 +159,28 @@ export default function AccountMenu() {
         onClose={handleClose2}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        >
+      >
         <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title" variant="h6" component="h2">
             ارتقای حساب کاربری
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            شما با پرداخت هزینه تعیین شده، می توانید حساب کاربری خود را به حالت ویژه ارتقا دهید. اگر از انتخاب خود اطمینان دارید، دکمه پرداخت و ارتقا را بزنید تا به درگاه بانک هدایت شوید.
-            </Typography>
-            <br/>
-            <Button style={{marginRight:'50%'}} 
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            شما با پرداخت هزینه تعیین شده، می توانید حساب کاربری خود را به حالت ویژه ارتقا دهید. اگر از انتخاب خود
+            اطمینان دارید، دکمه پرداخت و ارتقا را بزنید تا به درگاه بانک هدایت شوید.
+          </Typography>
+          <br />
+          <Button
+            style={{ marginRight: '50%' }}
             onClick={() => {
               useQuery(Pay());
             }}
-            variant="outlined" > پرداخت و ارتقای حساب </Button>
+            variant="outlined"
+          >
+            {' '}
+            پرداخت و ارتقای حساب{' '}
+          </Button>
         </Box>
-        </Modal>
+      </Modal>
     </React.Fragment>
   );
 }
