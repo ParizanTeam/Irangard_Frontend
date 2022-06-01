@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -45,20 +46,25 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className='sidebar'>
-        {['پروفایل ادمین', 'اضافه کردن کاربر جدید', 'حذف کاربر', 'آمارهای سایت'].map((text, index) => (
+        {['پروفایل ادمین', 'حذف یا اضافه کاربر', 'آمارهای سایت'].map((text, index) => (
           <>
           <ListItem key={text} disablePadding style={{textAlign:'right',height:'6vh'}} >
           
-            <ListItemButton className='drawer-button' dir='rtl' style={{textAlign:'right'}}>
+            <ListItemButton className='drawer-button' dir='rtl' style={{textAlign:'right',height:'6vh'}}>
+            <Link to={index % 2 === 0 ? '/penal/statics' : '/panel/addremove'} style={{height:'4vh'}}>
+            
            
-              
+              <>
               <ListItemText primary={text} style={{marginRight:'60px'}}/>
-              <ListItemIcon>
+              {/*<ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+               </ListItemIcon>*/}
+              </>
+              </Link>
             </ListItemButton>
+            
           </ListItem>
-          {index  !== 3 ? <Divider/> : ""}
+          {index  !== 2 ? <Divider/> : ""}
           </>
         ))}
       </List>

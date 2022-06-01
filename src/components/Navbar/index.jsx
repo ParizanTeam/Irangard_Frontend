@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { StyledEngineProvider } from '@mui/material/styles';
 import { RiMarkPenLine } from 'react-icons/ri';
 import LoginModal from '../LoginModal';
+import ProfileMenu from 'src/components/ProfileMenu';
 import useAuth from 'src/context/AuthContext';
 import './style.scss';
 
@@ -26,6 +28,9 @@ const Navbar = ({}) => {
               نوشتن تجربه
               <RiMarkPenLine size={24} />
             </button>
+            <StyledEngineProvider injectFirst>
+              <ProfileMenu/>
+            </StyledEngineProvider>
             {!auth.isLoggedIn && (
               <button className="header__signin-btn" onClick={() => setOpen(true)}>
                 ورود
