@@ -1,4 +1,12 @@
-import { convertNumberToPersian, convertNumberToEnglish, isPersianNumber, formatPrice, formatDate } from './formatters';
+import {
+  convertNumberToPersian,
+  convertNumberToEnglish,
+  isPersianNumber,
+  formatPrice,
+  formatDate,
+  convertJalaliDateToGeorgian,
+  getPersianDateWithSlash,
+} from './formatters';
 
 // convertNumberToPersian
 
@@ -181,5 +189,90 @@ describe('format the date to jalali calendar', () => {
     const date = new Date('01-01-1800');
     const expected = date.toLocaleString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
     expect(formatDate(date)).toBe(expected);
+  });
+});
+
+//get persian date with slash 1400/12/15
+describe('get persian date of georgian date with slash format', () => {
+  it('should return correct persian date', () => {
+    const date = new Date();
+    const persianDate = getPersianDateWithSlash(date);
+    const expectedDate = date
+      .toLocaleString('fa-IR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      .split(' ')
+      .join('/');
+    expect(persianDate).toBe(expectedDate);
+  });
+  it('should return correct persian date', () => {
+    const date = new Date('08-03-2021');
+    const persianDate = getPersianDateWithSlash(date);
+    const expectedDate = date
+      .toLocaleString('fa-IR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      .split(' ')
+      .join('/');
+    expect(persianDate).toBe(expectedDate);
+  });
+  it('should return correct persian date', () => {
+    const date = new Date(1000);
+    const persianDate = getPersianDateWithSlash(date);
+    const expectedDate = date
+      .toLocaleString('fa-IR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      .split(' ')
+      .join('/');
+    expect(persianDate).toBe(expectedDate);
+  });
+  it('should return correct persian date', () => {
+    const date = new Date(0);
+    const persianDate = getPersianDateWithSlash(date);
+    const expectedDate = date
+      .toLocaleString('fa-IR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      .split(' ')
+      .join('/');
+    expect(persianDate).toBe(expectedDate);
+  });
+  it('should throw error when input is empty', () => {
+    expect(() => getPersianDateWithSlash('')).toThrow();
+  });
+  it('should throw error when input is invalid string', () => {
+    expect(() => getPersianDateWithSlash('(())')).toThrow();
+  });
+  it('should throw error when input is invalid string', () => {
+    expect(() => getPersianDateWithSlash('06-12-33')).toThrow();
+  });
+  it('should throw error when input is invalid string', () => {
+    expect(() => getPersianDateWithSlash('1000')).toThrow();
+  });
+  it('should throw error when input is number', () => {
+    expect(() => getPersianDateWithSlash(1200)).toThrow();
+  });
+  it('should throw error when input is negative number', () => {
+    expect(() => getPersianDateWithSlash(-400)).toThrow();
+  });
+  it('should throw error when input is big integer', () => {
+    expect(() => getPersianDateWithSlash(BigInt(230230230))).toThrow();
+  });
+  it('should throw error when input is object', () => {
+    expect(() => getPersianDateWithSlash({})).toThrow();
+  });
+  it('should throw error when input is array', () => {
+    expect(() => getPersianDateWithSlash([])).toThrow();
+  });
+  it('should throw error when input is symbol', () => {
+    expect(() => getPersianDateWithSlash(Symbol)).toThrow();
+  });
+  it('should throw error when input is function', () => {
+    expect(() => getPersianDateWithSlash(() => {})).toThrow();
+  });
+});
+
+//convert jalali date to georgian
+describe('convert date from jalali to georgian', () => {
+  it('should return correct georgian date', () => {
+    const date = new Date();
+    const persianDate = getPersianDateWithSlash(date);
+    const mm = date.getMonth() + 1; // getMonth() is zero-based
+    const dd = date.getDate();
+    const expectedDate = [date.getFullYear(), '-', (mm > 9 ? '' : '0') + mm, '-', (dd > 9 ? '' : '0') + dd].join('');
+    expect(convertJalaliDateToGeorgian(persianDate)).toBe(expectedDate);
   });
 });
