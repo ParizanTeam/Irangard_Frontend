@@ -55,7 +55,7 @@ export default function LoginModal({ open, handleClose }) {
   return (
     <div>
       <Toaster />
-      <Dialog open={open} onClose={() => handleCloseLoginModal()}>
+      <Dialog open={open} onClose={() => handleCloseLoginModal()} >
         <DialogContent sx={{ overflowY: 'hidden', padding: '0px' }} data-testid="login-modal">
           <ConfirmModal
             open={showWarning}

@@ -8,13 +8,12 @@ const commonErrors = {
 };
 
 export const ErrorMessage = ({ error }) => {
-  console.log('error', error);
 
   let errorMsg = 'ارور';
   if (error.type in commonErrors) errorMsg = commonErrors[error.type];
   else errorMsg = error.message;
   return (
-    <div className="error-msg">
+    <div className="error-msg" role="alert">
       <p>{errorMsg}</p>
     </div>
   );
@@ -110,7 +109,7 @@ export const LoginModalForm = ({ fields, onSubmit, isLoading, onDirty, isLogin =
     if (onDirty) onDirty(isDirty);
   }, [isDirty]);
   return (
-    <form className="login-modal-form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="login-modal-form" onSubmit={handleSubmit(onSubmit)}  role="form">
       {getFields(watch, fields).map(field => {
         return (
           <div key={field.id} className="form__group field">
@@ -119,6 +118,7 @@ export const LoginModalForm = ({ fields, onSubmit, isLoading, onDirty, isLogin =
               className="form__field"
               placeholder={field.id}
               id={field.id}
+              name={field.id}
               {...register(field.id, field.validation)}
             />
             <label htmlFor={field.id} className="form__label">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm } from '../Forms';
+import { SignupForm } from '../Forms';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '@testing-library/jest-dom';
@@ -7,18 +7,18 @@ import '@testing-library/jest-dom';
 // Create a client
 const queryClient = new QueryClient();
 
-const MockLoginForm = () => {
+const MockSignupForm = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <LoginForm />
+      <SignupForm />
     </QueryClientProvider>
   );
 };
 
 
-describe('LoginForm', () => {
+describe('SignupForm', () => {
   beforeEach(() => {
-    render(<MockLoginForm />);
+    render(<MockSignupForm />);
   });
 
   it('should render form correctly', () => {
@@ -38,51 +38,50 @@ describe('LoginForm', () => {
     expect(await screen.findAllByRole('alert')).toHaveLength(2);
   });
 
-  it("should display matching error when password is invalid", async () => {
-    fireEvent.input(screen.getByPlaceholderText("user_email"), {
+  it("should display matching error when email is empty", async () => {
+    fireEvent.input(screen.getByPlaceholderText("username"), {
       target: {
         value: "test"
       }
     });
 
-
     fireEvent.submit(screen.getByRole("button"));
 
     expect(await screen.findAllByRole("alert")).toHaveLength(1);
-    expect(screen.getByPlaceholderText("user_email").value).toBe("test");
+    expect(screen.getByPlaceholderText("username").value).toBe("test");
   });
 
-  it("should display min length error when password is invalid", async () => {
-    fireEvent.input(screen.getByPlaceholderText("user_email"), {
+  it("should display error when email is invalid", async () => {
+    fireEvent.input(screen.getByPlaceholderText("username"), {
       target: {
         value: "test"
       }
     });
-    fireEvent.input(screen.getByPlaceholderText("password"), {
+    fireEvent.input(screen.getByPlaceholderText("email"), {
       target: {
-        value: "pass"
+        value: "email"
       }
     });
 
     fireEvent.submit(screen.getByRole("button"));
 
     expect(await screen.findAllByRole("alert")).toHaveLength(1);
-    expect(screen.getByPlaceholderText("user_email").value).toBe(
+    expect(screen.getByPlaceholderText("username").value).toBe(
       "test"
     );
-    expect(screen.getByPlaceholderText("password").value).toBe("pass");
+    expect(screen.getByPlaceholderText("email").value).toBe("email");
   });
 
   it("should not display error when value is valid", async () => {
-    fireEvent.input(screen.getByPlaceholderText("user_email"), {
+    fireEvent.input(screen.getByPlaceholderText("username"), {
       target: {
         value: "test"
       }
     });
 
-    fireEvent.input(screen.getByPlaceholderText("password"), {
+    fireEvent.input(screen.getByPlaceholderText("email"), {
       target: {
-        value: "password"
+        value: "email@gmail.com"
       }
     });
 
