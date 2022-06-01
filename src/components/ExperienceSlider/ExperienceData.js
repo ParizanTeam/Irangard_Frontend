@@ -26,7 +26,7 @@ const experiencedData = [
     description: 'قشنگترین جای دنیا اینجاست.',
     userName: 'Mohammad',
     userImgSrc: 'https://randomuser.me/api/portraits/men/43.jpg',
-    imgSrc: 'https://8pic.ir/uploads/c833b89b-da26-4543-8cc4-d797a3cc658d.jpg',
+    imgSrc: 'https://panel.safaraneh.com/wp-content/uploads/2022/01/hafez-000_new.jpg',
     rate: 4,
   },
   {
@@ -36,7 +36,7 @@ const experiencedData = [
     description: 'شگفت‌انگیزه واقعا',
     userName: 'Ghazal',
     userImgSrc: 'https://randomuser.me/api/portraits/women/65.jpg',
-    imgSrc: 'https://8pic.ir/uploads/khaju-bridge.jpg',
+    imgSrc: 'https://images.kojaro.com/2020/9/6fdc7cb3-992f-49d4-9bfe-0058dc332f97.jpg',
     rate: 4.5,
   },
   {
