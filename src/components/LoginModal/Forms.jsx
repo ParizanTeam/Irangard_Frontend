@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactInputVerificationCode from 'react-input-verification-code';
 import toast from 'react-hot-toast';
 import { TabHeader, LoginModalForm } from './Common';
-import { useLogin, useForgetPass, useSetPassword, useActivateAccount, useCheckCode } from '../../apis/auth';
+import { useLogin, useForgetPass, useSetPassword, useActivateAccount, useCheckCode } from 'src/api/auth';
 import BlueMailImg from '../../assets/images/blueMail.png';
 import './style.scss';
 

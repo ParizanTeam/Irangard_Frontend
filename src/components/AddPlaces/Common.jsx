@@ -12,14 +12,13 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Checkbox from '@mui/material/Checkbox';
-
+import Input from 'src/components/Input'
 import { useFormContext } from 'react-hook-form';
 
 export function WorkTime() {
   const {
     register,
     resetField,
-    handleSubmit,
     watch,
     formState: { errors },
   } = useFormContext();
@@ -54,6 +53,7 @@ export function WorkTime() {
   const [daysTime, setDaysTime] = useState(default_days_time);
 
   const handleChange = (day, key, value) => {
+    console.log("days",daysTime)
     setDaysTime({ ...daysTime, [day]: { ...daysTime[day], [key]: value } });
   };
 

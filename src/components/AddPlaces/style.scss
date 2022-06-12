@@ -1,6 +1,12 @@
 @import '/src/theme/main.scss';
 
 .add-place {
+  &__no-auth {
+    background-color: $c-white;
+    border-radius: 8px;
+    margin: 32px 0;
+    padding: 32px;
+  }
   .starter-section {
     background-color: white;
     padding: 30px;

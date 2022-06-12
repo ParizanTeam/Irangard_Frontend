@@ -1,101 +1,105 @@
 import React from 'react';
-import AddPlaces from '../../assets/images/coffee1.png';
 import headerImg from '../../assets/images/Jamshid.jpg';
 import './style.scss';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { useMutation } from 'react-query';
-import { baseUrl } from '../../utils/constants';
-import toast from 'react-hot-toast';
+import Autocomplete from '@mui/material/Autocomplete';
+import { DidaniTags } from './info.js';
+import { Chip, Rating, TextField } from '@mui/material';
+import { ErrorMessage } from 'src/components/LoginModal/Common';
 import ImgDragDrop from 'src/components/ImageUploader/index';
-import Header from 'src/components/Header';
+import { useFormContext } from 'react-hook-form';
 
-export default function DidaniForm(){
+export default function DidaniForm() {
   const {
-    handleSubmit,
+    register,
+    watch,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useFormContext();
 
-const { mutateAsync, isLoading } = useMutation(loginData =>
-    axios.post(`${baseUrl}/accounts/auth/jwt/create`, loginData)
-  );
-
-  const onSubmit = userData => {
-    toast.promise(mutateAsync(userData), {
-      loading: 'در حال بررسی...',
-      success: res => {
-        return 'مکان با موفقیت اضافه شد.';
-      },
-      error: err => {
-        if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
-        else return `مشکلی پیش اومده است، دوباره امتحان کنید.`;
-      },
-    });
-  };
-
+  const name = register('name', { required: true, maxLength: 50 });
+  const description = register('description', { required: true, maxLength: 100 });
+  
   return (
-    <div className='main'>
-      <div className='sub'>
-        <div className='header'>
-          <img src={headerImg} alt="header" className='HeeadImg'/>
+    <div>
+      <div className="header">
+        <img src={headerImg} alt="header" className="HeeadImg" />
+      </div>
+      <div className="add-place-form">
+        <div className="add-place-form__section">
+          <h2 className="title">درباره‌ی جاذبه‌دیدنی</h2>
+          <div className="basic-field">
+            <label htmlFor="name" className="field__label">
+              نام جاذبه‌دیدنی
+            </label>
+            <input
+              {...name}
+              className="field-input"
+              type="input"
+              id="name"
+              placeholder="نام جاذبه‌دیدنی مورد نظر را وارد کنید"
+            />
+            {errors['name'] && <ErrorMessage error={errors['name']} />}
+          </div>
+          <div className="basic-field">
+            <label htmlFor="description" className="field__label">
+              توضیحات
+            </label>
+            <textarea
+              className="field-input"
+              {...description}
+              type="input"
+              id="description"
+              placeholder="درباره ی جاذبه‌دیدنی"
+            ></textarea>
+            {errors['description'] && <ErrorMessage error={errors['description']} />}
+          </div>
+          <div className="rating-wrapper" dir="ltr">
+            <label htmlFor="website" className="field__label">
+              امتیاز
+            </label>
+            <Rating
+              name="simple-controlled"
+              size={'large'}
+              precision={0.5}
+              value={watch('rate')}
+              onChange={(event, newValue) => {
+                setValue('rate', newValue);
+              }}
+            />
+          </div>
+          <div style={{ marginTop: '30px' }}>
+            <label htmlFor="website" className="field__label">
+              تگ‌های جاذبه‌دیدنی
+            </label>
+
+            <Autocomplete
+              multiple
+              id="tags-filled"
+              options={DidaniTags}
+              freeSolo
+              onChange= {(event, newValue) => {
+                setValue('tags', newValue);
+              }}
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip dir="ltr" variant="outlined" label={option} {...getTagProps({ index })} />
+                ))
+              }
+              renderInput={params => (
+                <TextField
+                  sx={{ width: '700px', bgcolor: 'white' }}
+                  {...params}
+                  placeholder="تگ های جاذبه‌دیدنی را انتخاب کنید."
+                />
+              )}
+            />
+          </div>
+          <div className="upload-images">
+            <ImgDragDrop />
+          </div>
         </div>
       </div>
-      <div className="Tab1">
-        <form onSubmit={handleSubmit(onSubmit)} style={{width:'100%'}}>
-          <div className="loginForm">
-          <div className='r1'>
-            <h1 style={{fontSize:'28px',color:'#000329',marginBottom:'10px',marginTop:'10px'}}>اطلاعات تکمیلی</h1>
-            <div className="form__group1 field">
-            <input
-                type="input"
-                className="form__field1"
-                
-                id="place-name"
-                placeholder="نام مکان مورد نظر را اینجا وارد کنید."
-              />
-              <label htmlFor="place-name" className="form__label1">
-                نام جاذبه دیدنی
-              </label>
-            </div>
-
-            <div className="form__group1 field">
-            <input
-                type="input"
-                className="form__field1"
-                
-                id="about-this-place"
-                placeholder="درباره مکان مورد نظر به طور مختصر بنویسید."
-              />
-              <label htmlFor="about-this-place" className="form__label1">
-              درباره این مکان
-              </label>
-            </div>
-
-            <div className="form__group1 field">
-            <input
-                type="input"
-                className="form__field1"
-                
-                id="place-stars"
-                placeholder="امتیاز مکان مورد نظر را وارد کنید."
-              />
-              <label htmlFor="place-stars" className="form__label1">
-              امتیاز
-              </label>
-            </div>  
-
-            <div className="form__group1">
-            <p style={{fontSize:'20px',marginBottom:'20px'}}>عکسهای این جاذبه</p>
-              <ImgDragDrop/>
-            </div>     
-            
-          </div>
-          
-          </div>
-          <input className="submit-btn2" type="submit" value="ثبت این جاذیه دیدنی" disabled={isLoading} />
-
-        </form>
-      </div>
+      <input type="submit" className="submit-btn2" value="ثبت اطلاعات" />
     </div>
   );
 }

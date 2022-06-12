@@ -18,7 +18,6 @@ export default function CafeForm() {
 
   const name = register('name', { required: true, maxLength: 50 });
   const description = register('description', { required: true, maxLength: 100 });
-  const rate = register('rate');
   
   return (
     <div>
@@ -27,17 +26,17 @@ export default function CafeForm() {
       </div>
       <div className="add-place-form">
         <div className="add-place-form__section">
-          <h2 className="title">درباره‌ی مکان</h2>
+          <h2 className="title">درباره‌ی رستوران یا کافه</h2>
           <div className="basic-field">
             <label htmlFor="name" className="field__label">
-              نام مکان
+              نام رستوران یا کافه
             </label>
             <input
               {...name}
               className="field-input"
               type="input"
               id="name"
-              placeholder="نام مکان مورد نظر را وارد کنید"
+              placeholder="نام رستوران یا کافه مورد نظر را وارد کنید"
             />
             {errors['name'] && <ErrorMessage error={errors['name']} />}
           </div>
@@ -50,7 +49,7 @@ export default function CafeForm() {
               {...description}
               type="input"
               id="description"
-              placeholder="درباره ی مکان"
+              placeholder="درباره ی رستوران یا کافه"
             ></textarea>
             {errors['description'] && <ErrorMessage error={errors['description']} />}
           </div>
@@ -70,7 +69,7 @@ export default function CafeForm() {
           </div>
           <div style={{ marginTop: '30px' }}>
             <label htmlFor="website" className="field__label">
-              تگ‌های مکان
+              تگ‌های رستوران یا کافه
             </label>
 
             <Autocomplete
@@ -78,6 +77,9 @@ export default function CafeForm() {
               id="tags-filled"
               options={CafeTags}
               freeSolo
+              onChange= {(event, newValue) => {
+                setValue('tags', newValue);
+              }}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
                   <Chip dir="ltr" variant="outlined" label={option} {...getTagProps({ index })} />
@@ -87,7 +89,7 @@ export default function CafeForm() {
                 <TextField
                   sx={{ width: '700px', bgcolor: 'white' }}
                   {...params}
-                  placeholder="تگ های مکان را انتخاب کنید."
+                  placeholder="تگ های رستوران یا کافه را انتخاب کنید."
                 />
               )}
             />

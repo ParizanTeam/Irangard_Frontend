@@ -2,7 +2,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
 import { LoginModalForm } from './Common';
-import { useResetPass } from '../../apis/auth';
+import { useResetPass } from 'src/api/auth';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import ForgetPassImg from '../../assets/images/forgetPass.jpg';

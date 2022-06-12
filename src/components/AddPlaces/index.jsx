@@ -4,12 +4,14 @@ import { Chip } from '@mui/material';
 import { RiRestaurantLine, RiHome3Line, RiChatQuoteLine, RiShipLine } from 'react-icons/ri';
 import toast from 'react-hot-toast';
 import { useForm, FormProvider } from 'react-hook-form';
+import Layout from 'src/components/Layout';
 import HotelForm from './Hotels';
 import DidaniForm from './Didani';
 import CafeForm from './cafe';
 import AddPlaceCommonForm from './Common';
 import TafrihiForm from './Tafrihi';
 import { useAddPlace } from 'src/api/places';
+import useAuth from 'src/context/AuthContext';
 import './style.scss';
 
 const StarterSection = ({ place, setPlace }) => {
@@ -53,14 +55,66 @@ const StarterSection = ({ place, setPlace }) => {
     </div>
   );
 };
-export default function Places() {
+export default function AddPlaces() {
+  const auth = useAuth();
+  if (!auth.isLoggedIn) {
+    return (
+      <Layout title="اضافه کردن مکان جدید">
+        <div className="add-place__no-auth">
+          <p>برای اضافه کردن مکان ابتدا باید وارد شوید.</p>
+        </div>
+      </Layout>
+    );
+  }
+
   const [place, setPlace] = React.useState(null);
   const [moreInfo, setMoreInfo] = React.useState(false);
 
   const methods = useForm({ shouldUseNativeValidation: true, defaultValues: { state: '', city: '' } });
   const { mutateAsync, isLoading } = useAddPlace();
+
+  const apiAdaptor = placeData => {
+    console.log('placeData', placeData);
+    const contact = {
+      x_location: placeData.latitude,
+      y_location: placeData.longitude,
+      province: placeData.state.label,
+      city: placeData.city.label,
+      address: placeData.street,
+      phone: placeData.phone,
+      email: placeData.email,
+      website: placeData.website,
+    };
+    const tags = placeData.tags.map(x => {
+      return { name: x };
+    });
+    return {
+      title: placeData.name,
+      place_type: place,
+      description: placeData.description,
+      contact: contact,
+      tags: tags,
+      rate: placeData.rate
+      // images: [{}],
+      // is_free: true,
+      // features: [
+      //   {
+      //     place: 0,
+      //     title: 'string',
+      //   },
+      // ],
+      // rooms: [
+      //   {
+      //     place: 0,
+      //     room_type: 'string',
+      //     capacity: 0,
+      //     price: 0,
+      //   },
+      // ]
+    };
+  };
   const onSubmit = placeData => {
-    toast.promise(mutateAsync(placeData), {
+    toast.promise(mutateAsync(apiAdaptor(placeData)), {
       loading: 'در حال بررسی...',
       success: res => {
         return 'مکان با موفقیت اضافه شد.';
