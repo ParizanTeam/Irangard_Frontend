@@ -1,20 +1,30 @@
 @import '/src/theme/main.scss';
 
 .add-place {
+  margin: 30px 0;
+  border: 3px solid black;
+  text-align: right;
+  background: white;
+
   &__no-auth {
     background-color: $c-white;
     border-radius: 8px;
     margin: 32px 0;
+
     padding: 32px;
   }
-  .starter-section {
-    background-color: white;
+
+  &__section {
     padding: 30px;
-    border: 3px solid black;
-    text-align: right;
-    @media (min-width: 800px) {
-      width: 65%;
-      margin: auto;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    max-width: 1000px;
+  }
+
+  .baseinfo-section {
+    .basic-field {
+      margin: 15px 0;
     }
     .title {
       margin-top: 20px;
@@ -36,7 +46,9 @@
       }
       .active-chip {
         .MuiChip-root {
-          background-color: aliceblue;
+          box-shadow: 0 0 0 1.2px inset #00aa6c;
+          border-color: #00aa6c;
+          background-color: white;
         }
       }
       span {
@@ -48,59 +60,41 @@
       }
     }
   }
-}
-.add-place-form {
-  text-align: right;
-  margin-right: 10px;
-  @media (min-width: 800px) {
-    width: 65%;
-    margin: auto;
-  }
-  &__section {
-    margin-bottom: 50px;
-  }
-  .upload-images {
-    margin-top: 30px;
-  }
-  .location-info {
-    display: flex;
-    &__map {
-      margin-right: auto;
-      margin-left: 10px;
-      z-index: 0;
+  .map-section {
+    .state-city-address {
+      padding-left: 20px;
     }
-    @media (max-width: 900px) {
-      flex-direction: column;
+    .location-info {
+      display: flex;
+      flex-direction: row;
       &__map {
-        margin-top: 30px;
-        margin-right: 0;
-        margin-left: 0;
+        margin-right: auto;
+        margin-left: 10px;
+        z-index: 0;
+      }
+      @media (max-width: 900px) {
+        flex-direction: column;
+        &__map {
+          margin-top: 30px;
+          margin-right: 0;
+          margin-left: 0;
+        }
       }
     }
-  }
-  .title {
-    font-size: 28px;
-    color: #080340;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-  .coordinates__title {
-    margin-top: 30px;
-  }
-  .work-time,
-  .state-city,
-  .coordinates {
-    display: flex;
-    &__field {
-      margin-left: 20px;
+    .title {
+      font-size: 28px;
+      color: #080340;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    .coordinates__title {
+      margin-top: 30px;
     }
   }
-
   .field-label {
     padding-bottom: 3px;
   }
   .basic-field {
-    margin-top: 25px;
     max-width: 700px;
     .field-input {
       outline: 0;
@@ -113,20 +107,13 @@
       &:focus {
         border-color: black;
       }
-      &:invalid {
-        border-color: #c00;
+      &.invalid {
+        border-color: $c-golbehi2;
       }
     }
   }
-
-  .rating-wrapper {
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-  }
 }
-
+.work-time,
 .state-city,
 .coordinates {
   display: flex;
@@ -135,163 +122,26 @@
     @media (min-width: 800px) {
       margin-left: 20px;
     }
+    margin: 30px 0;
   }
 }
-
-.Places {
-  margin-top: 30px;
-  margin-left: 5px;
-  margin-right: 50px;
-  text-align: center;
-  width: 200px;
-  font-size: large;
-  color: rgb(106, 44, 21);
-  font-weight: 800;
-  &:hover {
-    transform: scale(1.1);
-    transform: rotate(20deg);
+.contact-section {
+  .basic-field {
+    margin: 15px 0;
+    &.worktime {
+      margin-top: 40px;
+    }
   }
 }
-.PlacesOptions {
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-}
-.main {
-  text-align: center;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
-  // justify-content: center;
-  min-height: 1000px;
-  background-color: #f5f8ff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80' width='80' height='80'%3E%3Cpath fill='%230b0663' fill-opacity='0.1' d='M14 16H9v-2h5V9.87a4 4 0 1 1 2 0V14h5v2h-5v15.95A10 10 0 0 0 23.66 27l-3.46-2 8.2-2.2-2.9 5a12 12 0 0 1-21 0l-2.89-5 8.2 2.2-3.47 2A10 10 0 0 0 14 31.95V16zm40 40h-5v-2h5v-4.13a4 4 0 1 1 2 0V54h5v2h-5v15.95A10 10 0 0 0 63.66 67l-3.47-2 8.2-2.2-2.88 5a12 12 0 0 1-21.02 0l-2.88-5 8.2 2.2-3.47 2A10 10 0 0 0 54 71.95V56zm-39 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm40-40a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM15 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm40 40a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'%3E%3C/path%3E%3C/svg%3E");
-}
-
-.header {
-  display: flex;
-  width: 80%;
-  height: 500px;
-  margin: auto;
-  margin-top: 40px;
-  @media (max-width: 768px) {
-    height: 240px;
+.moreinfo-section {
+  .tags,
+  .hotel-features {
+    margin: 30px 0;
   }
-}
-.HeeadImg {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: rgba(16, 0, 43, 0.25) 0px 2px 10px;
-}
-.submit-btn2 {
-  background-color: rgb(113, 227, 237);
-  border-radius: 8px;
-  color: #080340;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 8px 10px;
-  text-decoration: none;
-  margin-top: 50px;
-  box-shadow: rgb(8, 3, 64) 0px 2px 5px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  &:disabled {
-    background-color: rgb(105, 184, 215);
+  .upload-images {
+    .title {
+      padding-top: 10px;
+    }
+    margin-top: 10px;
   }
-  @media (max-width: 768px) {
-    margin-top: 30px;
-  }
-}
-.Tab1 {
-  margin: auto;
-  width: 80%;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
-}
-.loginForm {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  flex-direction: row-reverse;
-  align-items: center;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-}
-.r1 {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-}
-.map {
-  position: sticky;
-  width: 30%;
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-.form__field1 {
-  font-family: inherit;
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid black;
-  outline: 0;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:placeholder-shown ~ .form__label {
-    cursor: text;
-    top: 20px;
-  }
-}
-
-.form__label1 {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: black;
-}
-
-.form__field1:focus {
-  ~ .form__label1 {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #1b0029;
-    font-weight: 700;
-  }
-  padding-bottom: 6px;
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #000329, #00125b);
-  border-image-slice: 1;
-}
-.form__field1 {
-  &:required,
-  &:invalid {
-    box-shadow: none;
-  }
-}
-.form__group1 {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 50%;
-  margin-bottom: 20px;
 }
