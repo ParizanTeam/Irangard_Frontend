@@ -1,55 +1,56 @@
-import React, { useState } from "react";
-import "./style.scss";
+import React, { useState, useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
+import './style.scss';
 
-import Dropzone from "react-dropzone";
 
 export default function ImageUploader() {
-  const [fileNames, setFileNames] = useState([]);
-  const handleDrop = acceptedFiles =>
-    setFileNames(acceptedFiles.map(file => file.name));
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/*': [],
+    },
+    multiple:true,
+    maxSize:3072000,
+    onDrop: acceptedFiles => {
+      setFiles(
+        acceptedFiles.map(file =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+  });
 
+  const thumbs = files.map(file => (
+    <div className="thumb" key={file.name}>
+      <div className="thumb-inner">
+        <img
+          src={file.preview}
+          className="img"
+          // Revoke data uri after image is loaded
+          onLoad={() => {
+            URL.revokeObjectURL(file.preview);
+          }}
+        />
+      </div>
+    </div>
+  ));
+  useEffect(() => {
+    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    return () => files.forEach(file => URL.revokeObjectURL(file.preview));
+  }, []);
   return (
     <div className="image-uploader">
-      <Dropzone
-        onDrop={handleDrop}
-        accept="image/*"
-        minSize={1024}
-        maxSize={3072000}
-      >
-        {({
-          getRootProps,
-          getInputProps,
-          isDragActive,
-          isDragAccept,
-          isDragReject
-        }) => {
-          const additionalClass = isDragAccept
-            ? "accept"
-            : isDragReject
-            ? "reject"
-            : "";
-
-          return (
-            <div
-              {...getRootProps({
-                className: `dropzone ${additionalClass}`
-              })}
-            >
-              <input {...getInputProps()} />
-              <span>{isDragActive ? "📂" : "📁"}</span>
-              <p className="txt">عکسهای مورد نظر را در اینجا کشیده و رها کنید</p>
-              <p className="txt">و یا برای انتخاب آنها اینجا کلیک کنید</p>
-            </div>
-          );
-        }}
-      </Dropzone>
+      <div {...getRootProps({ className: 'dropzone' })}>
+        <input {...getInputProps()} />
+        <span className="icon">📂</span>
+        <p>عکسهای مورد نظر را در اینجا کشیده و رها کنید</p>
+        <p>و یا برای انتخاب آنها اینجا کلیک کنید</p>
+      </div>
       <div>
-        <strong className="txt">فایلهای آپلود شده:</strong>
-        <ul style={{marginTop:'15px'}}>
-          {fileNames.map(fileName => (
-            <li key={fileName}>{fileName}</li>
-          ))}
-        </ul>
+        <p className="preview-title">تصاویر آپلود شده:</p>
+        <aside className="thumbs-container">{thumbs}</aside>
       </div>
     </div>
   );
