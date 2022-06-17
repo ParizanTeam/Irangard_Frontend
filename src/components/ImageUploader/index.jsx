@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import './style.scss';
 
-
 export default function ImageUploader() {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': [],
     },
-    multiple:true,
-    maxSize:3072000,
+    multiple: true,
+    maxSize: 3072000,
     onDrop: acceptedFiles => {
-      setFiles(
-        acceptedFiles.map(file =>
+      setFiles(prevFiles => [
+        ...prevFiles,
+        ...acceptedFiles.map(file =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           })
-        )
-      );
+        ),
+      ]);
     },
   });
 
