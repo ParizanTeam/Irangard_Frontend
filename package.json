@@ -60,6 +60,7 @@
     "react-input-verification-code": "^1.0.1",
     "react-multi-date-picker": "^3.3.0",
     "react-neshan-map-leaflet": "^1.2.1",
+    "react-number-format": "^4.9.3",
     "react-query": "^3.34.16",
     "react-router-dom": "^6.2.2",
     "react-zoomable-ui": "^0.9.1",

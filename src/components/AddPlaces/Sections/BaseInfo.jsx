@@ -1,15 +1,11 @@
 import React from 'react';
-import { Chip } from '@mui/material';
+import { Chip, Radio } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import Button from 'src/components/Button';
 import { PlaceTypes } from '../info';
 import { BasicInput } from '../Inputs';
 export default function BaseInfoSection(props) {
-  const {
-    watch,
-    setValue,
-    trigger,
-  } = useFormContext();
+  const { watch, setValue, trigger } = useFormContext();
 
   const placeLabel = PlaceTypes[watch('placeType')]?.label;
   return (
@@ -28,7 +24,7 @@ export default function BaseInfoSection(props) {
         <h3>مکان ات چه جور جایی هست؟</h3>
         <div className="options">
           {PlaceTypes.map((PlaceType, index) => (
-            <span className={index == watch('placeType') ? 'active-chip' : ''}>
+            <span key={index} className={index == watch('placeType') ? 'active-chip' : ''}>
               <Chip
                 onClick={() => setValue('placeType', index)}
                 icon={<PlaceType.icon size={24} />}
@@ -39,6 +35,25 @@ export default function BaseInfoSection(props) {
           ))}
         </div>
       </div>
+
+      <div>
+        <h3>صاحب مکان هستید؟</h3>
+        بله
+        <Radio
+          checked={watch('isOwner') === 'yes'}
+          onChange={e => setValue('isOwner', event.target.value)}
+          value="yes"
+          name="radio-buttons"
+        />
+        خیر
+        <Radio
+          checked={watch('isOwner') === 'no'}
+          onChange={e => setValue('isOwner', event.target.value)}
+          value="no"
+          name="radio-buttons"
+        />
+      </div>
+
       {watch('placeType') >= 0 && (
         <>
           <div>

@@ -1,13 +1,13 @@
 import React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import { Chip, TextField } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import Button from 'src/components/Button';
-import { PlaceTypes, DidaniTags } from '../info';
-import ImgDragDrop from 'src/components/ImageUploader/index';
+import { Chip, TextField,Autocomplete } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
+import Button from 'src/components/Button';
+import ImgDragDrop from 'src/components/ImageUploader/index';
+import { PlaceTypes, DidaniTags } from '../info';
+import { HotelRoomsInput } from '../Inputs';
 
 const HotelFeatures = () => {
   const features = [
@@ -97,7 +97,12 @@ export default function MoreInfoSection(props) {
         />
       </div>
 
-      {watch('placeType') == 1 && <HotelFeatures />}
+      {watch('placeType') == 1 && (
+        <>
+          <HotelRoomsInput />
+          <HotelFeatures />
+        </>
+      )}
 
       {watch('placeType') >= 2 && (
         <div>

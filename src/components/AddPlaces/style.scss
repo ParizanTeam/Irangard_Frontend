@@ -46,8 +46,8 @@
       }
       .active-chip {
         .MuiChip-root {
-          box-shadow: 0 0 0 1.2px inset #00aa6c;
-          border-color: #00aa6c;
+          box-shadow: 0 0 0 1.2px inset black;
+          border-color: black;
           background-color: white;
         }
       }
@@ -63,6 +63,22 @@
   .map-section {
     .state-city-address {
       padding-left: 20px;
+    }
+    .guide {
+      color: $c-gray-40;
+
+      &.box {
+        border: 2px solid $c-gray-20;
+        border-radius: 8px;
+        width: 350px;
+        height: 350px;
+        padding:10px;
+        align-items: center;
+        text-align: center;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+      }
     }
     .location-info {
       display: flex;
@@ -91,6 +107,53 @@
       margin-top: 30px;
     }
   }
+
+  .hotel-rooms {
+    &__groupfield {
+      margin-bottom: 5px;
+      display: flex;
+    }
+
+    &__field {
+      margin: 5px;
+    }
+    .room-price {
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: 'تومان';
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+      }
+    }
+    .delete-btn {
+      color: $c-golbehi2;
+      background-color: $c-white;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $c-golbehi2;
+        color: $c-white;
+      }
+    }
+
+    .add-btn {
+      color: $c-green2;
+      background-color: $c-white;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $c-green2;
+        color: $c-white;
+      }
+    }
+    .btn-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
   .field-label {
     padding-bottom: 3px;
   }
@@ -102,10 +165,11 @@
       border-radius: 4px;
       transition: border-color 0.2s;
       width: 100%;
-      border: 2px solid rgb(173, 173, 173);
+      border: 1px solid rgb(173, 173, 173);
 
       &:focus {
         border-color: black;
+        border-width: 2px;
       }
       &.invalid {
         border-color: $c-golbehi2;
@@ -117,12 +181,16 @@
 .state-city,
 .coordinates {
   display: flex;
-  gap: 5px;
+  gap: 20px;
   &__field {
-    @media (min-width: 800px) {
-      margin-left: 20px;
-    }
-    margin: 30px 0;
+    margin: 10px 0;
+  }
+}
+
+.state-city,
+.coordinates {
+  &__field {
+    flex-grow: 1;
   }
 }
 .contact-section {
@@ -137,6 +205,12 @@
   .tags,
   .hotel-features {
     margin: 30px 0;
+  }
+
+  .hotel-features {
+    .MuiSelect-select {
+      min-width: 275px;
+    }
   }
   .upload-images {
     .title {
