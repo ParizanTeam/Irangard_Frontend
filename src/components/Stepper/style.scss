@@ -3,8 +3,8 @@
 .steppers {
   // default colors
   $c_active: $c-green1;
-  $c_shadow:$c-gray-95;
-  $c_non-active:$c-gray-50;
+  $c_shadow: $c-gray-90;
+  $c_non-active: $c-gray-50;
 
   margin-top: 100px;
   width: 100%;
@@ -20,6 +20,9 @@
       border-top-width: 3px;
       border-radius: 1px;
     }
+  }
+  .non-linear {
+    cursor: pointer;
   }
   .icon-container {
     color: $c-gray-90;
@@ -40,17 +43,24 @@
       color: $c_non-active;
       z-index: 1;
       font-size: 28px;
+
       &.active {
         color: $c_active;
       }
 
-      &.completed {
+      &.has-status {
         color: $c_shadow;
       }
     }
 
     .completed-icon {
       color: $c_active;
+      z-index: 20;
+      font-size: 32px;
+    }
+
+    .warning-icon {
+      color: $c_golbehi2;
       z-index: 20;
       font-size: 32px;
     }

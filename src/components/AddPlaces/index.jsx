@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useForm, FormProvider } from 'react-hook-form';
 import Layout from 'src/components/Layout';
-import Stepper from 'src/components/Stepper';
+import { EnhancedStepper as Stepper } from 'src/components/Stepper';
 import { useAddPlace } from 'src/api/places';
 import useAuth from 'src/context/AuthContext';
 import { BaseInfoSection, MapSection, ContactSection, MoreInfoSection } from './Sections';
-import { AddPlaceSteps } from './info';
+import { AddPlaceSteps as steps } from './info';
 import './style.scss';
 
 export default function AddPlaces() {
@@ -21,9 +21,38 @@ export default function AddPlaces() {
     );
   }
   const methods = useForm({
-    defaultValues: { activeStep: 0, placeType: -1, state: '', city: '' },
+    defaultValues: {
+      activeStep: 0,
+      placeType: -1,
+      name: '',
+      description: '',
+      state: '',
+      city: '',
+      longitude: '',
+      latitude: '',
+    },
   });
+  const placeType = methods.watch('placeType');
+  const activeStep = methods.watch('activeStep');
+  const [preStep, setPreStep] = useState(activeStep);
+
+  const stepsRef = useRef(null);
+  useEffect(async () => {
+    const stepFields = steps[preStep].fields;
+    const isOkay = await methods.trigger(stepFields);
+    steps[preStep]['error'] = !isOkay;
+    setPreStep(activeStep);
+  }, [activeStep]);
+
+  useEffect(() => {
+    const subscription = methods.watch((value, { name, type }) => {
+      methods.trigger(name);
+    });
+    return () => subscription.unsubscribe();
+  }, [methods.watch]);
+
   const { mutateAsync, isLoading } = useAddPlace();
+
   function filterNullValues(dict) {
     const filtered = Object.keys(dict).reduce(function (filtered, key) {
       if (dict[key]) filtered[key] = dict[key];
@@ -71,14 +100,19 @@ export default function AddPlaces() {
   };
 
   const AddPlaceSections = [BaseInfoSection, MapSection, ContactSection, MoreInfoSection];
-
-  const AddPlaceSection = AddPlaceSections[methods.watch('activeStep')];
-
+  const AddPlaceSection = AddPlaceSections[preStep];
   return (
     <Layout title="اضافه کردن مکان جدید">
       <div className="add-place">
         <FormProvider {...methods}>
-          <Stepper steps={AddPlaceSteps} activeStep={methods.watch('activeStep')} />
+          {placeType >= 0 && (
+            <Stepper
+              ref={stepsRef}
+              steps={steps}
+              activeStep={activeStep}
+              setActiveStep={s => methods.setValue('activeStep', s)}
+            />
+          )}
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <div className="add-place__section">
               <AddPlaceSection />

@@ -17,18 +17,22 @@ export const AddPlaceSteps = [
   {
     label: 'اطلاعات پایه',
     icon: RiFileList2Fill,
+    fields: ['name', 'description'],
   },
   {
     label: 'نقشه',
     icon: FaMapMarkedAlt,
+    fields: ['state', 'city', 'street', 'latitude', 'longitude'],
   },
   {
     label: 'اطلاعات تماس',
     icon: MdContactPhone,
+    fields: ['phone', 'email', 'website'],
   },
   {
     label: 'اطلاعات تکمیلی',
     icon: RiPagesLine,
+    fields: [],
   },
 ];
 
