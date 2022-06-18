@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useMediaQuery,Autocomplete } from '@mui/material';
 import Button from 'src/components/Button';
-import Autocomplete from '@mui/material/Autocomplete';
-import { useMediaQuery } from '@mui/material';
 import Map from 'src/components/Map';
-import IranStates from 'src/assets/data/IranStates.json';
 import { BasicInput } from '../Inputs';
+import IranStates from 'src/assets/data/IranStates.json';
+
+
+
 export default function MapSection(props) {
   const { watch, setValue, trigger, resetField } = useFormContext();
   const useMobile = () => useMediaQuery('(max-width: 470px)');
+  const state = watch('state');
+  const city = watch('city');
   const [cities, setCities] = useState([]);
-
+  useEffect(async () => {
+    if (state) setCities(await (await fetch(`assets/data/cities/${state?.value}.json`)).json());
+  }, [state]);
+  
   const street_validation = {
     maxLength: {
       value: 25,
@@ -40,14 +47,13 @@ export default function MapSection(props) {
               <Autocomplete
                 disablePortal
                 options={IranStates}
-                value={watch('state')}
+                value={state}
                 isOptionEqualToValue={handleIsOptionEqualToValue}
                 onChange={(event, newValue) => {
                   setValue('state', newValue);
-                  fetch(`assets/data/cities/${watch('state').value}.json`).then(res =>
-                    res.json().then(x => setCities(x))
-                  );
                   resetField('city');
+                  resetField('latitude');
+                  resetField('longitude');
                 }}
                 renderInput={params => {
                   return (
@@ -66,10 +72,12 @@ export default function MapSection(props) {
             <div className="state-city__field">
               <label htmlFor="city">شهر</label>
               <Autocomplete
-                disabled={!watch('state')}
-                value={watch('city')}
+                disabled={!state}
+                value={city}
                 onChange={(event, newValue) => {
                   setValue('city', newValue);
+                  resetField('latitude');
+                  resetField('longitude');
                 }}
                 isOptionEqualToValue={handleIsOptionEqualToValue}
                 options={cities}
@@ -99,21 +107,24 @@ export default function MapSection(props) {
           <h3 className="coordinates__title">مختصات مکان</h3>
           <div className="coordinates">
             <div className="coordinates__field">
-              <BasicInput id="latitude" label="عرض" placeholder="عرض مکان" validation={{ required: true }} />
+              <BasicInput id="latitude" label="عرض" placeholder="عرض مکان" validation={{ required: true }} readOnly />
             </div>
             <div className="coordinates__field">
-              <BasicInput id="longitude" label="طول" placeholder="طول مکان" validation={{ required: true }} />
+              <BasicInput id="longitude" label="طول" placeholder="طول مکان" validation={{ required: true }} readOnly />
             </div>
           </div>
+          <div className="guide">*راهنما: مختصات مکان را از روی نقشه انتخاب کنید.</div>
         </div>
         <div className="location-info__map">
-          {watch('city') && (
+          {city ? (
             <Map
               style={useMobile && { width: 350, height: 350 }}
               onChoose={handleChangeLocation}
-              defaultLat={watch('city')?.lat}
-              defaultLong={watch('city')?.long}
+              defaultLat={city?.lat}
+              defaultLong={city?.long}
             />
+          ) : (
+            <div className="guide box">برای نمایش نقشه، ابتدا استان و سپس شهر مکان را انتخاب کنید.</div>
           )}
         </div>
       </div>
