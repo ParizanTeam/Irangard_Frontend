@@ -34,7 +34,6 @@
     "jalali-date": "^1.1.4",
     "jalali-moment": "^3.3.11",
     "jest": "^27.5.1",
-    "jss-rtl": "^0.3.0",
     "keen-slider": "^6.6.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -52,7 +51,7 @@
     "sass": "^1.49.9",
     "styled-components": "^5.3.5",
     "stylis": "^4.0.10",
-    "stylis-plugin-rtl": "^1.0.0",
+    "stylis-plugin-rtl": "^2.1.1",
     "workbox-recipes": "^6.2.4",
     "workbox-routing": "^6.2.4",
     "workbox-strategies": "^6.2.4"

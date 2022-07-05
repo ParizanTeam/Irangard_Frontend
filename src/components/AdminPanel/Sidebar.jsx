@@ -13,9 +13,9 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 
-type Anchor = 'top';
 
 export default function SwipeableTemporaryDrawer() {
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -24,21 +24,17 @@ export default function SwipeableTemporaryDrawer() {
   });
 
   const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
+    (anchor='top', open) =>
+    (event) => {
+      if (event &&
         event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
+        (event.key === 'Tab' || event.key === 'Shift')) {
         return;
       }
-
       setState({ ...state, [anchor]: open });
     };
 
-  const list = (anchor: Anchor) => (
+  const list = (anchor='top') => (
     <Box
       sx={{ width:'auto'}}
       role="presentation"
@@ -73,7 +69,7 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div>
-      {(['top'] as const).map((anchor) => (
+      {(['top']).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}><MenuIcon color="secondary"/></Button>
           <SwipeableDrawer
