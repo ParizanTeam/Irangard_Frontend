@@ -54,8 +54,12 @@ export function LinearStepper(props) {
 }
 
 export function EnhancedStepper(props) {
-  const { steps, activeStep, setActiveStep } = props;
-
+  const { steps, activeStep, setActiveStep, innerRef } = props;
+  React.useEffect(() => {
+    steps.forEach(s => {
+      s.error=undefined;
+    });
+  }, []);
   function StepIcon(props) {
     const { active, error, Icon, hasViewed } = props;
     const isActive = active ? 'active' : '';
