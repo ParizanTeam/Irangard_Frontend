@@ -18,6 +18,7 @@ function ToursDetailPage() {
   const navigate = useNavigate();
   const auth = useAuth();
   const [pageLoading, setPageLoading] = useState(true);
+  const [newCost, setNewCost] = useState(null);
   const [data, setData] = useState({});
   const [code, setCode] = useState('');
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
@@ -42,7 +43,7 @@ function ToursDetailPage() {
 
   const handleBookTour = () => {
     if (!auth.isLoggedIn) {
-      toast.error('ابتدا وارد حساب کاربری خود شوید.');
+      toast.error('برای ثبت‌نام در تور ابتدا وارد حساب کاربری خود شوید.', { className: 'centered-toast-message' });
       return;
     }
     setRegisterModalOpen(true);
@@ -64,6 +65,24 @@ function ToursDetailPage() {
         console.log(error);
       });
   };
+
+  const handleDiscountCodeSubmit = e => {
+    e.preventDefault();
+    apiInstance
+      .post(`tours/${id}/apply_discount_code/`, {
+        discount_code_code: code,
+      })
+      .then(res => res.data)
+      .then(data => {
+        toast.success('کد تخفیف با موفقیت اعمال شد.');
+        setNewCost(data.new_cost);
+      })
+      .catch(err => {
+        toast.error('کد تخفیف اشتباه است.');
+        setNewCost(null);
+      });
+  };
+
   return (
     <Layout title="صفحه تور">
       <Toaster />
@@ -85,7 +104,7 @@ function ToursDetailPage() {
             ظرفیت تور: {convertNumberToPersian(data.capacity - data.bookers.length)} نفر
           </div>
           <div className="tour-detail__cost">قیمت تور: {formatPrice(convertNumberToPersian(data.cost))} تومان</div>
-          {!data.is_booked && (
+          {!data.is_booked && data.owner.user !== auth.user?.id && (
             <Button className="tour-detail__book" onClick={handleBookTour}>
               ثبت‌نام در تور
             </Button>
@@ -108,12 +127,23 @@ function ToursDetailPage() {
         onClose={onClose}
         style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
-        <form onSubmit={handleSubmitBookTour} className="tour-detail__register-modal">
-          <Input label="کد تخفیف:" placeholder="کد تخفیف..." value={code} onChange={e => setCode(e.target.value)} />
-          <Button type="submit" className="tour-detail__book">
+        <div className="tour-detail__register-modal">
+          <form onSubmit={handleDiscountCodeSubmit}>
+            <Input label="کد تخفیف:" placeholder="کد تخفیف..." value={code} onChange={e => setCode(e.target.value)} />
+            {newCost && (
+              <>
+                <p className="tour-detail__code-stroke">{formatPrice(convertNumberToPersian(data.cost))} تومان</p>
+                <p className="tour-detail__code-success">{formatPrice(convertNumberToPersian(newCost))} تومان</p>
+              </>
+            )}
+            <Button type="submit" className="tour-detail__submit-code">
+              اعمال کد تخفیف
+            </Button>
+          </form>
+          <Button type="button" className="tour-detail__book-modal" onClick={handleSubmitBookTour}>
             ثبت‌نام در تور
           </Button>
-        </form>
+        </div>
       </Modal>
     </Layout>
   );

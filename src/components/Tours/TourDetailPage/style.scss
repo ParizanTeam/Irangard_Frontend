@@ -80,6 +80,18 @@
     margin: 24px 0;
   }
 
+  &__book-modal {
+    background-color: #feb714;
+    color: $c-black;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+  }
+
+  &__code-stroke {
+    text-decoration: line-through;
+    margin-top: 12px;
+  }
+
   &__cost {
     color: #2979fe;
     font-weight: 800;
@@ -92,4 +104,8 @@
     border-radius: 8px;
     text-align: center;
   }
+}
+
+.centered-toast-message {
+  text-align: center;
 }
