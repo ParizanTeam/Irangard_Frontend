@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  web:
+    container_name: irangard-fontend_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:80'
+#    volumes:
+#      - app1:/app/package.json
+#      - app2:/app/node_modules/
+
+#volumes:
+#  app1:
+#  app2:
