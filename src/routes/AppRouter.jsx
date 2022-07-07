@@ -15,12 +15,12 @@ import TourDashboard from 'src/components/Tours/TourDashboard';
 import AdminPanel from '../components/AdminPanel';
 import AddRemoveUser from 'src/components/AdminPanel/AddOrRemove';
 import StaticsPage from 'src/components/AdminPanel/StaticsPage';
-
+import Chat from 'src/components/Chat';
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<><HomePage /><Chat/></>} />
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
         <Route path="/reset-password" element={<ForgetPassword />} />
