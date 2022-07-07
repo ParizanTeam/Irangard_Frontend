@@ -14,6 +14,10 @@
   &__description {
     margin-bottom: 16px;
   }
+  &__zoomable-area {
+    position: relative;
+    min-height: 580px;
+  }
   svg {
     width: 100%;
     max-width: 1000px;
@@ -53,5 +57,13 @@
   a:hover :not(.cls-2) {
     opacity: 0.5;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  .map {
+    &__zoomable-area {
+      min-height: 280px;
+    }
   }
 }
