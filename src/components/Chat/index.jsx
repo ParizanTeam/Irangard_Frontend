@@ -37,6 +37,7 @@ function Chat(props){
         'username': username,
         'room_name': roomName
     }));
+    console.log("received");
     }
 
     return(

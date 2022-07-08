@@ -22,9 +22,9 @@ function Message(props) {
     .render(props.message.text);
 
   return (
-    <div className={`rcw-${message.sender}`}>
+    <div className={`rcw-${props.message.sender}`}>
       <div className="rcw-message-text" dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
-      {props.showTimeStamp && <span className="rcw-timestamp">{format(message.timestamp, 'hh:mm')}</span>}
+      {props.showTimeStamp && <span className="rcw-timestamp">{format(props.message.timestamp, 'hh:mm')}</span>}
     </div>
   );
 }

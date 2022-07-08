@@ -1,40 +1,49 @@
-import { useEffect, useRef } from 'react';
-import cn from 'classnames' 
+import { useEffect, useState } from 'react';
+import cn from 'classnames';
 import Launcher from '../Launcher';
 import FullScreenPreview from '../FullScreenPreview';
-import Conversation from '../Conversation'
+import Conversation from '../Conversation';
 import './style.scss';
+import profileAvatar from '../assets/avatar.png';
 
-function ChatLayout({  title,
-    titleAvatar,
-    subtitle,
-    onSendMessage,
-    onToggleConversation,
-    senderPlaceHolder,
-    onQuickButtonClicked,
-    profileAvatar,
-    profileClientAvatar,
-    showCloseButton,
-    fullScreenMode,
-    autofocus,
-    customLauncher,
-    onTextInputChange,
-    chatId,
-    launcherOpenLabel,
-    launcherCloseLabel,
-    launcherCloseImg,
-    launcherOpenImg,
-    sendButtonAlt,
-    showTimeStamp,
-    imagePreview,
-    zoomStep,
-    showBadge,
-    resizable,
-    emojis,
-    showChat}) {
+export default function ChatLayout({
+  title,
+  titleAvatar,
+  subtitle,
+  handleNewUserMessage,
+  onSendMessage,
+  onToggleConversation,
+  senderPlaceHolder,
+  onQuickButtonClicked,
+  profileAvatar,
+  profileClientAvatar,
+  showCloseButton,
+  fullScreenMode,
+  autofocus,
+  customLauncher,
+  onTextInputChange,
+  chatId,
+  launcherOpenLabel,
+  launcherCloseLabel,
+  launcherCloseImg,
+  launcherOpenImg,
+  sendButtonAlt,
+  showTimeStamp,
+  imagePreview,
+  zoomStep,
+  showBadge,
+  resizable,
+  emojis,
+}) {
 
-    
-    
+
+  const [showChat, setShowChat] = useState(false);
+
+  const toggleShowChat= () =>{
+    setShowChat(!showChat);
+    console.log("showchat",showChat);
+  };
+
   return (
     <div
       className={cn('rcw-widget-container', {
@@ -43,26 +52,28 @@ function ChatLayout({  title,
         'rcw-close-widget-container ': true || !showChat,
       })}
     >
-      {true && (
+        
+      {showChat && (
         <Conversation
           title={title}
           subtitle={subtitle}
           senderPlaceHolder={senderPlaceHolder}
-        //   sendMessage={onSendMessage}
-        //   profileAvatar={profileAvatar}
-        //   profileClientAvatar={profileClientAvatar}
-        //   toggleChat={onToggleConversation}
-        //   showCloseButton={showCloseButton}
-        // //   disabledInput={dissableInput}
-        //   autofocus={autofocus}
-        //   titleAvatar={titleAvatar}
-        //   className={showChat || true ? 'active' : 'hidden'}
-        //   onQuickButtonClicked={onQuickButtonClicked}
-        //   onTextInputChange={onTextInputChange}
-        //   sendButtonAlt={sendButtonAlt}
-        //   showTimeStamp={showTimeStamp}
-        //   resizable={resizable}
-        //   emojis={emojis}
+          handleNewUserMessage={handleNewUserMessage}
+          profileAvatar={profileAvatar}
+          //   sendMessage={onSendMessage}
+          //   profileClientAvatar={profileClientAvatar}
+          //   toggleChat={onToggleConversation}
+          //   showCloseButton={showCloseButton}
+          // //   disabledInput={dissableInput}
+          //   autofocus={autofocus}
+          //   titleAvatar={titleAvatar}
+          //   className={showChat || true ? 'active' : 'hidden'}
+          //   onQuickButtonClicked={onQuickButtonClicked}
+          //   onTextInputChange={onTextInputChange}
+          //   sendButtonAlt={sendButtonAlt}
+          //   showTimeStamp={showTimeStamp}
+          //   resizable={resizable}
+          //   emojis={emojis}
         />
       )}
       {/* {customLauncher
@@ -78,10 +89,8 @@ function ChatLayout({  title,
               showBadge={showBadge}
             />
           )} */}
-          <Launcher/>
+      <Launcher toggleShowChat={toggleShowChat} showChat={showChat} />
       {imagePreview && <FullScreenPreview fullScreenMode={fullScreenMode} zoomStep={zoomStep} />}
     </div>
   );
 }
-
-export default ChatLayout;

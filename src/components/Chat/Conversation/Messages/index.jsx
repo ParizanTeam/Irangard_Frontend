@@ -7,8 +7,9 @@ import format from 'date-fns/format';
 // import { MESSAGE_SENDER } from '../../../../../../constants';
 
 import Loader from './components/Loader';
+import Message from './components/Message';
 import './styles.scss';
-
+import profileAvatar from '../../assets/avatar.png';
 
 
 export default function Messages(props) {
@@ -38,25 +39,28 @@ export default function Messages(props) {
 
 
   const isClient = (sender) => true;
-  const messages = [{"sender":null,"timestamp":1,"showAvatar":null}];
+
+  console.log(props.messages)
 
   return (
-    <div id="messages" className="rcw-messages-container" ref={props.messageRef}>
-      {messages?.map((message, index) =>
+    <div id="messages" className="rcw-messages-container" ref={props.messageRef} dir="ltr">
+      {props.messages?.map((message, index) =>
         <div className={`rcw-message ${isClient(message.sender) ? 'rcw-message-client' : ''}`} 
-          key={`${index}-${format(message.timestamp, 'hh:mm')}`}>
-          {((props.profileAvatar && !isClient(message.sender)) || (props.profileClientAvatar && isClient(message.sender))) &&
-            message.showAvatar && 
+          // key={`${index}-${format(message.timestamp, 'hh:mm')}`}
+          key={`${index}`}
+          >
+          {((!isClient(message.sender)) || (isClient(message.sender))) &&
+            true && 
             <img 
-              src={isClient(message.sender) ? props.profileClientAvatar : props.profileAvatar} 
+              src={profileAvatar} 
               className={`rcw-avatar ${isClient(message.sender) ? 'rcw-avatar-client' : ''}`} 
               alt="profile"
             />
           }
-          {/* {getComponentToRender(message)} */}
+          <Message message={message} showTimeStamp={false} />
         </div>
       )}
-      <Loader typing={true} />
+      <Loader typing={props.messages.length === 0}/>
     </div>
   );
 }

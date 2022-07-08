@@ -24,21 +24,16 @@ function Sender(props, ref) {
   useEffect(() => { if (props.showChat && props.autofocus) inputRef.current?.focus(); }, [props.showChat]);
 
 
-  // useImperativeHandle(ref, () => {
-  //   return {
-  //     onSelectEmoji: handlerOnSelectEmoji,
-  //   };
-  // });
-
-  const handlerOnChange = (event) => {
-    props.onTextInputChange && onTextInputChange(event)
+  const sendMessage = (message) =>{
+      return {"sender":"emad","text":message,"showAvatar":false}
   }
 
-  const handlerSendMessage = () => {
+  const handleSendMessage = () => {
     const el = inputRef.current;
     if(el.innerHTML) {
-      sendMessage(el.innerText);
+      props.updateMessages(sendMessage,el.innerText);
       el.innerHTML = ''
+      props.handleNewUserMessage()
     }
   }
 
@@ -126,7 +121,7 @@ function Sender(props, ref) {
         />
         
       </div>
-      <button type="submit" className="rcw-send" onClick={handlerSendMessage}>
+      <button type="submit" className="rcw-send" onClick={handleSendMessage}>
         <img src={send} className="rcw-send-icon" alt="buttonAlt" dir="ltr" />
       </button>
     </div>
