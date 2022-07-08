@@ -16,6 +16,7 @@ import AdminPanel from '../components/AdminPanel';
 import AddRemoveUser from 'src/components/AdminPanel/AddOrRemove';
 import StaticsPage from 'src/components/AdminPanel/StaticsPage';
 import Chat from 'src/components/Chat';
+import ChatLayout from 'src/components/Chat/ChatLayout';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -35,6 +36,7 @@ const AppRouter = () => {
         <Route path='/panel' element={<AdminPanel/>}/>
         <Route path='/penal/statics' element={<StaticsPage/>}/>
         <Route path='/panel/addremove' element={<AddRemoveUser/>}/>
+        <Route path='/launcher' element={<ChatLayout/>}/>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

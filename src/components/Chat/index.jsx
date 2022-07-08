@@ -1,28 +1,57 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import { Modal } from '@mui/material';
-
+import React from 'react'
+import {useState} from 'react'
 import { Widget } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
+import ChatLayout from './ChatLayout'
+function Chat(props){
+
+    const roomName = "emad12";
+    const username = "emad12";
+    const chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/room/'
+    + roomName
+    + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+      const data = JSON.parse(e.data);
+
+      if (data.message) {
+        // document.querySelector('#chat-messages').innerHTML += ('<b>' + data.username + '</b>: ' + data.message + '<br>');
+      } else {
+        alert('The message is empty!');
+      }
+
+    };
+
+    chatSocket.onclose = function(e) {
+        console.log('The socket close unexpectadly');
+    };
 
 
-import './style.scss';
-
-function Chat(){
-
-
-
+    const handleNewUserMessage = (message) =>{
+      chatSocket.send(JSON.stringify({
+        'message': message,
+        'username': username,
+        'room_name': roomName
+    }));
+    }
 
     return(
-        <div >
-            <Widget 
-                title="پشتیبانی ایرانگرد"
-                subtitle="هر سوالی داری بپرس"
-                senderPlaceHolder="سوالت رو بپرس !!!"
-            />
-        </div>
+
+      <div>
+        <ChatLayout
+            title="پشتیبانی ایرانگرد"
+            subtitle="هر سوالی داری بپرس"
+            senderPlaceHolder="سوالت رو بپرس !!!"
+            handleNewUserMessage={handleNewUserMessage}
+        />
+      </div>
+
     )
+
 }
 
 export default Chat;
