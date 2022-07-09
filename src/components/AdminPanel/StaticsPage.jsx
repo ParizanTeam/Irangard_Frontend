@@ -10,11 +10,11 @@ import { baseUrl } from 'src/utils/constants';
 
 function AdminPanel() {
   return (
-    <div className='bg' style={{backgroundColor:'#0f0026'}}>
+    <div className='bg' style={{backgroundColor:'white'}}>
       <div className='sidebar'>
         <Sidebar/>
       </div>
-      <div className='main' style={{backgroundColor:'#0f0026',width:'100%',minHeight:'100vh'}}>
+      <div className='main' style={{backgroundColor:'white',width:'100%',minHeight:'100vh'}}>
         <div className='panel-header'>
 
         </div>

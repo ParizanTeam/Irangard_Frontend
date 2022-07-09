@@ -36,11 +36,11 @@ export default function App() {
     <div className="App">
       <div className="user-controller">
       <Box sx={{ flexGrow:2, margin:'35px'}} >
-      <Typography sx={{ mt: 4, mb: 2 , color:'white'}} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
           آمار کلی
       </Typography>
 
-      <Box sx={{ backgroundColor: '#dbd0ee', marginBottom: '15px', borderRadius: '5px', padding: '6px',justifyContent:'center'}} className='make-center'>
+      <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px',justifyContent:'center'}} className='make-center bordering'>
         <br/>
       <LineChart className="be-center"
         width={500}
@@ -70,11 +70,11 @@ export default function App() {
       </Box>
 
       <Box sx={{ flexGrow:2, margin:'35px'}} >
-      <Typography sx={{ mt: 4, mb: 2 , color:'white'}} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
           آمار فرد به فرد
       </Typography>
 
-      <Box sx={{ backgroundColor: '#dbd0ee', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center'>
+      <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
         <br/>
       <BarChart className="be-center"
         width={500}
@@ -107,11 +107,11 @@ export default function App() {
 
       <div className="user-controller">
       <Box sx={{ flexGrow:2, margin:'35px'}} >
-      <Typography sx={{ mt: 4, mb: 2 , color:'white'}} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
           آمار کلی
       </Typography>
 
-      <Box sx={{ backgroundColor: '#dbd0ee', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center'>
+      <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
         <br/>
       <AreaChart className="be-center"
         width={500}
@@ -154,11 +154,11 @@ export default function App() {
       </Box>
       
       <Box sx={{ flexGrow:2, margin:'35px'}} >
-      <Typography sx={{ mt: 4, mb: 2 , color:'white'}} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
           آمار روزانه
       </Typography>
 
-      <Box sx={{ backgroundColor: '#dbd0ee', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center'>
+      <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
         <br/>
       <ComposedChart className="be-center"
         width={500}
@@ -189,7 +189,7 @@ export default function App() {
       <br />
       <div className="user-controller">
       <Box sx={{ flexGrow:2, margin:'35px',width:'420px'}} >
-      <Typography sx={{ mt: 4, mb: 2 , color:'white'}} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
           آمار سال
       </Typography>
 

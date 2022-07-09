@@ -10,7 +10,7 @@ function Chat(props){
     const chatSocket = new WebSocket(
     'ws://'
     // + window.location.host
-    + 'localhost:8000'
+    + 'api.parizaan.ir'
     + '/ws/room'
     // + roomName
     + '/'
