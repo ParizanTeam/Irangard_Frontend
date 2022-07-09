@@ -9,9 +9,10 @@ function Chat(props){
     const username = "emad12";
     const chatSocket = new WebSocket(
     'ws://'
-    + window.location.host
-    + '/ws/room/'
-    + roomName
+    // + window.location.host
+    + 'localhost:8000'
+    + '/ws/room'
+    // + roomName
     + '/'
     );
 
