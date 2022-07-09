@@ -32,8 +32,8 @@ function Sender(props, ref) {
     const el = inputRef.current;
     if(el.innerHTML) {
       props.updateMessages(sendMessage,el.innerText);
+      props.handleNewUserMessage(el.innerText)
       el.innerHTML = ''
-      props.handleNewUserMessage()
     }
   }
 

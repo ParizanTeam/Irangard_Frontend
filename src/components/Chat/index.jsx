@@ -5,14 +5,14 @@ import 'react-chat-widget/lib/styles.css';
 import ChatLayout from './ChatLayout'
 function Chat(props){
 
-    const roomName = "emad12";
+    const roomName = "chat_room";
     const username = "emad12";
     const chatSocket = new WebSocket(
-    'wss://'
-    // + window.location.host
-    + 'api.parizaan.ir'
-    + '/ws/room'
-    // + roomName
+    'ws://'
+    + '127.0.0.1:8000'
+    // + 'api.parizaan.ir'
+    + '/chat/room/'
+    + roomName
     + '/'
     );
 
@@ -33,6 +33,7 @@ function Chat(props){
 
 
     const handleNewUserMessage = (message) =>{
+      console.log(message);
       chatSocket.send(JSON.stringify({
         'message': message,
         'username': username,
