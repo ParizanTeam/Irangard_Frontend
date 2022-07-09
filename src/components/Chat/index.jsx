@@ -8,7 +8,7 @@ function Chat(props){
     const roomName = "emad12";
     const username = "emad12";
     const chatSocket = new WebSocket(
-    'ws://'
+    'wss://'
     // + window.location.host
     + 'api.parizaan.ir'
     + '/ws/room'
