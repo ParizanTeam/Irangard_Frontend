@@ -5,9 +5,9 @@ import { Legend } from 'recharts/lib/component/Legend';
 function Chart({ title, data, dataKey, grid }) {
 
     return (
-        <div className='chart' style={{backgroundColor:'#0f0026'}}>
+        <div className='chart' style={{backgroundColor:'black'}}>
             {/*<h3 className='chartTitle'>{title}</h3>*/}
-            <ResponsiveContainer width="100%" aspect ={4/1} style={{backgroundColor:'#0f0026'}}>
+            <ResponsiveContainer width="100%" aspect ={4/1} style={{backgroundColor:'white'}}>
                 <LineChart data={data}>
                     <XAxis dataKey="name" stroke="#0ff" />
                         <Line type="monotone" dataKey={dataKey} stroke="#0ff"/>

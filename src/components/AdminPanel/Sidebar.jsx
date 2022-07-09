@@ -71,7 +71,7 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {(['top']).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}><MenuIcon color="secondary"/></Button>
+          <Button onClick={toggleDrawer(anchor, true)}><MenuIcon color="primary"/></Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

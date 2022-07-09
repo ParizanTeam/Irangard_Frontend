@@ -75,6 +75,10 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: 60px 0;
+    @media (max-width: 768px) {
+      margin: 30px 0;
+      flex-direction: column;
+    }
   }
   &__nav-item {
     display: flex;
@@ -102,14 +106,24 @@
     &__nav-item {
       //border: 0px solid #000;
       //background-color: transparent;
-      width: 26px;
-      height: 26px;
-      padding: 5px;
+      width: 105px;
+      height: 25px;
+      padding: 8px;
     }
   }
   }
   .txt{
     @media (max-width: 768px) {
-      display: none;
+      //display: none;
+      font-size: 12.5px;
+      margin-left: 5px;
     }
+  }
+  .first-row{
+    display: flex;
+    flex-direction: row;
+  }
+  .second-row{
+    display: flex;
+    flex-direction: row;
   }

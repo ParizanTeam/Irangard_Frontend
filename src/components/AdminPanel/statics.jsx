@@ -16,11 +16,11 @@ function Statics() {
   return (
     <div className='user-controller2'>
       <Box sx={{ flexGrow:2, margin:'35px'}} >
-      <Typography sx={{ mt: 4, mb: 2 , color:'white'}} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
           آمار سال
       </Typography>
 
-      <Box sx={{ backgroundColor: '#dbd0ee', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} >
+      <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='bordering'>
         <Chart2 data={userData} grid dataKey="Active User" title="User Analytics"/>
       </Box>
       </Box>
