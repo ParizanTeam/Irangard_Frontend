@@ -159,7 +159,7 @@ const Profile = () => {
           <div className="profile">
             <div className="profile-summary">
               <div className="profile-summary__img-username">
-                <div className="profile-summary__img">
+                <div className={`profile-summary__img ${auth.isSpecial ? 'profile-summary__img--special' : ''}`}>
                   <img src={data.profileImg || data.image || defaultProfileImg} alt={data.username} />
                 </div>
                 <p className="profile-summary__username">{data.username}</p>

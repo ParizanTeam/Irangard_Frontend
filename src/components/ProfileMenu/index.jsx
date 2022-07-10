@@ -26,10 +26,15 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
+  maxWidth: '100%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
+  borderRadius: '8px',
   boxShadow: 24,
-  p: 4,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '48px',
 };
 
 export default function AccountMenu() {
@@ -68,7 +73,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 36, height: 36 }}>
+            <Avatar className={auth.isSpecial ? 'special-avatar' : ''} sx={{ width: 36, height: 36 }}>
               <img width={36} height={36} src={auth.user.image || defaultProfileImg} />
             </Avatar>
           </IconButton>
@@ -159,25 +164,25 @@ export default function AccountMenu() {
         onClose={handleClose2}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        classes={'become-premium-modal'}
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             ارتقای حساب کاربری
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            شما با پرداخت هزینه تعیین شده، می توانید حساب کاربری خود را به حالت ویژه ارتقا دهید. اگر از انتخاب خود
+            شما با پرداخت هزینه تعیین‌شده، می‌توانید حساب کاربری خود را به حالت ویژه ارتقا دهید. اگر از انتخاب خود
             اطمینان دارید، دکمه پرداخت و ارتقا را بزنید تا به درگاه بانک هدایت شوید.
           </Typography>
           <br />
           <Button
-            style={{ marginRight: '50%' }}
+            style={{ padding: '12px 16px' }}
             onClick={() => {
               useQuery(Pay());
             }}
             variant="outlined"
           >
-            {' '}
-            پرداخت و ارتقای حساب{' '}
+            پرداخت و ارتقای حساب
           </Button>
         </Box>
       </Modal>
