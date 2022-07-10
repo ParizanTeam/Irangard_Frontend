@@ -79,7 +79,7 @@
   position: relative;
   word-wrap: break-word;
   background-color: #e7f1fc; 
-  margin: 30px -5px !important;
+  margin: 38px 2px !important;
   box-shadow:  -4px 5px 10px -5px rgba(0, 0, 0, 0.65) !important;
   z-index: 2;
 }
@@ -110,5 +110,52 @@
   transform:translate(-30px, -2px);
   width: 10px;
   z-index: 1;
+  
+}
+
+
+
+
+
+.rcw-message-cont-server{
+
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 12px !important;
+  border-radius: 1.15rem;
+  position: relative;
+  color: #fff;
+  word-wrap: break-word;
+  background-color: #2d4c69; 
+  margin: 35px 16px !important;
+  box-shadow: 4px 5px 10px -5px rgba(0, 0, 0, 0.65) !important;
+  z-index: 2;
+}
+
+
+.rcw-message-cont-server:before {
+  top: 0rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+  border-top-right-radius: 0.8rem 0.7rem;
+  border-left: 1rem solid #2d4c69;
+  left: -0.30rem;
+  transform: translate(0, -0.1rem);
+  box-shadow: 0px 5px 5px -5px #2d4c69 !important;
+}
+
+.rcw-message-cont-server:after{
+  
+  top: -0.1rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+  background-color: #fff;
+  border-top-right-radius: 0.6rem;
+  left: 20px;
+  transform: translate(-30px, 0px);
+  width: 10px;
   
 }

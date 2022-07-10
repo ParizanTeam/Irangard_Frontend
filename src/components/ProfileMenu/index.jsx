@@ -17,7 +17,7 @@ import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider';
 import apiInstance from '../../config/axios';
 import useAuth from 'src/context/AuthContext';
-import defaultProfileImg from 'src/assets/images/profile.jpeg';
+import defaultProfileImg from '../../assets/images/profile.jpeg';
 import './style.scss';
 
 const style = {

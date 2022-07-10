@@ -23,7 +23,7 @@ export default function Conversation(props) {
     if (data.message) {
       console.log(data);
       if (data.sender_type === 'SERVER') {
-        setMessages([...messages, { text: data.message, sender: 'emad12' }]);
+        setMessages([...messages, { text: data.message, sender: 'emad',sender_type: 'SERVER',showTimeStamp:false}]);
       }
     } else {
       alert('The message is empty!');

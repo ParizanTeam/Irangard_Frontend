@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { Modal } from '@mui/material';
 import { usePutProfile } from '../../api/profile';
-import defaultProfileImg from '../../assets/images/profile.jpeg';
+import defaultProfileImg from '../../assets/images/avatar.png';
 
 function EditProfileModal({ open, setOpen, formData, setFormData, usernameQuery, initialData }) {
   const [updateLoading, setUpdateLoading] = useState(false);

@@ -6,7 +6,7 @@ import TextArea from '../TextArea';
 import { formatDate } from '../../utils/formatters';
 import { baseUrl } from 'src/utils/constants';
 import './style.scss';
-import defaultProfileImg from '../../assets/images/profile.jpeg';
+import defaultProfileImg from '../../assets/images/avatar.png';
 
 function Comment({ comment, experienceId }) {
   const [showReply, setShowReply] = useState(false);

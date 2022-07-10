@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import defaultProfileImg from 'src/assets/images/profile.jpeg';
+import defaultProfileImg from 'src/assets/images/avatar.png';
 import './style.scss';
 
 function TourAttendeesTab({ data }) {

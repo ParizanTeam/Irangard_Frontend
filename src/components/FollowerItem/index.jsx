@@ -3,7 +3,7 @@ import apiInstance from '../../config/axios';
 import Button from '../Button';
 import useAuth from '../../context/AuthContext';
 import './style.scss';
-import defaultProfileImg from '../../assets/images/profile.jpeg';
+import defaultProfileImg from '../../assets/images/avatar.png';
 import { Link, useNavigate } from 'react-router-dom';
 
 function FollowerItem({ person }) {

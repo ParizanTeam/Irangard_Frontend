@@ -6,7 +6,7 @@ import Button from '../Button';
 import { convertNumberToPersian, formatDate } from '../../utils/formatters';
 import defaultXpImg from '../../assets/images/defaultXpImg.png';
 import './style.scss';
-import defaultProfileImg from '../../assets/images/profile.jpeg';
+import defaultProfileImg from '../../assets/images/avatar.png';
 
 function ExperiencesList({ experiences }) {
   const navigate = useNavigate();

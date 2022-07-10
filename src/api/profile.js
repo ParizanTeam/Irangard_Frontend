@@ -1,4 +1,4 @@
-import defaultProfileImg from '../assets/images/profile.jpeg';
+import defaultProfileImg from '../assets/images/avatar.png';
 import apiInstance from '../config/axios';
 
 export const useGetProfile = username => {

@@ -9,60 +9,39 @@ import format from 'date-fns/format';
 import Loader from './components/Loader';
 import Message from './components/Message';
 import './styles.scss';
-import profileAvatar from '../../assets/avatar.png';
-
+import serverAvatar from 'src/assets/images/profile1.jpeg';
+import useAuth from 'src/context/AuthContext';
+import avatar from 'src/assets/images/avatar.png';
 
 export default function Messages(props) {
-  // const dispatch = useDispatch();
-  // const { messages, typing, showChat, badgeCount } = useSelector((state: GlobalState) => ({
-  //   messages: state.messages.messages,
-  //   badgeCount: state.messages.badgeCount,
-  //   typing: state.behavior.messageLoader,
-  //   showChat: state.behavior.showChat
-  // }));
+  const auth = useAuth();
 
-  // const messageRef = useRef(null);
-  // useEffect(() => {
-  //   // @ts-ignore
-  //   scrollToBottom(messageRef.current);
-  //   if (showChat && badgeCount) dispatch(markAllMessagesRead());
-  //   else dispatch(setBadgeCount(messages.filter((message) => message.unread).length));
-  // }, [messages, badgeCount, showChat]);
-    
-  // const getComponentToRender = (message) => {
-  //   const ComponentToRender = message.component;
-  //   if (message.type === 'component') {
-  //     return <ComponentToRender {...message.props} />;
-  //   }
-  //   return <ComponentToRender message={message} showTimeStamp={props.showTimeStamp} />;
-  // };
+  const isClient = type => {
+    console.log('type', type);
+    return type == 'CLIENT';
+  };
 
-
-  const isClient = (sender) => true;
-
-  console.log(props.messages)
+  console.log(props.messages);
 
   return (
     <div id="messages" className="rcw-messages-container" ref={props.messageRef} dir="ltr">
-      {props.messages?.map((message, index) =>
-        <div className={`rcw-message ${isClient(message.sender) ? 'rcw-message-client' : ''}`} 
+      {props.messages?.map((message, index) => (
+        <div
+          className={`rcw-message ${isClient(message.sender_type) ? 'rcw-message-client' : 'rcw-message-server'}`}
           // key={`${index}-${format(message.timestamp, 'hh:mm')}`}
           key={`${index}`}
-          >
-          {((!isClient(message.sender)) || (isClient(message.sender))) &&
-            true && 
-            <img 
-              src={profileAvatar} 
-              className={`rcw-avatar ${isClient(message.sender) ? 'rcw-avatar-client' : ''}`} 
+        >
+          {(!isClient(message.sender) || isClient(message.sender_type)) && true && (
+            <img
+              src={isClient(message.sender_type) ? auth.user.image || avatar : serverAvatar }
+              className={`rcw-avatar ${isClient(message.sender_type) ? 'rcw-avatar-client' : ''}`}
               alt="profile"
             />
-          }
-          <Message message={message} showTimeStamp={false} />
+          )}
+          <Message message={message} showTimeStamp={false} is_server={isClient(message.sender_type)}/>
         </div>
-      )}
-      <Loader typing={props.messages.length === 0}/>
+      ))}
+      <Loader typing={props.messages.length === 0} />
     </div>
   );
 }
-
-

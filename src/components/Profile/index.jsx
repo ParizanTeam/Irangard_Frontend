@@ -13,7 +13,7 @@ import apiInstance from '../../config/axios';
 import useAuth from '../../context/AuthContext';
 import EditProfileModal from '../EditProfileModal';
 import './style.scss';
-import defaultProfileImg from '../../assets/images/profile.jpeg';
+import defaultProfileImg from '../../assets/images/avatar.png';
 
 const Profile = () => {
   const navigate = useNavigate();
