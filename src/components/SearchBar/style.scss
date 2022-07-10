@@ -16,7 +16,7 @@
   }
   &__search-box {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, 0);
     width: 760px;
@@ -32,6 +32,15 @@
     &:focus {
         border-radius: 8px;
         border: 1px solid #888;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search-bar{
+    &__search-box {
+      top: 70%;
+      height: 40px;
     }
   }
 }

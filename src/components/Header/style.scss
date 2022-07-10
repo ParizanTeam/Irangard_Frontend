@@ -104,26 +104,27 @@
   }
   @media (max-width: 768px) {
     &__nav-item {
-      //border: 0px solid #000;
-      //background-color: transparent;
-      width: 105px;
-      height: 25px;
+      width: 108px;
+      height: 40px;
       padding: 8px;
     }
   }
+}
+.txt {
+  @media (max-width: 768px) {
+    font-size: 12.5px;
+    margin-left: 5px;
   }
-  .txt{
-    @media (max-width: 768px) {
-      //display: none;
-      font-size: 12.5px;
-      margin-left: 5px;
-    }
+}
+.first-row {
+  display: flex;
+  flex-direction: row;
+  margin-left: -16px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
   }
-  .first-row{
-    display: flex;
-    flex-direction: row;
-  }
-  .second-row{
-    display: flex;
-    flex-direction: row;
-  }
+}
+.second-row {
+  display: flex;
+  flex-direction: row;
+}
