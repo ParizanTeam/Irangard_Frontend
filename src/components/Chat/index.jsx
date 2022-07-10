@@ -83,7 +83,7 @@ function Chat(props) {
            'api.parizaan.ir'+
           '/chat/room/' +
           // auth.user.username +
-          'admin' +
+          auth.user.username +
           '/'
       );
 
