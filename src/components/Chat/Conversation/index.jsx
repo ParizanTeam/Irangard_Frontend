@@ -7,25 +7,32 @@ import Sender from './Sender';
 
 import './style.scss';
 
-
 export default function Conversation(props) {
-
   const [messageNumber, setMessageNumber] = useState(0);
   const [messages, setMessages] = useState([]);
 
-  const updateMessages =(sendMessage,message) => {
-    setMessageNumber(messageNumber+1);
-    setMessages([...messages,sendMessage(message)]);
-  }
+  const updateMessages = (sendMessage, message) => {
+    setMessageNumber(messageNumber + 1);
+    setMessages([...messages, sendMessage(message)]);
+  };
+
+  props.chatSocket.onmessage = function (e) {
+    console.log('onmessage');
+    const data = JSON.parse(e.data);
+    // console.log(data);
+    if (data.message) {
+      console.log(data);
+      if (data.sender_type === 'SERVER') {
+        setMessages([...messages, { text: data.message, sender: 'emad12' }]);
+      }
+    } else {
+      alert('The message is empty!');
+    }
+  };
 
   return (
-    <div id="rcw-conversation-container"  
-      className={cn('rcw-conversation-container')} aria-live="polite">
-      
-      <Header
-        title={props.title}
-        subtitle={props.subtitle}
-      />
+    <div id="rcw-conversation-container" className={cn('rcw-conversation-container')} aria-live="polite">
+      <Header title={props.title} subtitle={props.subtitle} />
       <Messages
         messages={messages}
         messageNumber={messageNumber}
@@ -48,4 +55,3 @@ export default function Conversation(props) {
     </div>
   );
 }
-

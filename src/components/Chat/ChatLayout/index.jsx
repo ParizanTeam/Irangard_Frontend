@@ -12,6 +12,7 @@ export default function ChatLayout({
   subtitle,
   handleNewUserMessage,
   onSendMessage,
+  chatSocket,
   onToggleConversation,
   senderPlaceHolder,
   onQuickButtonClicked,
@@ -60,6 +61,7 @@ export default function ChatLayout({
           senderPlaceHolder={senderPlaceHolder}
           handleNewUserMessage={handleNewUserMessage}
           profileAvatar={profileAvatar}
+          chatSocket={chatSocket}
           //   sendMessage={onSendMessage}
           //   profileClientAvatar={profileClientAvatar}
           //   toggleChat={onToggleConversation}
