@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { RiSettings5Line } from 'react-icons/ri';
@@ -30,6 +30,8 @@ const Profile = () => {
   const [followLoading, setFollowLoading] = useState(false);
   const [editProfileModalOpen, setEditProfileModalOpen] = useState(false);
   const auth = useAuth();
+  const [followerCount, setFollowerCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
 
   useEffect(async () => {
     setIsLoading(true);
@@ -39,6 +41,8 @@ const Profile = () => {
       .then(data => {
         setData(data);
         setFollowing(data.following);
+        setFollowerCount(data.follower_number);
+        setFollowLoading(data.following_number);
       })
       .catch(err => {
         if (err.response?.status === 400) {
@@ -48,7 +52,7 @@ const Profile = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [usernameQuery]);
 
   useEffect(async () => {
     setExperiencesLoading(true);
@@ -62,7 +66,7 @@ const Profile = () => {
         console.log(error);
       });
     setExperiencesLoading(false);
-  }, []);
+  }, [usernameQuery]);
 
   const handleOpen = () => {
     setEditProfileModalOpen(true);
@@ -99,6 +103,7 @@ const Profile = () => {
         .then(data => {
           console.log(data);
           setFollowing(old => !old);
+          setFollowerCount(old => old - 1);
         })
         .finally(() => setFollowLoading(false));
     } else {
@@ -108,6 +113,7 @@ const Profile = () => {
         .then(data => {
           console.log(data);
           setFollowing(old => !old);
+          setFollowerCount(old => old + 1);
         })
         .finally(() => setFollowLoading(false));
     }
@@ -171,11 +177,11 @@ const Profile = () => {
               <div className="profile-summary__follow">
                 <div className="profile-summary__followers" onClick={() => handleFollowersModal()}>
                   دنبال‌کنندگان
-                  <span>{convertNumberToPersian(data.follower_number)}</span>
+                  <span>{convertNumberToPersian(followerCount)}</span>
                 </div>
                 <div className="profile-summary__followings" onClick={() => handleFollowingsModal()}>
                   دنبال‌شوندگان
-                  <span>{convertNumberToPersian(data.following_number)}</span>
+                  <span>{convertNumberToPersian(followingCount)}</span>
                 </div>
               </div>
               {data.is_owner && (
