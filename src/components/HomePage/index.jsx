@@ -16,7 +16,6 @@ const HomePage = () => {
       <Helmet>
         <title>ایرانگرد</title>
       </Helmet>
-      
       <SearchBar />
       <CitySlider />
       <IranMap />

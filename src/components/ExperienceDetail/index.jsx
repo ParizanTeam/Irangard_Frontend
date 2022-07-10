@@ -17,6 +17,9 @@ function ExperienceDetail() {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(async () => {
     await axios
       .get(`${baseUrl}/experiences/${id}`)

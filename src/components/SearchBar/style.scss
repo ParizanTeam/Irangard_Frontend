@@ -28,16 +28,16 @@
     border: none;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     outline: none;
-    transition: all .3s;
+    transition: all 0.3s;
     &:focus {
-        border-radius: 8px;
-        border: 1px solid #888;
+      border-radius: 8px;
+      border: 1px solid #888;
     }
   }
 }
 
 @media (max-width: 768px) {
-  .search-bar{
+  .search-bar {
     &__search-box {
       top: 70%;
       height: 40px;
