@@ -15,17 +15,15 @@ function EditProfileModal({ open, setOpen, formData, setFormData, usernameQuery,
     for (const key in formData) {
       body.append(key, formData[key]);
     }
-    console.log('body: ', body);
+    if (typeof body.get('image') == 'string') {
+      body.delete('image');
+    }
     setUpdateLoading(true);
     usePutProfile(
       usernameQuery,
       body,
       error => {
-        if (error.response.status === 400) {
-          setErrors({ username: 'نام کاربری توسط شخص دیگری انتخاب شده‌است.' });
-        } else {
-          toast.error('مشکلی در سامانه رخ داده‌است.');
-        }
+        toast.error('مشکلی در سامانه رخ داده‌است.');
         setUpdateLoading(false);
       },
       data => {
@@ -89,6 +87,7 @@ function EditProfileModal({ open, setOpen, formData, setFormData, usernameQuery,
             placeholder="نام کاربری"
             value={formData.username}
             onChange={e => setFormData(old => ({ ...old, username: e.target.value }))}
+            readOnly
           />
           {errors.username && <p className="edit-profile__error-msg">{errors.username}</p>}
         </div>
