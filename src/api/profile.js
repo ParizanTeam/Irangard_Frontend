@@ -34,7 +34,7 @@ export const useGetProfile = username => {
 };
 export const usePutProfile = async (username, body, onError, onSuccess) => {
   try {
-    const res = await apiInstance.put(`/accounts/profile/${username}/`, body);
+    const res = await apiInstance.put(`/accounts/profile/${username}`, body);
     const data = await res.data;
     onSuccess(data);
   } catch (error) {
