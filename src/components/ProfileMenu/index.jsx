@@ -68,8 +68,8 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>
-              <img src={auth.user.image || defaultProfileImg} />
+            <Avatar sx={{ width: 36, height: 36 }}>
+              <img width={36} height={36} src={auth.user.image || defaultProfileImg} />
             </Avatar>
           </IconButton>
         </Tooltip>
