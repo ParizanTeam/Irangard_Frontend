@@ -14,14 +14,24 @@ import ToursList from 'src/components/Tours/ToursList';
 import TourDashboard from 'src/components/Tours/TourDashboard';
 import AdminPanel from '../components/AdminPanel';
 import AddRemoveUser from 'src/components/AdminPanel/AddOrRemove';
+import ChatPage from '../components/AdminPanel/ChatPage';
 import StaticsPage from 'src/components/AdminPanel/StaticsPage';
+import ChatList from 'src/components/AdminPanel/ChatList';
 import Chat from 'src/components/Chat';
 import ChatLayout from 'src/components/Chat/ChatLayout';
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<><HomePage /><Chat/></>} />
+        <Route
+          path="/"
+          element={
+            <>
+              <HomePage />
+              <Chat />
+            </>
+          }
+        />
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/places/:placeId" element={<PlaceDetailPage />} />
         <Route path="/reset-password" element={<ForgetPassword />} />
@@ -33,10 +43,12 @@ const AppRouter = () => {
         <Route path="/tours/:id" element={<ToursDetailPage />} />
         <Route path="/tours/:id/dashboard" element={<TourDashboard />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path='/panel' element={<AdminPanel/>}/>
-        <Route path='/penal/statics' element={<StaticsPage/>}/>
-        <Route path='/panel/addremove' element={<AddRemoveUser/>}/>
-        <Route path='/launcher' element={<ChatLayout/>}/>
+        <Route path="/panel" element={<AdminPanel />} />
+        <Route path="/penal/statics" element={<StaticsPage />} />
+        <Route path="/panel/addremove" element={<AddRemoveUser />} />
+        <Route path="/panel/chat" element={<ChatList />} />
+        <Route path="/panel/chatPage" element={<ChatPage />} />
+        <Route path="/launcher" element={<ChatLayout />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
