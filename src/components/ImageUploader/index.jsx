@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useFormContext } from 'react-hook-form';
+
 import './style.scss';
 
 export default function ImageUploader() {
   const [files, setFiles] = useState([]);
+  const { watch, setValue } = useFormContext();
+  const images = watch('images');
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': [],
@@ -19,12 +23,15 @@ export default function ImageUploader() {
           })
         ),
       ]);
+
+      setValue('images', [...images, ...acceptedFiles]);
     },
   });
 
   const thumbs = files.map(file => (
     <div className="thumb" key={file.name}>
       <div className="thumb-inner">
+        
         <img
           src={file.preview}
           className="img"
