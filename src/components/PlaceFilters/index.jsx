@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -9,6 +9,7 @@ import { IconContext } from 'react-icons';
 import Footer from 'src/components/Footer';
 import PlaceCards from 'src/components/PlaceCards';
 import IranStates from 'src/assets/data/IranStates.json';
+import IranStateKeys from 'src/assets/data/IranStateKeys.json';
 import './style.scss';
 import Navbar from 'src/components/Navbar';
 import { useMobile } from 'src/utils/hooks';
@@ -35,6 +36,7 @@ const mockRooms = {
 };
 const Filters = ({ isHotel, isFree }) => {
   // /places/?city=کیش&place_type=1&tags__name=چای&features__title=سرویس بهداشتی&rooms__capacity=2&rate__gte=3
+
   const default_filter = {
     is_free: false,
     tags__name: '',
@@ -174,7 +176,6 @@ const Filters = ({ isHotel, isFree }) => {
   );
 };
 const PlaceFilters = () => {
-
   const [searchParams, setSearchParams] = useSearchParams();
   const [placeType, setPlaceType] = useState(searchParams.get('place_type') || 'all');
   const [state, setState] = useState(searchParams.get('state') || '');
@@ -182,7 +183,24 @@ const PlaceFilters = () => {
   const [cities, setCities] = useState([]);
   const [q, setQ] = useState(searchParams.get('q') || '');
   const isMobile = useMobile();
+  useEffect(async () => {
+    if (state) console.log('state', IranStateKeys[state]);
+    setCities(await (await fetch(`/assets/data/cities/${state?.value ?? IranStateKeys[state]}.json`)).json());
+  }, [state]);
 
+  useEffect(() => {
+    let d = searchParams;
+    console.log(d);
+    if (state?.label) {
+      d.set('state', state.label);
+      if (city?.label) d.set('city', city.label);
+      else if (!city) d.delete('city');
+    } else if (!state) {
+      d.delete('city');
+      d.delete('state');
+    }
+    setSearchParams(d);
+  }, [state, city]);
   const greenTheme = createTheme({
     palette: {
       primary: {
@@ -205,6 +223,13 @@ const PlaceFilters = () => {
     setSearchParams(d);
   };
 
+  const handleIsOptionEqualToValue = (option, val) => {
+    if (val) {
+      if (val.label != option.label) return false;
+    }
+    return true;
+  };
+
   return (
     <ThemeProvider theme={greenTheme}>
       <Navbar />
@@ -212,36 +237,35 @@ const PlaceFilters = () => {
         <div className="search-places">
           <div className="search-places__header">
             <div className="search-places__filters">
-              <div className="green-field">
-                <MdSearch className="icon" />
-                <input
-                  autoComplete="off"
-                  className="field-input"
-                  type="text"
-                  id="mainSearch"
-                  value={q}
-                  onChange={e => {
-                    let v = e.target.value;
-                    setQ(v);
-                    let d = searchParams;
-                    d.set('q', v);
-                    setSearchParams(d);
-                  }}
-                  placeholder="جست‌و‌جو برای مقصد..."
-                />
+              <div className="searchbar">
+                <div className="green-field">
+                  <MdSearch className="icon" />
+                  <input
+                    autoComplete="off"
+                    className="field-input"
+                    type="text"
+                    id="mainSearch"
+                    value={q}
+                    onChange={e => {
+                      let v = e.target.value;
+                      setQ(v);
+                      let d = searchParams;
+                      d.set('q', v);
+                      setSearchParams(d);
+                    }}
+                    placeholder="جست‌و‌جو برای مقصد..."
+                  />
+                </div>
               </div>
-
               <div className="state-city">
                 <div className="state-city__field">
                   <Autocomplete
                     disablePortal
                     options={IranStates}
                     value={state}
+                    isOptionEqualToValue={handleIsOptionEqualToValue}
                     onChange={(event, newValue) => {
                       setState(newValue);
-                      fetch(`assets/data/cities/${newValue.value}.json`).then(res =>
-                        res.json().then(x => setCities(x))
-                      );
                       setCity(null);
                     }}
                     renderInput={params => (
@@ -264,6 +288,7 @@ const PlaceFilters = () => {
                   <Autocomplete
                     disabled={!state}
                     value={city}
+                    isOptionEqualToValue={handleIsOptionEqualToValue}
                     onChange={(event, newValue) => {
                       setCity(newValue);
                     }}

@@ -6,7 +6,8 @@ export default responsiveFontSizes(
       fontFamily: 'iranyekan, Arial',
     },
     palette: {
-      primary: { main: 'rgb(0,0,0)' },
+      primary: { main: '#04aa6c' },
+      secondary: { main: '#289bc3' },
     },
   })
 );

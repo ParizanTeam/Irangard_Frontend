@@ -1,3 +1,5 @@
+@import 'src/theme/main.scss';
+
 .search-places {
   background-color: whitesmoke;
 
@@ -22,7 +24,9 @@
   &__filters {
     display: flex;
     margin: auto;
+    
     @media (min-width: 800px) {
+      align-items: center;
       gap: 40px;
       width: 80%;
     }
@@ -31,6 +35,7 @@
       width: 95%;
       flex-direction: column;
     }
+
   }
   &__main {
     display: flex;
@@ -65,9 +70,12 @@
     -webkit-transition: background-color 0.2s linear;
     -o-transition: background-color 0.2s linear;
     transition: background-color 0.2s linear;
+    padding:5px 0px;
+
     cursor: pointer;
     @media (min-width: 800px) {
       margin: 0px 30px;
+      padding:10px 0px;
     }
     &:hover {
       background-color: #00aa6c;
