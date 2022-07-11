@@ -11,14 +11,17 @@ import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { useState} from 'react';
+import { useState,useEffect} from 'react';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import tansferHistory from './data';
+//import UsersList from './data';
 import './style.scss';
 import { Button } from '@mui/material';
 import { width } from '@mui/system';
 import Statics from './statics';
 import {SignupForm} from './AddUser';
+import apiInstance from '../../config/axios';
+import { baseUrl } from '../../utils/constants';
+import axios from 'axios';
 function Generate(element) {
   if (element) {
     var myDate = new Date(element.date); 
@@ -31,16 +34,16 @@ function Generate(element) {
                     <DeleteIcon />
             </IconButton>*/}
         <ListItemAvatar>
-          <Avatar src={element.userImgSrc} alt="recievedList" />
+          <Avatar src={element.image} alt="recievedList" />
           {/*    <FolderIcon />
                   </Avatar>*/}
         </ListItemAvatar>
         <div style={{width:'155px',marginRight: '30px',textAlign:'right'}}>
-        <ListItemText primary={element.Name} sx={{margin:'auto',justifyContent:'center'}}/></div>
+        <ListItemText primary={element.full_name} sx={{margin:'auto',justifyContent:'center'}}/></div>
         <div className='doNotShow' style={{width:'130px',marginRight: '30px',marginLeft: '2px',textAlign:'center'}}>
-        <ListItemText primary={element.userName} sx={{margin:'auto',justifyContent:'center'}}/></div>
+        <ListItemText primary={element.username} sx={{margin:'auto',justifyContent:'center'}}/></div>
         
-        <ListItemText sx={{ marginLeft: '40px' }} primary={element.friendsNum}/>
+        <ListItemText sx={{ marginLeft: '40px' }} primary={element.follower_number}/>
         <Button>
             <DeleteOutlineIcon color="primary"/>
         </Button>
@@ -54,16 +57,30 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 export default function RecievedList() {
-  //const [tansferHistory, setTansferHistory] = useState(null);
+  //const [UsersList, setUsersList] = useState(null);
   const [diagramData, setDiagramData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [UsersList, setUsersList] = useState(null);
+
+  useEffect(() => {
+    apiInstance
+      .get(`${baseUrl}/accounts/users`)
+      .then(res => {
+        setUsersList(res.data);
+        console.log('UsersList', res.data);
+      })
+      .catch(err => {
+        console.log('error: ', err);
+      });
+  }, []);
 
   /*useEffect(() => {
     axios
       .get(`${baseUrl}/accounts/instructors/orders/`)
       .then(res => {
-        setTansferHistory(res.data);
-        console.log('TansferHistory', res.data);
+        setUsersList(res.data);
+        console.log('UsersList', res.data);
         setLoading(false);
       })
       .catch(err => {
@@ -89,7 +106,7 @@ export default function RecievedList() {
           لیست کاربران
         </Typography>
         <Demo sx={{padding:'5px',borderRadius:'5px',backgroundColor: 'white',height:'300px',overflowY:'scroll'}}>
-          <List>{tansferHistory && tansferHistory.map(item => Generate(item))}</List>
+          <List>{UsersList && UsersList.map(item => Generate(item))}</List>
         </Demo>
       </Grid>
     </Box>

@@ -9,6 +9,8 @@ import { PlaceTypes, DidaniTags } from '../info';
 import { HotelRoomsInput } from '../Inputs';
 
 const HotelFeatures = () => {
+  const { watch, setValue } = useFormContext();
+
   const features = [
     'استخر',
     'چای ساز',
@@ -22,12 +24,12 @@ const HotelFeatures = () => {
     'پیست دوچرخه',
   ];
 
-  const [selectedFeatures, setSelectedFeatures] = React.useState([]);
+  const selectedFeatures = watch('features');
   const handleChange = event => {
     const {
       target: { value },
     } = event;
-    setSelectedFeatures(typeof value === 'string' ? value.split(',') : value);
+    setValue('features', typeof value === 'string' ? value.split(',') : value);
   };
   return (
     <div className="hotel-features">

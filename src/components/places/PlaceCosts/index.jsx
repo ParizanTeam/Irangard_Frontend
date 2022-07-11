@@ -8,7 +8,7 @@ const PlaceCosts = ({ isFree = false, costs }) => {
       <h3 className="place-costs__title">هزینه‌ها</h3>
       {isFree && <p>* بازدید از این مکان رایگان است.</p>}
       {!isFree && <p>* بازدید از این مکان رایگان نیست و هزینه دارد.</p>}
-      {!isFree && costs && (
+      {!isFree && costs && costs.length > 0 && (
         <div className="place-costs__body">
           <table>
             <thead>

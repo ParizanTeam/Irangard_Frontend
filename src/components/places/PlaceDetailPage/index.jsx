@@ -12,11 +12,7 @@ import { useGetPlace } from '../../../api/place';
 import { convertNumberToPersian } from '../../../utils/formatters';
 import './style.scss';
 
-const props = {
-  name: 'سیب ۳۶۰',
-};
 const PlaceDetailPage = () => {
-  const { name } = props;
   const params = useParams();
   const { placeId } = params;
 
@@ -42,10 +38,10 @@ const PlaceDetailPage = () => {
             <PlaceContactInfo className="place-detail__info" info={data.contact} />
           </div>
           <div className="place-detail__body">
-            <h3 className="place-detail__about-title">درباره {name}</h3>
+            <h3 className="place-detail__about-title">درباره {data.title}</h3>
             <p className="place-detail__about-description">{data.description}</p>
             <PlaceTags tags={data.tags} />
-            {data.rooms && <RoomsList rooms={data.rooms} />}
+            {data.rooms && data.rooms.length > 0 && <RoomsList rooms={data.rooms} />}
             <PlaceCosts costs={data.optional_costs} isFree={data.is_free} />
           </div>
         </div>

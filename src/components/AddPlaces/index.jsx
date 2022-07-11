@@ -9,6 +9,7 @@ import useAuth from 'src/context/AuthContext';
 import { BaseInfoSection, MapSection, ContactSection, MoreInfoSection } from './Sections';
 import { AddPlaceSteps as steps } from './info';
 import './style.scss';
+import { Navigate } from 'react-router-dom';
 
 export default function AddPlaces() {
   const auth = useAuth();
@@ -43,6 +44,7 @@ export default function AddPlaces() {
       latitude: '',
       working_hours: default_days_time,
       rooms: [default_room_values],
+      features:[],
       images: [],
     },
   });
@@ -68,7 +70,7 @@ export default function AddPlaces() {
 
   function filterNullValues(dict) {
     const filtered = Object.keys(dict).reduce(function (filtered, key) {
-      if (dict[key]) filtered[key] = dict[key];
+      if (dict[key] || key === 'place_type') filtered[key] = dict[key];
       return filtered;
     }, {});
     return filtered;
@@ -89,13 +91,16 @@ export default function AddPlaces() {
     const tags = placeData.tags?.map(x => {
       return { name: x };
     });
-
+    const features = placeData.features?.map(x => {
+      return { title: x };
+    });
     const formatedData = {
       title: placeData.name,
       place_type: placeData.placeType,
       description: placeData.description,
       contact: contact,
       tags: tags,
+      features: features,
     };
 
     return filterNullValues(formatedData);
@@ -116,6 +121,7 @@ export default function AddPlaces() {
           },
         })
         .then(res => {
+          if (placeData.images.length === 0) return;
           const form_data = new FormData();
           placeData.images.forEach((img, i) => {
             form_data.append('images', img);

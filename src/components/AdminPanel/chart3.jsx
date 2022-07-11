@@ -29,8 +29,93 @@ import {
   Pie,
   Sector
 } from "recharts";
+import { baseUrl } from '../../utils/constants';
+import apiInstance from '../../config/axios';
 
 export default function App() {
+  const [DailyDataList, setDailyData] = useState(null);
+  const [MonthlyDataList, setMonthlyData] = useState(null);
+  var getDaysArray = function(s,e) {for(var a=[],d=new Date(s);d<=new Date(e);d.setDate(d.getDate()+1)){ a.push(new Date(d));}return a;};
+  useEffect(() => {
+    apiInstance
+      .post(`${baseUrl}/accounts/admin/daily-statistics/`,
+      {
+        start_date:'2022-01-10',end_date:'2022-07-20',
+      },)
+      .then(res => res.data)
+      .then(data => {
+        console.log('------------ data')
+        console.log(data)
+        let result_place = data['added_daily_place']
+        let result_user = data['added_daily_user']
+        let result_tour = data['added_daily_tour']
+        let result_exprience = data['added_daily_experience']
+        let result_special = data['added_daily_special_user']
+        var daylist = getDaysArray(new Date('2022-06-10'),new Date('2022-07-20'));
+        var arrDate =  daylist.map((v)=>v.toISOString().slice(0,10))
+        console.log(arrDate) 
+        let styledData = arrDate.map((month)=>{
+          
+            return {
+              name:month,
+              'added_daily_place':result_place[month] === undefined ? 0 : result_place[month],
+              'added_daily_user':result_user[month] === undefined ? 0 : result_user[month],
+              'added_daily_tour':result_tour[month] === undefined ? 0 : result_tour[month],
+              'added_daily_experience':result_exprience[month] === undefined ? 0 : result_exprience[month],
+              'added_daily_special_user':result_special[month] === undefined ? 0 : result_special[month],
+            }
+          
+        })
+        setDailyData(styledData);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+  useEffect(() => {
+    apiInstance
+      .post(`${baseUrl}/accounts/admin/monthly-statistics/`,
+      {
+        start_date:'2022-04-10',end_date:'2022-07-10',
+      },)
+      .then(res => res.data)
+      .then(data => {
+        let result_place = data['added_monthly_place']
+        let result_user = data['added_monthly_user']
+        let result_tour = data['added_monthly_tour']
+        let result_exprience = data['added_monthly_experience']
+        let result_special = data['added_monthly_special_user']
+        let styledData = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month)=>{
+          
+            return {
+              name:month,
+              'added_monthly_place':result_place[month] === undefined ? 0 : result_place[month],
+              'added_monthly_user':result_user[month] === undefined ? 0 : result_user[month],
+              'added_monthly_tour':result_tour[month] === undefined ? 0 : result_tour[month],
+              'added_monthly_experience':result_exprience[month] === undefined ? 0 : result_exprience[month],
+              'added_monthly_special_user':result_special[month] === undefined ? 0 : result_special[month],
+            }
+          
+        })
+        setMonthlyData(styledData);
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+  useEffect(() => {
+    console.log(' ----------- MonthlyDataList')
+    console.log(MonthlyDataList)
+  }, [MonthlyDataList])
+  useEffect(() => {
+    console.log(' ----------- DailyDataList')
+    console.log(DailyDataList)
+  }, [DailyDataList])
+  useEffect(() => {
+    console.log(' ----------- MonthlyDataList Expre')
+    console.log(MonthlyDataList)
+  }, [])
   const [activeIndexState, setState] = useState(0);
   return (
     <div className="App">
@@ -45,7 +130,7 @@ export default function App() {
       <LineChart className="be-center"
         width={500}
         height={300}
-        data={data1}
+        data={MonthlyDataList}
         margin={{
           top: 5,
           right: 30,
@@ -60,11 +145,11 @@ export default function App() {
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="added_monthly_experience"
           stroke="#8884d8"
           //dot={<CustomizedDot />}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="added_monthly_place" stroke="#82ca9d" />
       </LineChart>
       </Box>
       </Box>
@@ -79,7 +164,7 @@ export default function App() {
       <BarChart className="be-center"
         width={500}
         height={300}
-        data={data3}
+        data={MonthlyDataList}
         margin={{
           top: 20,
           right: 30,
@@ -92,8 +177,8 @@ export default function App() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-        <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+        <Bar dataKey="added_monthly_tour" stackId="a" fill="#8884d8" />
+        <Bar dataKey="added_monthly_user" stackId="a" fill="#82ca9d" />
       </BarChart>
       </Box>
       </Box>
@@ -108,7 +193,7 @@ export default function App() {
       <div className="user-controller">
       <Box sx={{ flexGrow:2, margin:'35px'}} >
       <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
-          آمار کلی
+          آمار روزانه
       </Typography>
 
       <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
@@ -116,7 +201,7 @@ export default function App() {
       <AreaChart className="be-center"
         width={500}
         height={400}
-        data={data2}
+        data={DailyDataList}
         margin={{
           top: 10,
           right: 30,
@@ -130,21 +215,21 @@ export default function App() {
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="uv"
+          dataKey="added_daily_experience"
           stackId="1"
           stroke="#8884d8"
           fill="#8884d8"
         />
         <Area
           type="monotone"
-          dataKey="pv"
+          dataKey="added_daily_place"
           stackId="1"
           stroke="#82ca9d"
           fill="#82ca9d"
         />
         <Area
           type="monotone"
-          dataKey="amt"
+          dataKey="added_daily_special_user"
           stackId="1"
           stroke="#ffc658"
           fill="#ffc658"
@@ -163,7 +248,7 @@ export default function App() {
       <ComposedChart className="be-center"
         width={500}
         height={400}
-        data={data4}
+        data={DailyDataList}
         margin={{
           top: 20,
           right: 20,
@@ -176,8 +261,8 @@ export default function App() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="uv" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+        <Bar dataKey="added_daily_experience" barSize={20} fill="#413ea0" />
+        <Line type="monotone" dataKey="added_daily_experience" stroke="#ff7300" />
       </ComposedChart>
       </Box>
       </Box>
