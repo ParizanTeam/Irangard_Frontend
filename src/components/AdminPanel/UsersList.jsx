@@ -22,6 +22,21 @@ import {SignupForm} from './AddUser';
 import apiInstance from '../../config/axios';
 import { baseUrl } from '../../utils/constants';
 import axios from 'axios';
+
+function removeUser(username){
+  useEffect(() => {
+    apiInstance
+      .post(`${baseUrl}/accounts/admin/remove-user/`,
+      {
+        username:username,
+      },)
+      .then(res => res.data)
+      .then(data => {})
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+}
 function Generate(element) {
   if (element) {
     var myDate = new Date(element.date); 
@@ -38,13 +53,13 @@ function Generate(element) {
           {/*    <FolderIcon />
                   </Avatar>*/}
         </ListItemAvatar>
-        <div style={{width:'155px',marginRight: '30px',textAlign:'right'}}>
+        <div className='doNotShow' style={{width:'155px',marginRight: '30px',textAlign:'right'}}>
         <ListItemText primary={element.full_name} sx={{margin:'auto',justifyContent:'center'}}/></div>
-        <div className='doNotShow' style={{width:'130px',marginRight: '30px',marginLeft: '2px',textAlign:'center'}}>
+        <div style={{width:'130px',marginRight: '30px',marginLeft: '2px',textAlign:'center'}}>
         <ListItemText primary={element.username} sx={{margin:'auto',justifyContent:'center'}}/></div>
         
-        <ListItemText sx={{ marginLeft: '40px' }} primary={element.follower_number}/>
-        <Button>
+        <ListItemText className='doNotShow' sx={{ marginLeft: '40px'}} primary={element.follower_number}/>
+        <Button onClick={() => {removeUser(element.username)}} >
             <DeleteOutlineIcon color="primary"/>
         </Button>
       </ListItem>
