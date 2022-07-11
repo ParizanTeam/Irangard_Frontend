@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
-import Launcher from '../Launcher';
 import FullScreenPreview from '../FullScreenPreview';
 import Conversation from '../Conversation';
 import './style.scss';
@@ -12,6 +11,8 @@ export default function ChatLayout({
   subtitle,
   handleNewUserMessage,
   onSendMessage,
+  messages,
+  chatSocket,
   onToggleConversation,
   senderPlaceHolder,
   onQuickButtonClicked,
@@ -35,11 +36,13 @@ export default function ChatLayout({
   resizable,
   emojis,
 }) {
+
+
   const [showChat, setShowChat] = useState(false);
 
-  const toggleShowChat = () => {
+  const toggleShowChat= () =>{
     setShowChat(!showChat);
-    console.log('showchat', showChat);
+    console.log("showchat",showChat);
   };
 
   return (
@@ -50,6 +53,7 @@ export default function ChatLayout({
         'rcw-close-widget-container-admin ': true || !showChat,
       })}
     >
+        
       {true && (
         <Conversation
           title={title}
@@ -57,6 +61,8 @@ export default function ChatLayout({
           senderPlaceHolder={senderPlaceHolder}
           handleNewUserMessage={handleNewUserMessage}
           profileAvatar={profileAvatar}
+          chatSocket={chatSocket}
+          messages={messages}
           //   sendMessage={onSendMessage}
           //   profileClientAvatar={profileClientAvatar}
           //   toggleChat={onToggleConversation}

@@ -11,21 +11,31 @@
 }
 
 .rcw-full-screen {
-  .rcw-messages-container-admin {
+
+  .rcw-messages-container {
     @include messages-container-fs;
   }
 }
 
-@media screen and (max-width: 800px) {
-  .rcw-messages-container-admin {
+@media screen and (max-width: 800px)  {
+  .rcw-messages-container {
     @include messages-container-fs;
   }
 }
 
-.rcw-message {
-  width: 330px !important;
+
+.rcw-message{
+  width: calc(100% - 20px) !important;
   word-wrap: break-word !important;
   text-align: right;
-  justify-content: right !important;
+  justify-content:right !important;
   margin: 0px 0 -30px 0;
+
+}
+
+
+.rcw-message-server{
+  direction: ltr;
+  justify-content: left !important;
+
 }

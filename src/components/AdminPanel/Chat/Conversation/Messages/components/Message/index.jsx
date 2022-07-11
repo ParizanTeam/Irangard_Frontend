@@ -19,12 +19,12 @@ function Message(props) {
     .use(markdownItSup)
     .use(markdownItSanitizer)
     .use(markdownItLinkAttributes, { attrs: { target: '_blank', rel: 'noopener' } })
-    .render(props.message.text);
+    .render(props.message.message);
 
   return (
     <div className={`rcw-${props.message.sender}`}>
-      <div className="rcw-message-text rcw-message-cont" dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
-      {props.showTimeStamp && <span className="rcw-timestamp">{format(props.message.timestamp, 'hh:mm')}</span>}
+      <div className={`rcw-message-text ${props.is_server ? 'rcw-message-cont' : 'rcw-message-cont-server'}`} dangerouslySetInnerHTML={{ __html: sanitizedHTML.replace(/\n$/,'') }} />
+      {/* {props.showTimeStamp && <span className="rcw-timestamp">{format(props.message.timestamp, 'hh:mm')}</span>} */}
     </div>
   );
 }

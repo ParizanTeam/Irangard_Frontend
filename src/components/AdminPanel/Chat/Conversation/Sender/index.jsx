@@ -25,15 +25,15 @@ function Sender(props, ref) {
 
 
   const sendMessage = (message) =>{
-      return {"sender":"emad","text":message,"showAvatar":false}
+      return {"sender":"emad","message":message,"showAvatar":false, sender_type:"SERVER"}
   }
 
   const handleSendMessage = () => {
     const el = inputRef.current;
     if(el.innerHTML) {
       props.updateMessages(sendMessage,el.innerText);
+      props.handleNewUserMessage(el.innerText)
       el.innerHTML = ''
-      props.handleNewUserMessage()
     }
   }
 
@@ -109,7 +109,7 @@ function Sender(props, ref) {
       }>
         <div
           spellCheck
-          className="rcw-input"
+          className="rcw-input-admin"
           role="textbox"
           contentEditable={!props.disabledInput} 
           ref={inputRef}

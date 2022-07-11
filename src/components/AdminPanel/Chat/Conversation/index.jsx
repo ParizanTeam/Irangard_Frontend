@@ -9,11 +9,25 @@ import './style.scss';
 
 export default function Conversation(props) {
   const [messageNumber, setMessageNumber] = useState(0);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(props.messages);
 
   const updateMessages = (sendMessage, message) => {
     setMessageNumber(messageNumber + 1);
     setMessages([...messages, sendMessage(message)]);
+  };
+
+  props.chatSocket.onmessage = function (e) {
+    console.log('onmessage');
+    const data = JSON.parse(e.data);
+    // console.log(data);
+    if (data.message) {
+      console.log(data);
+      if (data.sender_type === 'CLIENT') {
+        setMessages([...messages, { message: data.message, sender: 'emad',sender_type: 'CLIENT',showTimeStamp:false}]);
+      }
+    } else {
+      alert('The message is empty!');
+    }
   };
 
   return (

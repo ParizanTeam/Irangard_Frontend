@@ -2,6 +2,7 @@
 @import '../../scss/common';
 
 .rcw-conversation-container-admin {
+
   .rcw-header {
     background-color: #a235e6;
     border-radius: 10px 10px 0 0;
@@ -32,6 +33,7 @@
 }
 
 .rcw-full-screen {
+
   .rcw-header {
     @include header-fs;
   }
@@ -50,7 +52,9 @@
 }
 
 @media screen and (max-width: 800px) {
-  .rcw-conversation-container-admin {
+
+  .rcw-conversation-container {
+
     .rcw-header {
       @include header-fs;
     }

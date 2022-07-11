@@ -24,6 +24,7 @@
   padding: 10px 5px;
   resize: none;
   width: calc(100% - 30px);
+  margin-left: 8px;
 
   &:focus {
     outline: none;
@@ -34,12 +35,11 @@
   }
 }
 
-.rcw-input {
+.rcw-input-admin {
   display: block;
   height: 100%;
   line-height: 20px;
   max-height: 78px;
-  overflow-y: auto;
   user-select: text;
   white-space: pre-wrap;
   word-wrap: break-word;
