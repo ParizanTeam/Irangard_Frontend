@@ -42,12 +42,12 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className='sidebar'>
-        {['پروفایل ادمین', 'حذف یا اضافه کاربر', 'آمارهای سایت'].map((text, index) => (
+        {['حذف یا اضافه کاربر', 'آمارهای سایت','پیامهای ادمین'].map((text, index) => (
           <>
           <ListItem key={text} disablePadding style={{textAlign:'right',height:'6vh'}} >
           
             <ListItemButton className='drawer-button' dir='rtl' style={{textAlign:'right',height:'6vh'}}>
-            <Link to={index % 2 === 0 ? '/penal/statics' : '/panel/addremove'} style={{height:'4vh'}}>
+            {index === 0 && <Link to='/panel/addremove' style={{height:'4vh'}}>
             
            
               <>
@@ -56,7 +56,27 @@ export default function SwipeableTemporaryDrawer() {
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                </ListItemIcon>*/}
               </>
-              </Link>
+              </Link>}
+              {index === 1 && <Link to='/panel/statics' style={{height:'4vh'}}>
+            
+           
+              <>
+              <ListItemText primary={text} style={{marginRight:'60px'}}/>
+              {/*<ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+               </ListItemIcon>*/}
+              </>
+              </Link>}
+              {index === 2 && <Link to='/panel/chat' style={{height:'4vh'}}>
+            
+           
+              <>
+              <ListItemText primary={text} style={{marginRight:'60px'}}/>
+              {/*<ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+               </ListItemIcon>*/}
+              </>
+              </Link>}
             </ListItemButton>
             
           </ListItem>
