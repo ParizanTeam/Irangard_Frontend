@@ -14,6 +14,7 @@ import useAuth from '../../context/AuthContext';
 import Button from '../Button';
 import apiInstance from '../../config/axios';
 import './style.scss';
+import toast from 'react-hot-toast';
 
 function ExperienceDetail() {
   const { id } = useParams();
@@ -24,6 +25,7 @@ function ExperienceDetail() {
   const [isLiked, setIsLiked] = useState(false);
   const [isLiking, setisLiking] = useState(false);
   const [likesNumber, setLikesNumber] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -38,7 +40,7 @@ function ExperienceDetail() {
       })
       .catch(error => {
         console.log(error.response.status);
-        if (error.response.status === 404) {
+        if (error.response.status === 404 || error.response.status === 400) {
           navigate('/notFound');
         }
       });
@@ -68,11 +70,35 @@ function ExperienceDetail() {
       });
   };
 
+  const removeExperience = () => {
+    setIsDeleting(true);
+    apiInstance
+      .delete(`/experiences/${id}`)
+      .then(res => res.data)
+      .then(data => {
+        console.log(data);
+        toast.success('تجربه با موفقیت حذف شد.');
+        navigate('/experiences');
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error('مشکلی در سامانه رخ داده است.');
+      })
+      .finally(() => {
+        setIsDeleting(false);
+      });
+  };
+
   return (
     <Layout>
       {loading && <Loader />}
       {!loading && (
         <div className="experience-detail">
+          {(data.is_owner || auth.isAdmin) && (
+            <Button className="experience-detail__remove-btn" variant="red" onClick={removeExperience}>
+              حذف تجربه
+            </Button>
+          )}
           <h1 className="experience-detail__title">{data.title}</h1>
           <div className="experience-detail__place-rate">
             <p className="experience-detail__place">
@@ -103,7 +129,7 @@ function ExperienceDetail() {
               disabled={isLiking}
             >
               {isLiked ? 'پسندیده‌شده' : 'پسندیدن'}
-              <ThumbUpIcon fontSize='12px' />
+              <ThumbUpIcon fontSize="12px" />
             </Button>
           )}
           <img className="experience-detail__img" src={data.image || defaultXpImg} alt={data.title} />
