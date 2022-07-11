@@ -48,5 +48,6 @@
 @media screen and (max-width: 800px) {
   .rcw-conversation-container {
     @include conversation-container-fs;
+    width: 100vw;
   }
 }
