@@ -44,6 +44,7 @@ export default function AddPlaces() {
       latitude: '',
       working_hours: default_days_time,
       rooms: [default_room_values],
+      features:[],
       images: [],
     },
   });
@@ -90,13 +91,16 @@ export default function AddPlaces() {
     const tags = placeData.tags?.map(x => {
       return { name: x };
     });
-
+    const features = placeData.features?.map(x => {
+      return { title: x };
+    });
     const formatedData = {
       title: placeData.name,
       place_type: placeData.placeType,
       description: placeData.description,
       contact: contact,
       tags: tags,
+      features: features,
     };
 
     return filterNullValues(formatedData);
@@ -117,6 +121,7 @@ export default function AddPlaces() {
           },
         })
         .then(res => {
+          if (placeData.images.length === 0) return;
           const form_data = new FormData();
           placeData.images.forEach((img, i) => {
             form_data.append('images', img);
