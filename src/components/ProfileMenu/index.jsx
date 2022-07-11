@@ -123,14 +123,17 @@ export default function AccountMenu() {
             پروفایل من
           </Link>
         </MenuItem>
-        <MenuItem>
-          <Link to={'/feed'} className="drop-down__menu">
-            <ListItemIcon>
-              <DashboardCustomizeIcon fontSize="small" />
-            </ListItemIcon>
-            تجربه‌های پیشنهادی
-          </Link>
-        </MenuItem>
+        <>
+          <Divider />
+          <MenuItem>
+            <Link to={'/feed'} className="drop-down__menu">
+              <ListItemIcon>
+                <DashboardCustomizeIcon fontSize="small" />
+              </ListItemIcon>
+              تجربه‌های پیشنهادی
+            </Link>
+          </MenuItem>
+        </>
         {!auth.isSpecial && (
           <>
             <Divider />
