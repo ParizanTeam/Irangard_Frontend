@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Autocomplete from '@mui/material/Autocomplete';
+import { Autocomplete, Button } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { MdLocationPin, MdOutlineLocationOn, MdSearch } from 'react-icons/md';
@@ -16,6 +16,7 @@ import { useMobile } from 'src/utils/hooks';
 import { Checkbox, MenuItem, Select, Switch, Chip, TextField } from '@mui/material';
 import apiInstance from 'src/config/axios';
 import loader from '../../assets/images/loader.gif';
+import { useForm, FormProvider } from 'react-hook-form';
 
 const mockFeatures = [
   'چای ساز',
@@ -24,16 +25,12 @@ const mockFeatures = [
   'مبلمان',
   'تاکسی سرویس',
   'صندوق امانات',
-  'امکانات برگزاری جلسات و ضیافت',
-  'امکانات ویژه برای معلولان',
-  'استخر سرپوشیده',
   'استخر',
   'جکوزی',
   'باربیکیو',
   'میز بیلیارد',
   'سالن بدنسازی',
   'پیست دوچرخه',
-  'خدمات تماس بیدار باش',
 ];
 
 const mockRooms = {
@@ -43,7 +40,6 @@ const mockRooms = {
   4: '‏۴ نفر',
 };
 const Filters = ({ isHotel, isFree }) => {
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   // /places/?city=کیش&place_type=1&tags__name=چای&features__title=سرویس بهداشتی&rooms__capacity=2&rate__gte=3
@@ -59,8 +55,6 @@ const Filters = ({ isHotel, isFree }) => {
   const [entryFee, setEntryFee] = useState(null);
   const [rate, setRate] = useState({ 5: false, 4: false, less3: false });
 
-  const isMobile = useMobile();
-
   const handleChange = (f, newValue) => {
     setFilter({ ...filter, [f]: newValue });
     let d = searchParams;
@@ -72,11 +66,23 @@ const Filters = ({ isHotel, isFree }) => {
     setSearchParams(d);
   };
 
+  const clearSearchParams = () => {
+    let d = searchParams;
+    const keys = Array.from(searchParams.keys());
+    for (var k in keys) {
+      d.delete(k);
+    }
+    console.log(Array.from(d.keys()));
+    setSearchParams(d);
+  };
+
   return (
     <div className="place-filters">
       <div className="summary-result">
-        <div>نمایش ۱۰ از ۸۰ مکان</div>
-        <div>لغو فیلتر ها</div>
+        {/* <div>نمایش ۱۰ از ۸۰ مکان</div> */}
+        <Button variant="text" onClick={clearSearchParams}>
+          لغو فیلتر ها
+        </Button>
       </div>
       <div>
         <label>امتیاز</label>
@@ -190,9 +196,6 @@ const PlaceFilters = () => {
   const [isLoading, setLoading] = useState(false);
   const filterKeys = {
     q: 'search',
-    place_type:'place_type',
-    state:'state',
-    city:'city'
   };
   useEffect(async () => {
     if (state) console.log('state', IranStateKeys[state]);
@@ -202,15 +205,10 @@ const PlaceFilters = () => {
   // /places/?city=کیش&place_type=1&tags__name=چای&features__title=سرویس بهداشتی&rooms__capacity=2&rate__gte=3
   const updateResult = async e => {
     if (e) e.preventDefault();
-    // for (const sp in [q,city,]) {
-    //   if (Object.hasOwnProperty.call(object, sp)) {
-    //     const element = object[sp];
 
-    //   }
-    // }
     let query = '';
     for (const [key, value] of searchParams) {
-      query += `${filterKeys[key]}=${value}&`;
+      query += `${filterKeys[key] ?? key}=${value}&`;
     }
 
     setLoading(true);
@@ -278,6 +276,7 @@ const PlaceFilters = () => {
   return (
     <ThemeProvider theme={greenTheme}>
       <Navbar />
+
       <IconContext.Provider value={{ color: '#00aa6c', size: '1.3em' }}>
         <div className="search-places">
           <div className="search-places__header">

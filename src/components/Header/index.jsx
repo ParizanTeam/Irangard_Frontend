@@ -15,11 +15,11 @@ const Header = () => {
   return (
     <>
       <div className="header__nav-items-wrapper">
-        <Link to="/restaurants" className="header__nav-item">
+        <Link to="/Search?place_type=0" className="header__nav-item">
           <div className="txt">رستوران‌ها</div>
           <RiRestaurantLine size={20} />
         </Link>
-        <Link to="/residences" className="header__nav-item">
+        <Link to="/Search?place_type=1" className="header__nav-item">
           <div className="txt">اقامتگاه‌ها</div>
           <RiHome3Line size={20} />
         </Link>
