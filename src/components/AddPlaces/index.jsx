@@ -120,6 +120,8 @@ export default function AddPlaces() {
           placeData.images.forEach((img, i) => {
             form_data.append('images', img);
           });
+          form_data.append('place_type', placeData.placeType);
+          form_data.append('title', placeData.name);
           toast.promise(updatePlace(res.data['id'], form_data), {
             loading: 'در حال آپلود تصاویر...',
             success: res => {
