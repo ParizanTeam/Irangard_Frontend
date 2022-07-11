@@ -103,7 +103,7 @@ function ToursDetailPage() {
           <div className="tour-detail__capacity">
             ظرفیت تور: {convertNumberToPersian(data.capacity - data.bookers.length)} نفر
           </div>
-          <div className="tour-detail__cost">قیمت تور: {formatPrice(convertNumberToPersian(data.cost))} تومان</div>
+          <div className="tour-detail__cost">قیمت تور: {formatPrice(convertNumberToPersian(data.cost))} ریال</div>
           {!data.is_booked && data.owner.user !== auth.user?.id && (
             <Button className="tour-detail__book" onClick={handleBookTour}>
               ثبت‌نام در تور
