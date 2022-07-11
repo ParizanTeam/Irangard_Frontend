@@ -118,11 +118,11 @@ export default function App() {
   }, [])
   const [activeIndexState, setState] = useState(0);
   return (
-    <div className="App">
+    <div className="App do-not-show">
       <div className="user-controller">
       <Box sx={{ flexGrow:2, margin:'35px'}} >
       <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
-          آمار کلی
+          آمار ماهانه تجارب و مکانها
       </Typography>
 
       <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px',justifyContent:'center'}} className='make-center bordering'>
@@ -156,7 +156,7 @@ export default function App() {
 
       <Box sx={{ flexGrow:2, margin:'35px'}} >
       <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
-          آمار فرد به فرد
+          آمار ماهانه کاربران و تورها
       </Typography>
 
       <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
@@ -193,7 +193,7 @@ export default function App() {
       <div className="user-controller">
       <Box sx={{ flexGrow:2, margin:'35px'}} >
       <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
-          آمار روزانه
+          آمار روزانه کاربران و تورها
       </Typography>
 
       <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
@@ -215,14 +215,14 @@ export default function App() {
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="added_daily_experience"
+          dataKey="added_daily_user"
           stackId="1"
           stroke="#8884d8"
           fill="#8884d8"
         />
         <Area
           type="monotone"
-          dataKey="added_daily_place"
+          dataKey="added_daily_tour"
           stackId="1"
           stroke="#82ca9d"
           fill="#82ca9d"
@@ -240,7 +240,7 @@ export default function App() {
       
       <Box sx={{ flexGrow:2, margin:'35px'}} >
       <Typography sx={{ mt: 4, mb: 2 , color:'#011f1f'}} variant="h6" component="div">
-          آمار روزانه
+         آمار روزانه تجارب و مکانها
       </Typography>
 
       <Box sx={{ backgroundColor: 'white', marginBottom: '15px', borderRadius: '5px', padding: '6px'}} className='make-center bordering'>
@@ -261,7 +261,7 @@ export default function App() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="added_daily_experience" barSize={20} fill="#413ea0" />
+        <Bar dataKey="added_daily_place" barSize={20} fill="#413ea0" />
         <Line type="monotone" dataKey="added_daily_experience" stroke="#ff7300" />
       </ComposedChart>
       </Box>
