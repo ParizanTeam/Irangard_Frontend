@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import Logout from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -115,11 +116,19 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Link to={`/profile/${auth.user.username}`}>
+          <Link to={`/profile/${auth.user.username}`} className="drop-down__menu">
             <ListItemIcon>
               <AccountBoxIcon fontSize="small" />
             </ListItemIcon>
             پروفایل من
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to={'/feed'} className="drop-down__menu">
+            <ListItemIcon>
+              <DashboardCustomizeIcon fontSize="small" />
+            </ListItemIcon>
+            تجربه‌های پیشنهادی
           </Link>
         </MenuItem>
         {!auth.isSpecial && (
