@@ -17,5 +17,5 @@ export const useActivateAccount = () =>
 
 export const useCheckCode = () => useMutation(userData => axios.post(`${baseUrl}/accounts/auth/check-code/`, userData));
 
-export const useAddUser = () => useMutation(userData => axios.post(`${baseUrl}/accounts​/admin​/add-user​/`, userData));
+export const useAddUser = () => useMutation(userData => apiInstance.post(`${baseUrl}/accounts/admin/add-user/`, userData));
 

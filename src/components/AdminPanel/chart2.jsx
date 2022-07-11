@@ -9,7 +9,7 @@ function Chart({ title, data, dataKey, grid }) {
             {/*<h3 className='chartTitle'>{title}</h3>*/}
             <ResponsiveContainer width="100%" aspect ={4/1} style={{backgroundColor:'white'}}>
                 <LineChart data={data}>
-                    <XAxis dataKey="name" stroke="#0ff" />
+                    <XAxis dataKey="added_daily_user" stroke="#0ff" />
                         <Line type="monotone" dataKey={dataKey} stroke="#0ff"/>
                     <Tooltip />
                     {grid && <CartesianGrid stroke="#464646" strokeDasharray="3 3"/>}
