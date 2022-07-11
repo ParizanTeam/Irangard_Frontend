@@ -69,7 +69,7 @@ export default function BaseInfoSection(props) {
               id="description"
               label="توضیحات"
               placeholder={`درباره ی ${placeLabel}`}
-              validation={{ required: true, maxLength: 100 }}
+              validation={{ required: true, maxLength: 500 }}
               isTextArea
             />
           </div>

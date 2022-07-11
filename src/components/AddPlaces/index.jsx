@@ -69,7 +69,7 @@ export default function AddPlaces() {
 
   function filterNullValues(dict) {
     const filtered = Object.keys(dict).reduce(function (filtered, key) {
-      if (dict[key]) filtered[key] = dict[key];
+      if (dict[key] || key === 'place_type') filtered[key] = dict[key];
       return filtered;
     }, {});
     return filtered;
