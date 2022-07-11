@@ -25,7 +25,7 @@ function Sender(props, ref) {
 
 
   const sendMessage = (message) =>{
-      return {"sender":"emad","text":message,"showAvatar":false, sender_type:"CLIENT"}
+      return {"sender":"emad","message":message,"showAvatar":false, sender_type:"CLIENT"}
   }
 
   const handleSendMessage = () => {

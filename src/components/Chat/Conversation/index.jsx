@@ -9,7 +9,7 @@ import './style.scss';
 
 export default function Conversation(props) {
   const [messageNumber, setMessageNumber] = useState(0);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(props.messages);
 
   const updateMessages = (sendMessage, message) => {
     setMessageNumber(messageNumber + 1);
@@ -23,7 +23,7 @@ export default function Conversation(props) {
     if (data.message) {
       console.log(data);
       if (data.sender_type === 'SERVER') {
-        setMessages([...messages, { text: data.message, sender: 'emad',sender_type: 'SERVER',showTimeStamp:false}]);
+        setMessages([...messages, { message: data.message, sender: 'emad',sender_type: 'SERVER',showTimeStamp:false}]);
       }
     } else {
       alert('The message is empty!');

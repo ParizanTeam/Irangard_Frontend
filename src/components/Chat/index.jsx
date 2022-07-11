@@ -66,15 +66,17 @@ import { Widget } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import ChatLayout from './ChatLayout';
 import axios from 'axios';
-import { baseUrl } from '../../utils/constants';
+import { baseUrl } from 'src/utils/constants';
 import useAuth from 'src/context/AuthContext';
 function Chat(props) {
   const auth = useAuth();
 
   const chatSocket = useRef(null);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     console.log('log',auth);
+
     if (auth && auth.user && auth.user.username && !chatSocket.current) {
       
       const newChatSocket = new WebSocket(
@@ -92,7 +94,15 @@ function Chat(props) {
       };
 
       chatSocket.current = newChatSocket;
+
+      axios.get(`${baseUrl}/chat/room/messages/${auth.user.username}`).then((response) => {
+        setMessages(response.data);
+        console.log('messages',messages);
+      });
     }
+
+
+
   }, [auth]);
 
   const handleNewUserMessage = message => {
@@ -110,8 +120,9 @@ function Chat(props) {
 
   return (
     <div>
-      { chatSocket.current && <ChatLayout
+      { chatSocket.current && messages.length > 0 && <ChatLayout
         chatSocket={chatSocket.current}
+        messages={messages}
         title="پشتیبانی ایرانگرد"
         subtitle="هر سوالی داری بپرس"
         senderPlaceHolder="سوالت رو بپرس !!!"
