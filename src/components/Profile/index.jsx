@@ -33,6 +33,10 @@ const Profile = () => {
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(async () => {
     setIsLoading(true);
     apiInstance
