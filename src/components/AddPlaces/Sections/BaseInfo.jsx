@@ -20,15 +20,16 @@ export default function BaseInfoSection(props) {
       </div>
 
       <div className="question" dir="ltr">
-        <h3>مکان ات چه جور جایی هست؟</h3>
+        <h3>این مکان چه جور جایی هست؟</h3>
         <div className="options">
           {PlaceTypes.map((PlaceType, index) => (
             <span key={index} className={index == watch('placeType') ? 'active-chip' : ''}>
               <Chip
                 onClick={() => setValue('placeType', index)}
-                icon={<PlaceType.icon size={24} />}
+                icon={<PlaceType.icon size={20} />}
                 label={PlaceType.label}
                 variant="outlined"
+                className="options__chip"
               />
             </span>
           ))}

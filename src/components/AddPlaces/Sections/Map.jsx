@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useMediaQuery,Autocomplete } from '@mui/material';
+import { useMediaQuery, Autocomplete } from '@mui/material';
 import Map from 'src/components/Map';
 import { BasicInput } from '../Inputs';
 import IranStates from 'src/assets/data/IranStates.json';
-
-
 
 export default function MapSection(props) {
   const { watch, setValue, trigger, resetField } = useFormContext();
@@ -16,7 +14,7 @@ export default function MapSection(props) {
   useEffect(async () => {
     if (state) setCities(await (await fetch(`/assets/data/cities/${state?.value}.json`)).json());
   }, [state]);
-  
+
   const street_validation = {
     maxLength: {
       value: 25,
@@ -117,7 +115,7 @@ export default function MapSection(props) {
         <div className="location-info__map">
           {city ? (
             <Map
-              style={useMobile && { width: 350, height: 350 }}
+              style={useMobile && { width: 350, maxWidth: '100%', height: 350 }}
               onChoose={handleChangeLocation}
               defaultLat={city?.lat}
               defaultLong={city?.long}

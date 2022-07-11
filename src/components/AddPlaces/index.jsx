@@ -9,6 +9,7 @@ import useAuth from 'src/context/AuthContext';
 import { BaseInfoSection, MapSection, ContactSection, MoreInfoSection } from './Sections';
 import { AddPlaceSteps as steps } from './info';
 import './style.scss';
+import { Navigate } from 'react-router-dom';
 
 export default function AddPlaces() {
   const auth = useAuth();
