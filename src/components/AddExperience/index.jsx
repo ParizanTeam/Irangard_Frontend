@@ -141,7 +141,7 @@ function AddExperience() {
             {places.map(plc => (
               <div className="add-experience__place" onClick={() => setPlace(plc)}>
                 <div className="add-experience__place-title">{plc.title}</div>
-                <div className="add-experience__place-city">{plc.contact.city}</div>
+                <div className="add-experience__place-city">{plc?.contact?.city}</div>
               </div>
             ))}
           </div>
