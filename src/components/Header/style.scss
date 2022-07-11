@@ -77,7 +77,6 @@
     margin: 60px 0;
     @media (max-width: 768px) {
       margin: 30px 0;
-      flex-direction: column;
     }
   }
   &__nav-item {
@@ -104,7 +103,7 @@
   }
   @media (max-width: 768px) {
     &__nav-item {
-      width: 108px;
+      width: 100px;
       height: 40px;
       padding: 8px;
     }
@@ -115,16 +114,4 @@
     font-size: 12.5px;
     margin-left: 5px;
   }
-}
-.first-row {
-  display: flex;
-  flex-direction: row;
-  margin-left: -16px;
-  @media (max-width: 768px) {
-    margin-left: 0px;
-  }
-}
-.second-row {
-  display: flex;
-  flex-direction: row;
 }

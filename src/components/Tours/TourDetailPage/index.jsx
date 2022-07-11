@@ -132,8 +132,8 @@ function ToursDetailPage() {
             <Input label="کد تخفیف:" placeholder="کد تخفیف..." value={code} onChange={e => setCode(e.target.value)} />
             {newCost && (
               <>
-                <p className="tour-detail__code-stroke">{formatPrice(convertNumberToPersian(data.cost))} تومان</p>
-                <p className="tour-detail__code-success">{formatPrice(convertNumberToPersian(newCost))} تومان</p>
+                <p className="tour-detail__code-stroke">{formatPrice(convertNumberToPersian(data.cost))} ریال</p>
+                <p className="tour-detail__code-success">{formatPrice(convertNumberToPersian(newCost))} ریال</p>
               </>
             )}
             <Button type="submit" className="tour-detail__submit-code">
