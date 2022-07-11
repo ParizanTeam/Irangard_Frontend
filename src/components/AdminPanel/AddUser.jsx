@@ -18,13 +18,11 @@ export const SignupForm = ({ handleFormIsDirty }) => {
     formData.append('email', userData.email);
     formData.append('password', userData.password);
     
-    toast.promise(apiInstance.post(`${baseUrl}/accounts/admin/add-user/`, formData), {
-      loading: 'در حال بررسی...',
-      success: 'حساب کاربری با موفقیت ساخته شد.',
-      error: err => {
-        if (!err.response) return 'خطا در ارتباط با سرور! اینترنت خود را بررسی کنید';
-        return `مشکلی پیش آمد، دوباره امتحان کنید.`;
-      },
+    apiInstance.post(`${baseUrl}/accounts/admin/add-user/`,{
+      username:userData.username,
+      email:userData.email,
+      password:userData.password,
+      re_password:userData.password
     });
   };
 
