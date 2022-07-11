@@ -49,9 +49,8 @@ const AppRouter = () => {
         <Route path="/penal/statics" element={<StaticsPage />} />
         <Route path="/panel/addremove" element={<AddRemoveUser />} />
         <Route path="/launcher" element={<ChatLayout />} />
-        <Route path="/add-new-places"x element={<AddPlaces />} />
         <Route path="/Search"x element={<PlaceFilters />} />
-        <Route path="//places/new" x element={<AddPlaces />} />
+        <Route path="/places/new" x element={<AddPlaces />} />
         <Route path="/Search" x element={<PlaceFilters />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

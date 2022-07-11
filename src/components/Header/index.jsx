@@ -34,7 +34,7 @@ const Header = () => {
             <div className="txt">تجربه‌ها</div>
             <RiChatQuoteLine size={24} />
           </Link>
-          <Link to="/add-new-places" className="header__nav-item">
+          <Link to="/places/new" className="header__nav-item">
             <div>+ مکان جدید</div>
             <RiAncientPavilionFill size={24} />
           </Link>

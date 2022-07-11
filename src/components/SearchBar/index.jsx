@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from 'src/components/Header';
 import searchBanner from 'src/assets/images/main5.png';
@@ -18,7 +18,7 @@ const SearchBar = () => {
       <input    value={query}
         onChange={e => setQuery(e.target.value)}
         className="search-bar__search-box" placeholder="جست‌وجو برای مقصد..." />
-    </div>
+    </form>
   );
 };
 
