@@ -24,18 +24,11 @@ import { baseUrl } from '../../utils/constants';
 import axios from 'axios';
 
 function removeUser(username){
-  useEffect(() => {
     apiInstance
       .post(`${baseUrl}/accounts/admin/remove-user/`,
       {
         username:username,
       },)
-      .then(res => res.data)
-      .then(data => {})
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
 }
 function Generate(element) {
   if (element) {
