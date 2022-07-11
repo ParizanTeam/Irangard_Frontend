@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -14,16 +14,20 @@ import Typography from '@mui/material/Typography';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import CommentIcon from '@mui/icons-material/Comment';
-import { useState } from 'react';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { baseUrl } from 'src/utils/constants';
 import tansferHistory from './data';
+import apiInstance from '../../config/axios';
 import './style.scss';
 import { Button } from '@mui/material';
 import { width } from '@mui/system';
 import Statics from './statics';
 import { SignupForm } from './AddUser';
+import { LineAxisOutlined } from '@mui/icons-material';
+import axios from 'axios';
 function Generate(element) {
   if (element) {
+    console.log(element);
     var myDate = new Date(element.date);
     return (
       <ListItem sx={{ backgroundColor: '#e1d4ed', marginBottom: '8px', borderRadius: '5px', padding: '6px' }}>
@@ -32,19 +36,20 @@ function Generate(element) {
                     <DeleteIcon />
             </IconButton>*/}
         <ListItemAvatar>
-          <Avatar src={element.userImgSrc} alt="recievedList" />
+          <Avatar src={element.image} alt="recievedList" />
           {/*    <FolderIcon />
                   </Avatar>*/}
         </ListItemAvatar>
-        <div style={{ width: '155px', marginRight: '30px', textAlign: 'right' }}>
-          <ListItemText primary={element.Name} sx={{ margin: 'auto', justifyContent: 'center' }} />
-        </div>
-        <div
+        {/* <div style={{ marginLeft: '30px', marginRight: '30px', textAlign: 'right' }}> */}
+        <ListItemText
+          primary={element.username}
+          sx={{ marginRight: '30px', marginLeft: '30px', justifyContent: 'center' }}
+        />
+        {/* </div> */}
+        {/* <div
           className="doNotShow"
           style={{ width: '130px', marginRight: '30px', marginLeft: '2px', textAlign: 'center' }}
-        >
-          <ListItemText primary={element.userName} sx={{ margin: 'auto', justifyContent: 'center' }} />
-        </div>
+        ></div> */}
 
         {/* <ListItemText sx={{ marginLeft: '40px' }} primary={element.friendsNum} /> */}
         <ListItemButton sx={{ justifyContent: 'left' }}>
@@ -70,39 +75,38 @@ const Demo = styled('div')(({ theme }) => ({
 export default function RecievedList() {
   //const [tansferHistory, setTansferHistory] = useState(null);
   const [diagramData, setDiagramData] = useState(null);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [next, setNext] = useState(null);
+  const [nextLoading, setNextLoading] = useState(false);
 
-  /*useEffect(() => {
-      axios
-        .get(`${baseUrl}/accounts/instructors/orders/`)
-        .then(res => {
-          setTansferHistory(res.data);
-          console.log('TansferHistory', res.data);
-          setLoading(false);
-        })
-        .catch(err => {
-          console.log('error: ', err);
-        });
-    }, []);*/
+  useEffect(async () => {
+    await apiInstance
+      .get(`/accounts/chat-users`)
+      .then(res => res.data)
+      .then(data => {
+        console.log('data: ', data);
+        setUsers(data);
+        setNext(data.next || null);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    setLoading(false);
+  }, []);
 
   return (
     <div className="user-controller">
-      <Box sx={{ flexGrow: 1, margin: '35px', backgroundColor: '#0f0026' }}>
+      <Box sx={{ flexGrow: 1, margin: '35px', backgroundColor: 'white' }}>
         <FormGroup row></FormGroup>
         <Grid item xs={12} md={12}>
-          <Typography sx={{ mt: 4, mb: 2, color: 'white' }} variant="h6" component="div">
+          <Typography sx={{ mt: 4, mb: 2, color: '#011f1f' }} variant="h6" component="div">
             لیست چت‌ها
           </Typography>
           <Demo
-            sx={{
-              padding: '5px',
-              borderRadius: '5px',
-              backgroundColor: '#0f0026',
-              height: '300px',
-              overflowY: 'scroll',
-            }}
+            sx={{ padding: '5px', borderRadius: '5px', backgroundColor: 'white', height: '300px', overflowY: 'scroll' }}
           >
-            <List>{tansferHistory && tansferHistory.map(item => Generate(item))}</List>
+            <List>{users && users.map(item => Generate(item))}</List>
           </Demo>
         </Grid>
       </Box>
