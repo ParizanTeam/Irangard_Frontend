@@ -1,0 +1,187 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.details-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+}
+.filter-card {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: right;
+  border: 1px solid #000;
+  height: 240px;
+  color: #000;
+  margin-bottom: 20px;
+  &__img {
+    width: 260px;
+    height: 180px;
+    //min-height: 180px;
+  }
+  &__footer {
+    border-top: 1px solid #000;
+    background-color: rgb(231, 228, 237);
+    display: flex;
+    padding: 12px;
+    align-items: center;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.class-card {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgb(221, 223, 227);
+  background-color: white;
+  .class-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1024px;
+    width: 100%;
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 24px #eee;
+    cursor: pointer;
+  }
+
+  &__content {
+    flex-grow: 1;
+    padding: 0 24px;
+  }
+
+  &__img-wrapper {
+    min-width: 240px;
+    min-height: 150px;
+    border-radius: 8px;
+  }
+
+  &__img {
+    width: 240px;
+    height: 150px;
+    border-radius: 8px;
+  }
+
+  &__age {
+    color: rgb(106, 116, 130);
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    color: rgb(46, 50, 56);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    color: rgb(46, 50, 56);
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  &__teacher-rating-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .class-teacher-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    &__img-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    &__img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    &__name {
+      margin-right: 8px;
+      color: #333;
+      font-size: 14px;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+
+  &__date-price-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    color: rgb(106, 116, 130);
+    font-size: 16px;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    color: rgb(106, 116, 130);
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .class-card-wrapper {
+      flex-direction: column;
+    }
+
+    &__content {
+      padding: 0;
+    }
+
+    &__img-wrapper {
+      width: 100%;
+      height: auto;
+      background-color: unset;
+      max-height: 300px;
+      border-radius: 8px;
+    }
+
+    &__img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      border-radius: 8px;
+    }
+
+    &__date-price-wrapper {
+      flex-direction: column;
+    }
+
+    &__price {
+      margin-top: 8px;
+      margin-right: 4px;
+    }
+  }
+}
