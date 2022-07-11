@@ -50,43 +50,43 @@ const CitySlider = () => {
         <h2 className="city-slider__title">تجربه‌های مختلف</h2>
         <div className="navigation-wrapper">
           <div ref={sliderRef} className="keen-slider city-slider__slider">
-            <Link to="/city/tehran">
+            <Link to="/city-experiences/تهران">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={tehran} alt="tehran" />
                 <div className="city-slider__slide-text">تهران</div>
               </div>
             </Link>
-            <Link to="/city/isfahan">
+            <Link to="/city-experiences/اصفهان">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={isfahan} alt="isfahan" />
                 <div className="city-slider__slide-text">اصفهان</div>
               </div>
             </Link>
-            <Link to="/city/shiraz">
+            <Link to="/city-experiences/شیراز">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={shiraz} alt="shiraz" />
                 <div className="city-slider__slide-text">شیراز</div>
               </div>
             </Link>
-            <Link to="/city/yazd">
+            <Link to="/city-experiences/یزد">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={yazd} alt="yazd" />
                 <div className="city-slider__slide-text">یزد</div>
               </div>
             </Link>
-            <Link to="/city/gilan">
+            <Link to="/city-experiences/گیلان">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={gilan} alt="gilan" />
                 <div className="city-slider__slide-text">گیلان</div>
               </div>
             </Link>
-            <Link to="/city/qom">
+            <Link to="/city-experiences/قم">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={qom} alt="qom" />
                 <div className="city-slider__slide-text">قم</div>
               </div>
             </Link>
-            <Link to="/city/ardebil">
+            <Link to="/city-experiences/اردبیل">
               <div className="keen-slider__slide city-slider__slide">
                 <img src={ardebil} alt="ardebil" />
                 <div className="city-slider__slide-text">اردبیل</div>

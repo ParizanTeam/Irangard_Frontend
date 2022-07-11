@@ -8,11 +8,11 @@ import defaultXpImg from '../../assets/images/defaultXpImg.png';
 import './style.scss';
 import defaultProfileImg from '../../assets/images/avatar.png';
 
-function ExperiencesList({ experiences }) {
+function ExperiencesList({ experiences, city }) {
   const navigate = useNavigate();
   return (
     <div className="experiences">
-      <h1 className="experiences__title">تجربه‌ها</h1>
+      <h1 className="experiences__title">{city ? `تجربه‌های شهر ${city}` : 'تجربه‌ها'}</h1>
       <div className="experiences__list">
         {experiences.length === 0 && <p className="experiences__no-experience">هیچ تجربه‌ای پیدا نشد.</p>}
         {experiences.map(xp => (
