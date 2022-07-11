@@ -13,19 +13,27 @@ import IranStateKeys from 'src/assets/data/IranStateKeys.json';
 import './style.scss';
 import Navbar from 'src/components/Navbar';
 import { useMobile } from 'src/utils/hooks';
-
 import { Checkbox, MenuItem, Select, Switch, Chip, TextField } from '@mui/material';
+import apiInstance from 'src/config/axios';
+import loader from '../../assets/images/loader.gif';
 
 const mockFeatures = [
+  'چای ساز',
+  'اتو',
+  'اینترنت',
+  'مبلمان',
+  'تاکسی سرویس',
+  'صندوق امانات',
   'امکانات برگزاری جلسات و ضیافت',
   'امکانات ویژه برای معلولان',
-  'جکوزی',
   'استخر سرپوشیده',
-  'باربیکیو',
   'استخر',
-  'صندوق امانات',
+  'جکوزی',
+  'باربیکیو',
   'میز بیلیارد',
   'سالن بدنسازی',
+  'پیست دوچرخه',
+  'خدمات تماس بیدار باش',
 ];
 
 const mockRooms = {
@@ -35,6 +43,9 @@ const mockRooms = {
   4: '‏۴ نفر',
 };
 const Filters = ({ isHotel, isFree }) => {
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // /places/?city=کیش&place_type=1&tags__name=چای&features__title=سرویس بهداشتی&rooms__capacity=2&rate__gte=3
 
   const default_filter = {
@@ -141,16 +152,6 @@ const Filters = ({ isHotel, isFree }) => {
         <Checkbox checked={filter['is_free']} onChange={e => handleChange('is_free', e.target.checked)} />
         <label>رایگان باشد.</label>
       </div>
-      {/* 
-      {isFree && (
-        <div>
-          <label>هزینه ورودی: </label>
-          {filter["is_free"] && 'دارد (پولی)'}
-          {!filter["is_free"] && 'ندارد (رایگان)'}
-
-          <Switch checked={filter["is_free"]} onChange={e => handleChange("is_free",e.target.checked)} />
-        </div>
-      )} */}
 
       {
         <div style={{ marginTop: '30px' }}>
@@ -183,10 +184,54 @@ const PlaceFilters = () => {
   const [cities, setCities] = useState([]);
   const [q, setQ] = useState(searchParams.get('q') || '');
   const isMobile = useMobile();
+
+  const [placesData, setPlacesData] = useState([]);
+
+  const [isLoading, setLoading] = useState(false);
+  const filterKeys = {
+    q: 'search',
+    place_type:'place_type',
+    state:'state',
+    city:'city'
+  };
   useEffect(async () => {
     if (state) console.log('state', IranStateKeys[state]);
     setCities(await (await fetch(`/assets/data/cities/${state?.value ?? IranStateKeys[state]}.json`)).json());
   }, [state]);
+
+  // /places/?city=کیش&place_type=1&tags__name=چای&features__title=سرویس بهداشتی&rooms__capacity=2&rate__gte=3
+  const updateResult = async e => {
+    if (e) e.preventDefault();
+    // for (const sp in [q,city,]) {
+    //   if (Object.hasOwnProperty.call(object, sp)) {
+    //     const element = object[sp];
+
+    //   }
+    // }
+    let query = '';
+    for (const [key, value] of searchParams) {
+      query += `${filterKeys[key]}=${value}&`;
+    }
+
+    setLoading(true);
+    await apiInstance.get(`places/?${query}`).then(res => {
+      console.log(res.data);
+      const temp = res.data['results'].map(x => {
+        return {
+          id: x.id,
+          title: x.title,
+          description: x.description,
+          imgSrc: x.images.length !== 0 ? x.images[0]['image'] : 'default',
+        };
+      });
+      setPlacesData(temp);
+      setLoading(false);
+    });
+  };
+
+  useEffect(async () => {
+    updateResult();
+  }, [placeType]);
 
   useEffect(() => {
     let d = searchParams;
@@ -236,7 +281,7 @@ const PlaceFilters = () => {
       <IconContext.Provider value={{ color: '#00aa6c', size: '1.3em' }}>
         <div className="search-places">
           <div className="search-places__header">
-            <div className="search-places__filters">
+            <form className="search-places__filters" onSubmit={updateResult}>
               <div className="searchbar">
                 <div className="green-field">
                   <MdSearch className="icon" />
@@ -311,11 +356,11 @@ const PlaceFilters = () => {
                 </div>
               </div>
               <div>
-                <button className="search-btn">
+                <button type="submit" className="search-btn">
                   <p>بگرد</p>
                 </button>
               </div>
-            </div>
+            </form>
             <div className="search-places__tabs">
               <Tabs value={placeType} onChange={handleTabChange} variant="scrollable">
                 <Tab label="همه نتایج" value="all" />
@@ -329,7 +374,15 @@ const PlaceFilters = () => {
 
           <div className="search-places__main">
             {!isMobile && <Filters isHotel={placeType == 1} isFree={placeType >= 2} />}
-            <PlaceCards className="search-places__result" />
+            <div className="search-places__result">
+              {isLoading ? (
+                <div className="loading-wrapper">
+                  <img src={loader} alt="loading..." className="loading-wrapper__loader" />
+                </div>
+              ) : (
+                <PlaceCards className="search-places__result" data={placesData} />
+              )}
+            </div>
           </div>
           <Footer />
         </div>

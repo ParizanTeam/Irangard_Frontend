@@ -3,6 +3,18 @@
 .search-places {
   background-color: whitesmoke;
 
+  .loading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    // &__loader {
+    //   border-radius: 50%;
+    //   max-width: 300px;
+    //   max-height: 300px;
+    // }
+
+  }
   &__header {
     z-index: 10;
     position: sticky;
@@ -24,7 +36,7 @@
   &__filters {
     display: flex;
     margin: auto;
-    
+
     @media (min-width: 800px) {
       align-items: center;
       gap: 40px;
@@ -35,7 +47,6 @@
       width: 95%;
       flex-direction: column;
     }
-
   }
   &__main {
     display: flex;
@@ -60,6 +71,7 @@
   }
   &__result {
     padding: 16px;
+    width: 100%;
   }
   .search-btn {
     border: none;
@@ -70,12 +82,12 @@
     -webkit-transition: background-color 0.2s linear;
     -o-transition: background-color 0.2s linear;
     transition: background-color 0.2s linear;
-    padding:5px 0px;
+    padding: 5px 0px;
 
     cursor: pointer;
     @media (min-width: 800px) {
       margin: 0px 30px;
-      padding:10px 0px;
+      padding: 10px 0px;
     }
     &:hover {
       background-color: #00aa6c;

@@ -1,30 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'keen-slider/keen-slider.min.css';
 import './style.scss';
 
 const PlaceCard = ({ placeData }) => {
-  const { imgSrc, title, description, experiencesNumber, } = placeData;
+  const { id,imgSrc, title, description } = placeData;
   return (
     <>
-      <div className="class-card">
-        <div className="class-card-wrapper">
-          <div className="class-card__img-wrapper">
-            <img className="class-card__img" src={imgSrc} alt={title} />
+      <Link className="place-card" to={`/places/${id}`}>
+        <div className="place-card-wrapper">
+          <div className="place-card__img-wrapper">
+            <img className="place-card__img" src={imgSrc} alt={title} />
           </div>
-          <div className="class-card__content">
-            <h3 className="class-card__title">{title}</h3>
-            <p className="class-card__description">
+          <div className="place-card__content">
+            <h3 className="place-card__title">{title}</h3>
+            <p className="place-card__description">
               {description.length > 300 ? description.slice(0, 240) + '...' : description}
             </p>
-            <div className="class-card__date-price-wrapper">
-              <div className="class-card__date">
-                <p>{experiencesNumber} تجربه برای این مکان ثبت شده است.</p>
-              </div>
-              <div className="class-card__price">تجربه های مربوط به این مکان</div>
-            </div>
+            {/* <div className="place-card__experiences">تجربه های مربوط به این مکان</div> */}
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 };
