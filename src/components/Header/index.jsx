@@ -15,30 +15,27 @@ const Header = () => {
   return (
     <>
       <div className="header__nav-items-wrapper">
-        <div className="first-row">
-          <Link to="/restaurants" className="header__nav-item">
-            <div className="txt">رستوران‌ها</div>
-            <RiRestaurantLine size={24} />
-          </Link>
-          <Link to="/residences" className="header__nav-item">
-            <div className="txt">اقامتگاه‌ها</div>
-            <RiHome3Line size={24} />
-          </Link>
-        </div>
-        <div className="second-row">
-          <Link to="tours" className="header__nav-item">
-            <div className="txt">تورها</div>
-            <RiShipLine size={24} />
-          </Link>
-          <Link to="experiences" className="header__nav-item">
-            <div className="txt">تجربه‌ها</div>
-            <RiChatQuoteLine size={24} />
-          </Link>
-          <Link to="/places/new" className="header__nav-item">
-            <div>+ مکان جدید</div>
-            <RiAncientPavilionFill size={24} />
-          </Link>
-        </div>
+        <Link to="/restaurants" className="header__nav-item">
+          <div className="txt">رستوران‌ها</div>
+          <RiRestaurantLine size={20} />
+        </Link>
+        <Link to="/residences" className="header__nav-item">
+          <div className="txt">اقامتگاه‌ها</div>
+          <RiHome3Line size={20} />
+        </Link>
+
+        <Link to="tours" className="header__nav-item">
+          <div className="txt">تورها</div>
+          <RiShipLine size={20} />
+        </Link>
+        <Link to="experiences" className="header__nav-item">
+          <div className="txt">تجربه‌ها</div>
+          <RiChatQuoteLine size={20} />
+        </Link>
+        <Link to="/places/new" className="header__nav-item">
+          <div className="txt">مکان جدید</div>
+          <RiAncientPavilionFill size={20} />
+        </Link>
       </div>
     </>
   );
