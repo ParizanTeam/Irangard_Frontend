@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import NumberFormat from 'react-number-format';
-import { MenuItem, Select, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
@@ -11,9 +11,11 @@ import Checkbox from '@mui/material/Checkbox';
 import ClearIcon from '@mui/icons-material/Clear';
 import AddIcon from '@mui/icons-material/Add';
 import { ErrorMessage } from 'src/components/LoginModal/Common';
+import DatePicker from 'react-multi-date-picker';
+import persian_fa from 'react-date-object/locales/persian_fa';
 
 export function BasicInput(props) {
-  const { id, label, validation, placeholder, inputProps, type = 'text',readOnly=false, isTextArea = false } = props;
+  const { id, label, validation, placeholder, inputProps, type = 'text', readOnly = false, isTextArea = false } = props;
   const {
     register,
     formState: { errors },
@@ -24,10 +26,10 @@ export function BasicInput(props) {
     className: `field-input ${errors[id] ? 'invalid' : ''} `,
     autoComplete: 'off',
     id: id,
-    name:id,
+    name: id,
     placeholder: placeholder,
     type: type,
-    readOnly:readOnly,
+    readOnly: readOnly,
   };
   return (
     <div className="basic-field">
@@ -43,12 +45,7 @@ export function BasicInput(props) {
 }
 
 export function WorkTimeInput() {
-  const {
-    register,
-    resetField,
-    watch,
-    formState: { errors },
-  } = useFormContext();
+  const { setValue, watch } = useFormContext();
 
   const [day, setDay] = useState('Saturday');
 
@@ -66,22 +63,10 @@ export function WorkTimeInput() {
     Friday: 'جمعه',
   };
 
-  const default_time_format = { all_day: false, start: 0, end: 0 };
-  const default_days_time = {
-    Saturday: default_time_format,
-    Sunday: default_time_format,
-    Monday: default_time_format,
-    Tuesday: default_time_format,
-    Wednesday: default_time_format,
-    Thursday: default_time_format,
-    Friday: default_time_format,
-  };
-
-  const [daysTime, setDaysTime] = useState(default_days_time);
+  const daysTime = watch('working_hours');
 
   const handleChange = (day, key, value) => {
-    console.log('days', daysTime);
-    setDaysTime({ ...daysTime, [day]: { ...daysTime[day], [key]: value } });
+    setValue('working_hours', { ...daysTime, [day]: { ...daysTime[day], [key]: value } });
   };
 
   return (
@@ -90,13 +75,13 @@ export function WorkTimeInput() {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleDayChange} variant="scrollable">
             {Object.entries(days_label).map(([day, label]) => (
-              <Tab label={label} value={day} />
+              <Tab key={day} label={label} value={day} />
             ))}
           </TabList>
         </Box>
 
         {Object.entries(daysTime).map(([day, time]) => (
-          <TabPanel value={day}>
+          <TabPanel key={day} value={day}>
             <div>
               <Checkbox
                 label="شبانه روزی"
@@ -114,8 +99,8 @@ export function WorkTimeInput() {
                   </label>
                   <input
                     disabled={time.all_day}
-                    value={time.start}
-                    onChange={e => handleChange(day, 'start', e.target.value)}
+                    value={time.start_time}
+                    onChange={e => handleChange(day, 'start_time', e.target.value)}
                     type="time"
                     className="field-input"
                     id="start"
@@ -130,8 +115,8 @@ export function WorkTimeInput() {
                   </label>
                   <input
                     disabled={time.all_day}
-                    value={time.end}
-                    onChange={e => handleChange(day, 'end', e.target.value)}
+                    value={time.end_time}
+                    onChange={e => handleChange(day, 'end_time', e.target.value)}
                     type="time"
                     className="field-input"
                     id="end"
@@ -148,12 +133,14 @@ export function WorkTimeInput() {
 }
 
 export function HotelRoomsInput(props) {
+  const { setValue, watch } = useFormContext();
   const persianNumeral = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-  const default_room_values = { room_type: '', capacity: '', price: '' };
-  const room_keys = Object.keys(default_room_values);
-  const [rooms, setRooms] = useState([default_room_values]);
+  const room_keys = ['room_type', 'capacity', 'price'];
   const [errors, setErrors] = useState([false]);
+  const [lock, setLock] = useState(false);
+  const default_room_values = { room_type: '', capacity: '', price: '' };
 
+  const rooms = watch('rooms');
   const mockRooms = {
     1: '‏۱ نفر',
     2: '‏۲ نفر',
@@ -164,19 +151,29 @@ export function HotelRoomsInput(props) {
     const { name, value } = e.target;
     const list = [...rooms];
     list[index][name] = value;
-    setRooms(list);
+    setValue('rooms', list);
   };
 
   const handleRemoveClick = index => {
     const list = [...rooms];
     list.splice(index, 1);
-    setRooms(list);
+    setValue('rooms', list);
   };
-
-  const handleAddNewRoom = () => {
+  const checkErrors = () => {
     let err = rooms.map(room => !room_keys.every(x => room[x]));
     setErrors(err);
-    if (err.every(x => !x)) setRooms([...rooms, default_room_values]);
+    return err;
+  };
+
+  const submitRooms = () => {
+    let err = checkErrors();
+    if (err.every(x => !x)) setLock(true);
+  };
+  const handleAddNewRoom = () => {
+    let err = checkErrors();
+    if (err.every(x => !x)) {
+      setValue('rooms', [...rooms, default_room_values]);
+    }
   };
   // "room_type": "یک تخته لوکس",
   // "capacity": 1,
@@ -192,6 +189,7 @@ export function HotelRoomsInput(props) {
             <div className="hotel-rooms__groupfield">
               <div className="hotel-rooms__field">
                 <TextField
+                  disabled={lock}
                   name="room_type"
                   id="room-type"
                   placeholder="نوع اتاق را وارد کنید"
@@ -202,6 +200,7 @@ export function HotelRoomsInput(props) {
               </div>
               <div className="hotel-rooms__field">
                 <Select
+                  disabled={lock}
                   name="capacity"
                   id="room-capacity"
                   displayEmpty
@@ -222,6 +221,7 @@ export function HotelRoomsInput(props) {
               <div className="hotel-rooms__field">
                 <div className={room.price ? 'room-price' : ''}>
                   <NumberFormat
+                    disabled={lock}
                     name="price"
                     placeholder="هزینه اتاق را وارد کنید"
                     value={room.price}
@@ -234,14 +234,29 @@ export function HotelRoomsInput(props) {
                 </div>
               </div>
               <div className="btn-box">
-                {rooms.length !== 1 && (
+                {rooms.length !== 1 && !lock && (
                   <ClearIcon
                     sx={rooms.length - 1 !== i ? { ml: 4 } : {}}
                     className="delete-btn"
                     onClick={() => handleRemoveClick(i)}
                   />
                 )}
-                {rooms.length - 1 === i && <AddIcon className="add-btn" onClick={handleAddNewRoom} />}
+                {rooms.length - 1 === i && (
+                  <>
+                    {lock ? (
+                      <Button variant="outlined" color="warning" onClick={() => setLock(false)}>
+                        ویرایش اتاق‌ها
+                      </Button>
+                    ) : (
+                      <>
+                        <AddIcon className="add-btn" onClick={handleAddNewRoom} />
+                        <Button variant="outlined" onClick={submitRooms}>
+                          ثبت
+                        </Button>
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             </div>
             {errors[i] && (
@@ -252,6 +267,7 @@ export function HotelRoomsInput(props) {
           </>
         );
       })}
+      {!lock && <div className="guide">*راهنما: قبل زدن ثبت مکان، برای ثبت اطلاعات اتاق‌های اقامتگاه حتما دکمه ثبت را بزنید.</div>}
     </div>
   );
 }

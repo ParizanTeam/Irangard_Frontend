@@ -21,7 +21,22 @@
     justify-content: center;
     max-width: 1000px;
   }
+  .guide {
+    color: $c-gray-40;
 
+    &.box {
+      border: 2px solid $c-gray-20;
+      border-radius: 8px;
+      width: 350px;
+      height: 350px;
+      padding: 10px;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   .baseinfo-section {
     .basic-field {
       margin: 15px 0;
@@ -46,8 +61,8 @@
       }
       .active-chip {
         .MuiChip-root {
-          box-shadow: 0 0 0 1.2px inset black;
-          border-color: black;
+          box-shadow: 0 0 0 1.2px inset #34e0a1;
+          border-color: #04aa6c;
           background-color: white;
         }
       }
@@ -63,22 +78,6 @@
   .map-section {
     .state-city-address {
       padding-left: 20px;
-    }
-    .guide {
-      color: $c-gray-40;
-
-      &.box {
-        border: 2px solid $c-gray-20;
-        border-radius: 8px;
-        width: 350px;
-        height: 350px;
-        padding:10px;
-        align-items: center;
-        text-align: center;
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-      }
     }
     .location-info {
       display: flex;
@@ -168,7 +167,7 @@
       border: 1px solid rgb(173, 173, 173);
 
       &:focus {
-        border-color: black;
+        border-color: #04aa6c;
         border-width: 2px;
       }
       &.invalid {

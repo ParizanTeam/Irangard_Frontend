@@ -1,10 +1,9 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Chip, TextField,Autocomplete } from '@mui/material';
+import { Chip, TextField, Autocomplete } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import Button from 'src/components/Button';
 import ImgDragDrop from 'src/components/ImageUploader/index';
 import { PlaceTypes, DidaniTags } from '../info';
 import { HotelRoomsInput } from '../Inputs';
@@ -117,10 +116,6 @@ export default function MoreInfoSection(props) {
         <h3 className="title">تصاویری از {placeLabel}</h3>
         <ImgDragDrop />
       </div>
-
-      <Button type="submit" variant="green">
-        ثبت مکان
-      </Button>
     </div>
   );
 }

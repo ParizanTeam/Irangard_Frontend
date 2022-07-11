@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useMediaQuery,Autocomplete } from '@mui/material';
-import Button from 'src/components/Button';
 import Map from 'src/components/Map';
 import { BasicInput } from '../Inputs';
 import IranStates from 'src/assets/data/IranStates.json';
@@ -15,7 +14,7 @@ export default function MapSection(props) {
   const city = watch('city');
   const [cities, setCities] = useState([]);
   useEffect(async () => {
-    if (state) setCities(await (await fetch(`assets/data/cities/${state?.value}.json`)).json());
+    if (state) setCities(await (await fetch(`/assets/data/cities/${state?.value}.json`)).json());
   }, [state]);
   
   const street_validation = {
@@ -128,17 +127,6 @@ export default function MapSection(props) {
           )}
         </div>
       </div>
-
-      <Button
-        variant="green"
-        onClick={() => {
-          trigger().then(isOkay => {
-            if (isOkay) setValue('activeStep', 2);
-          });
-        }}
-      >
-        ادامه
-      </Button>
     </div>
   );
 }

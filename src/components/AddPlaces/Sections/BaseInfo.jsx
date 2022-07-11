@@ -1,11 +1,10 @@
 import React from 'react';
 import { Chip, Radio } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import Button from 'src/components/Button';
 import { PlaceTypes } from '../info';
 import { BasicInput } from '../Inputs';
 export default function BaseInfoSection(props) {
-  const { watch, setValue, trigger } = useFormContext();
+  const { watch, setValue } = useFormContext();
 
   const placeLabel = PlaceTypes[watch('placeType')]?.label;
   return (
@@ -41,14 +40,14 @@ export default function BaseInfoSection(props) {
         بله
         <Radio
           checked={watch('isOwner') === 'yes'}
-          onChange={e => setValue('isOwner', event.target.value)}
+          onChange={e => setValue('isOwner', e.target.value)}
           value="yes"
           name="radio-buttons"
         />
         خیر
         <Radio
           checked={watch('isOwner') === 'no'}
-          onChange={e => setValue('isOwner', event.target.value)}
+          onChange={e => setValue('isOwner', e.target.value)}
           value="no"
           name="radio-buttons"
         />
@@ -73,16 +72,6 @@ export default function BaseInfoSection(props) {
               isTextArea
             />
           </div>
-          <Button
-            variant="green"
-            onClick={() => {
-              trigger().then(isOkay => {
-                if (isOkay) setValue('activeStep', 1);
-              });
-            }}
-          >
-            ادامه
-          </Button>
         </>
       )}
     </div>
