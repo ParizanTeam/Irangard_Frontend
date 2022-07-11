@@ -19,7 +19,7 @@ const PlaceContactInfo = ({ className, info }) => {
     <div className={`place-contact ${className || ''}`}>
       <Map style={{ width: '100%', height: 240 }} defaultLat={lat} defaultLong={long} />
       <a target={'_blank'} href={`https://www.google.com/maps/@${lat},${long},14z`}>
-        <button className="place-contact__navigate secondary-btn">مسیریابی</button>
+        <button className="place-contact__navigate secondary-btn">مشاهده در گوگل مپ</button>
       </a>
       <div className="place-contact__items">
         {address && (
