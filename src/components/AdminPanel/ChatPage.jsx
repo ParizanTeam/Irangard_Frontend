@@ -9,8 +9,10 @@ import './style.scss';
 import { baseUrl } from 'src/utils/constants';
 import Conversation from '../Chat/Conversation';
 import Chat from './Chat';
+import { useParams } from 'react-router-dom';
 
 function AdminPanel() {
+  const {username} = useParams();
   return (
     <div className="bg" style={{ backgroundColor: '#0f0026' }}>
       <div className="sidebar">
@@ -19,7 +21,7 @@ function AdminPanel() {
       <div className="main" style={{ backgroundColor: '#0f0026', width: '100%', minHeight: '100vh' }}>
         <div className="panel-header"></div>
         <div className="body">
-          <Chat senderPlaceHolder="این یک متن تستی است." />
+          <Chat senderPlaceHolder="این یک متن تستی است." username={username} />
         </div>
       </div>
     </div>

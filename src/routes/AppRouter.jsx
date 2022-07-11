@@ -47,11 +47,11 @@ const AppRouter = () => {
         <Route path="/tours/:id" element={<ToursDetailPage />} />
         <Route path="/tours/:id/dashboard" element={<TourDashboard />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path='/panel' element={<AdminPanel/>}/>
-        <Route path='/panel/statics' element={<StaticsPage/>}/>
-        <Route path='/panel/addremove' element={<AddRemoveUser/>}/>
+        <Route path="/panel" element={<AdminPanel />} />
+        <Route path="/panel/statics" element={<StaticsPage />} />
+        <Route path="/panel/addremove" element={<AddRemoveUser />} />
         <Route path="/panel/chat" element={<ChatList />} />
-        <Route path="/panel/chatPage" element={<ChatPage />} />
+        <Route path="/panel/chatPage/:username" element={<ChatPage />} />
         <Route path="/launcher" element={<ChatLayout />} />
         <Route path="/Search" x element={<PlaceFilters />} />
         <Route path="/places/new" x element={<AddPlaces />} />

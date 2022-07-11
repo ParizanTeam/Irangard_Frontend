@@ -73,7 +73,7 @@ function Chat(props) {
         'api.parizaan.ir' +
         '/chat/room/' +
         // auth.user.username +
-        'emad12' +
+        props.username +
         '/'
     );
 
@@ -83,7 +83,7 @@ function Chat(props) {
 
     chatSocket.current = newChatSocket;
 
-    axios.get(`${baseUrl}/chat/room/messages/${'emad12'}`).then(response => {
+    axios.get(`${baseUrl}/chat/room/messages/${props.username}`).then(response => {
       setMessages(response.data);
       console.log('messages', messages);
     });
@@ -94,8 +94,8 @@ function Chat(props) {
     chatSocket.current.send(
       JSON.stringify({
         message: message,
-        username: "emad12",
-        room_name: "emad12",
+        username: props.username,
+        room_name: props.username,
         sender_type: 'SERVER',
       })
     );
@@ -109,7 +109,7 @@ function Chat(props) {
           chatSocket={chatSocket.current}
           messages={messages}
           title="پشتیبانی ایرانگرد"
-          subtitle="هر سوالی داری بپرس"
+          subtitle={`${props.username}`}
           senderPlaceHolder="سوالت رو بپرس !!!"
           handleNewUserMessage={handleNewUserMessage}
         />
