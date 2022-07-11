@@ -14,7 +14,9 @@ import ToursList from 'src/components/Tours/ToursList';
 import TourDashboard from 'src/components/Tours/TourDashboard';
 import AdminPanel from '../components/AdminPanel';
 import AddRemoveUser from 'src/components/AdminPanel/AddOrRemove';
+import ChatPage from '../components/AdminPanel/ChatPage';
 import StaticsPage from 'src/components/AdminPanel/StaticsPage';
+import ChatList from 'src/components/AdminPanel/ChatList';
 import Chat from 'src/components/Chat';
 import ChatLayout from 'src/components/Chat/ChatLayout';
 import CityExperiences from '../components/CityExperiences';
@@ -48,8 +50,10 @@ const AppRouter = () => {
         <Route path="/panel" element={<AdminPanel />} />
         <Route path="/penal/statics" element={<StaticsPage />} />
         <Route path="/panel/addremove" element={<AddRemoveUser />} />
+        <Route path="/panel/chat" element={<ChatList />} />
+        <Route path="/panel/chatPage" element={<ChatPage />} />
         <Route path="/launcher" element={<ChatLayout />} />
-        <Route path="/Search"x element={<PlaceFilters />} />
+        <Route path="/Search" x element={<PlaceFilters />} />
         <Route path="/places/new" x element={<AddPlaces />} />
         <Route path="/Search" x element={<PlaceFilters />} />
         <Route path="*" element={<NotFoundPage />} />
