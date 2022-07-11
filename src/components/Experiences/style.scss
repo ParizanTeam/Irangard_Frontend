@@ -154,6 +154,13 @@
       background-color: #ff725d;
     }
   }
+  &__load-more-wrapper {
+    text-align: center;
+  }
+  &__load-more {
+    width: auto;
+    margin: -32px 0 16px;
+  }
 }
 
 @media (max-width: 900px) {

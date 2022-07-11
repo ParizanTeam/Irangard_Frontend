@@ -57,7 +57,7 @@ const Profile = () => {
   useEffect(async () => {
     setExperiencesLoading(true);
     await axios
-      .get(`${baseUrl}/experiences/?user__username=${usernameQuery}`)
+      .get(`${baseUrl}/experiences/?user__username=${usernameQuery}&size=50`)
       .then(res => res.data)
       .then(data => {
         setExperiences(data.results);
@@ -159,7 +159,11 @@ const Profile = () => {
           <div className="profile">
             <div className="profile-summary">
               <div className="profile-summary__img-username">
-                <div className={`profile-summary__img ${auth.isSpecial ? 'profile-summary__img--special' : ''}`}>
+                <div
+                  className={`profile-summary__img ${
+                    auth.isSpecial && auth.user.username === data.username ? 'profile-summary__img--special' : ''
+                  }`}
+                >
                   <img src={data.profileImg || data.image || defaultProfileImg} alt={data.username} />
                 </div>
                 <p className="profile-summary__username">{data.username}</p>
