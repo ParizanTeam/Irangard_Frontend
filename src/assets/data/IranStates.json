@@ -1,6 +1,6 @@
 [
     {
-        "label": "اردبيل",
+        "label": "اردبیل",
         "value": "Ardabil"
     },
     {
@@ -12,15 +12,15 @@
         "value": "Alborz"
     },
     {
-        "label": "ايلام",
+        "label": "ایلام",
         "value": "Ilam"
     },
     {
-        "label": "آذربايجان شرقي",
+        "label": "آذربایجان شرقی",
         "value": "Azrbayjanshrghi"
     },
     {
-        "label": "آذربايجان غربي",
+        "label": "آذربایجان غربی",
         "value": "Azrbayjanghrbi"
     },
     {
@@ -32,19 +32,19 @@
         "value": "Tehran"
     },
     {
-        "label": "چهارمحال وبختياري",
+        "label": "چهارمحال وبختیاری",
         "value": "Chaharmhalobkhtiari"
     },
     {
-        "label": "خراسان جنوبي",
+        "label": "خراسان جنوبی",
         "value": "Khorasanjonubi"
     },
     {
-        "label": "خراسان رضوي",
+        "label": "خراسان رضوی",
         "value": "Khorasanrazavi"
     },
     {
-        "label": "خراسان شمالي",
+        "label": "خراسان شمالی",
         "value": "Khorasanshomali"
     },
     {
@@ -60,7 +60,7 @@
         "value": "Semnan"
     },
     {
-        "label": "سيستان وبلوچستان",
+        "label": "سیستان وبلوچستان",
         "value": "Sistanvabalochestan"
     },
     {
@@ -68,7 +68,7 @@
         "value": "Fars"
     },
     {
-        "label": "قزوين",
+        "label": "قزوین",
         "value": "Ghazvin"
     },
     {
@@ -76,19 +76,19 @@
         "value": "Qom"
     },
     {
-        "label": "كردستان",
+        "label": "کردستان",
         "value": "Kordestan"
     },
     {
-        "label": "كرمان",
+        "label": "کرمان",
         "value": "Kerman"
     },
     {
-        "label": "كرمانشاه",
+        "label": "کرمانشاه",
         "value": "Kermanshah"
     },
     {
-        "label": "كهگيلويه وبويراحمد",
+        "label": "کهگیلویه وبویراحمد",
         "value": "Kohgiloyhoboyrahmad"
     },
     {
@@ -96,7 +96,7 @@
         "value": "Golestan"
     },
     {
-        "label": "گيلان",
+        "label": "گیلان",
         "value": "Gilan"
     },
     {
@@ -108,7 +108,7 @@
         "value": "Mazandaran"
     },
     {
-        "label": "مركزي",
+        "label": "مرکزی",
         "value": "Markazi"
     },
     {
@@ -120,7 +120,7 @@
         "value": "Hamedan"
     },
     {
-        "label": "يزد",
+        "label": "یزد",
         "value": "Yazd"
     }
 ]
