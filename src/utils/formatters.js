@@ -64,3 +64,10 @@ export const formatDate = date => {
 export const convertJalaliDateToGeorgian = date => {
   return moment.from(convertNumberToEnglish(date), 'fa', 'YYYY/MM/DD').format('YYYY-MM-DD');
 };
+
+export const getPersianDateWithSlash = date => {
+  if (!(date instanceof Date)) {
+    throw new Error('invalid input');
+  }
+  return date.toLocaleString('fa-IR', { year: 'numeric', month: '2-digit', day: '2-digit' }).split(' ').join('/');
+};
