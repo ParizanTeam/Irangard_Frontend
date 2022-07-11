@@ -219,7 +219,7 @@ const PlaceFilters = () => {
           id: x.id,
           title: x.title,
           description: x.description,
-          imgSrc: x.images.length !== 0 ? x.images[0]['image'] : 'default',
+          imgSrc: x.images.length !== 0 ? x.images[0]['image'] : '',
         };
       });
       setPlacesData(temp);
