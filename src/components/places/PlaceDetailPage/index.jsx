@@ -40,7 +40,7 @@ const PlaceDetailPage = () => {
           <div className="place-detail__body">
             <h3 className="place-detail__about-title">درباره {data.title}</h3>
             <p className="place-detail__about-description">{data.description}</p>
-            <PlaceTags tags={data.tags} />
+            {data.tags && data.tags.length > 0 && <PlaceTags tags={data.tags} />}
             {data.rooms && data.rooms.length > 0 && <RoomsList rooms={data.rooms} />}
             <PlaceCosts costs={data.optional_costs} isFree={data.is_free} />
           </div>
