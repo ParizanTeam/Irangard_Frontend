@@ -5,6 +5,26 @@
   margin: 32px 0;
   padding: 32px;
 
+  &__like-btn {
+    width: auto;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    &--fill {
+      background-color: #1778f2;
+      color: #fff;
+      border: 1px solid #1778f2;
+    }
+    &--empty {
+      color: #1778f2;
+      background-color: #fff;
+      border: 1px solid #1778f2;
+    }
+    svg {
+      margin-right: 8px;
+    }
+  }
+
   &__title {
     font-size: 24px;
     margin: 16px 0 24px;

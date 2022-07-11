@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import axios from 'axios';
 import { Rating } from '@mui/material';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { RiMapPinLine, RiHeartFill, RiTimeLine } from 'react-icons/ri';
 import Layout from '../Layout';
 import Comments from '../Comments';
@@ -10,22 +10,31 @@ import Loader from '../Loader';
 import { convertNumberToPersian, formatDate } from '../../utils/formatters';
 import { baseUrl } from 'src/utils/constants';
 import defaultXpImg from '../../assets/images/defaultXpImg.png';
+import useAuth from '../../context/AuthContext';
+import Button from '../Button';
+import apiInstance from '../../config/axios';
 import './style.scss';
 
 function ExperienceDetail() {
   const { id } = useParams();
+  const auth = useAuth();
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isLiking, setisLiking] = useState(false);
+  const [likesNumber, setLikesNumber] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useEffect(async () => {
-    await axios
+    await apiInstance
       .get(`${baseUrl}/experiences/${id}`)
       .then(res => res.data)
       .then(data => {
         setData(data);
+        setIsLiked(data.is_liked_new);
+        setLikesNumber(data.like_number);
       })
       .catch(error => {
         console.log(error.response.status);
@@ -35,6 +44,29 @@ function ExperienceDetail() {
       });
     setLoading(false);
   }, []);
+
+  const handleLike = () => {
+    console.log('is like: ', isLiked);
+    setisLiking(true);
+    apiInstance
+      .post(`/experiences/${id}/${isLiked ? 'unlike' : 'like'}`)
+      .then(res => res.data)
+      .then(data => {
+        console.log(data);
+        if (isLiked) {
+          setLikesNumber(old => old - 1);
+        } else {
+          setLikesNumber(old => old + 1);
+        }
+        setIsLiked(old => !old);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => {
+        setisLiking(false);
+      });
+  };
 
   return (
     <Layout>
@@ -59,9 +91,21 @@ function ExperienceDetail() {
             </div>
             <div className="experience-detail__likes">
               <RiHeartFill size={20} />
-              {convertNumberToPersian(data.like_number)}
+              {convertNumberToPersian(likesNumber)}
             </div>
           </div>
+          {auth.isLoggedIn && (
+            <Button
+              onClick={handleLike}
+              className={`experience-detail__like-btn ${
+                isLiked ? 'experience-detail__like-btn--fill' : 'experience-detail__like-btn--empty'
+              }`}
+              disabled={isLiking}
+            >
+              {isLiked ? 'پسندیده‌شده' : 'پسندیدن'}
+              <ThumbUpIcon fontSize='12px' />
+            </Button>
+          )}
           <img className="experience-detail__img" src={data.image || defaultXpImg} alt={data.title} />
           {data.summary && (
             <>
