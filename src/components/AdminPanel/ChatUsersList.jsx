@@ -48,6 +48,8 @@ function Generate(element, navigate) {
 
         <ListItemText primary={element.username} sx={{ margin: 'auto', justifyContent: 'center', color: 'black' }} />
 
+        <ListItemText primary={element.email} sx={{ margin: 'auto', justifyContent: 'center', color: 'black' }} />
+
         {/* <ListItemText sx={{ marginLeft: '40px' }} primary={element.friendsNum} /> */}
         <ListItemButton sx={{ justifyContent: 'left' }}>
           {/* <Button sx={{ marginLeft: '40px' }}> */}
@@ -57,12 +59,6 @@ function Generate(element, navigate) {
               navigate(`/panel/chatPage/${element.username}`);
             }}
           />
-          {/* </Button> */}
-        </ListItemButton>
-
-        <ListItemButton sx={{ justifyContent: 'left' }}>
-          {/* <Button> */}
-          <DeleteOutlineIcon color="primary" />
           {/* </Button> */}
         </ListItemButton>
       </ListItem>
