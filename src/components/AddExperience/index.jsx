@@ -113,6 +113,7 @@ function AddExperience() {
       })
       .catch(err => {
         toast.error('مشکلی در سامانه رخ داده‌است.');
+        console.log(err)
       });
     setLoading(false);
   };

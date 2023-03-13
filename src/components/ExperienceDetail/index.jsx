@@ -58,6 +58,7 @@ function ExperienceDetail() {
         if (isLiked) {
           setLikesNumber(old => old - 1);
         } else {
+          toast.success('شما این تجربه را پسندیدید')
           setLikesNumber(old => old + 1);
         }
         setIsLiked(old => !old);
