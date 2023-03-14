@@ -136,8 +136,10 @@
     margin: 16px auto;
     display: block;
     width: 100%;
-    max-width: 480px;
-    border-radius: 4px;
+    height: 100%;
+    max-height: 500px;
+    // max-width: 700px;
+    border-radius: 8px;
   }
 
   &__title-2 {
@@ -165,7 +167,7 @@
     border: 1px solid $c-white5;
     border-radius: 8px;
     overflow: hidden;
-    border-left: 16px solid $c-bittersweet;
+    border-left: 16px solid $c-lightgreen;
     color: $c-black2;
     margin: 16px 0 32px;
   }

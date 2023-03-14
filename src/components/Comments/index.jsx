@@ -65,11 +65,11 @@ function Comments({ experienceId }) {
   return (
     <div className="comments">
       <Toaster />
-      <h2 className="comments__title">افزودن نظر</h2>
+      <h2 className="comments__title">دیدگاهتان را بنویسید</h2>
       <form onSubmit={handleAddComment}>
         <TextArea
           placeholder="متن نظر..."
-          label="متن نظر:"
+          // label="متن نظر:"
           value={body}
           onChange={e => {
             if (e.target.value.trim() !== '') {
