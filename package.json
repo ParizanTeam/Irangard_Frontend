@@ -30,6 +30,7 @@
     "@mui/icons-material": "^5.5.1",
     "@mui/lab": "^5.0.0-alpha.80",
     "@mui/material": "^5.4.4",
+    "@mui/styles": "^5.11.13",
     "@testing-library/user-event": "^14.2.0",
     "@toycode/markdown-it-class": "^1.2.4",
     "@types/jest": "^27.4.1",

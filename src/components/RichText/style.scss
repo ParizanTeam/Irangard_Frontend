@@ -4,15 +4,14 @@
 
   &__editor {
     direction: ltr;
-    border: 1px solid black;
     padding: 2px;
-    min-height: 400px;
+    min-height: 150px;
     margin: 8px 0;
     border-radius: 8px;
     color: $c-black2;
     background-color: $c-white9;
     margin-top: 8px;
-    border: 1px solid $c-greydb;
+    border: 1px solid $c-gray-70 !important;
     outline: none;
 
     &:focus {

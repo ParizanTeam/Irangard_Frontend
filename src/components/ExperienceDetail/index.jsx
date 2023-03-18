@@ -58,6 +58,7 @@ function ExperienceDetail() {
         if (isLiked) {
           setLikesNumber(old => old - 1);
         } else {
+          toast.success('شما این تجربه را پسندیدید')
           setLikesNumber(old => old + 1);
         }
         setIsLiked(old => !old);
@@ -115,11 +116,12 @@ function ExperienceDetail() {
               <RiTimeLine size={20} />
               {formatDate(data.date_created)}
             </div>
-            <div className="experience-detail__likes">
+            {/* <div className="experience-detail__likes">
               <RiHeartFill size={20} />
               {convertNumberToPersian(likesNumber)}
-            </div>
+            </div> */}
           </div>
+          <div className='experience-detail__like-section'>
           {auth.isLoggedIn && (
             <Button
               onClick={handleLike}
@@ -132,6 +134,11 @@ function ExperienceDetail() {
               <ThumbUpIcon fontSize="12px" />
             </Button>
           )}
+          <div className="experience-detail__likes">
+              <RiHeartFill size={20} />
+              {convertNumberToPersian(likesNumber)}
+            </div>
+          </div>
           <img className="experience-detail__img" src={data.image || defaultXpImg} alt={data.title} />
           {data.summary && (
             <>
