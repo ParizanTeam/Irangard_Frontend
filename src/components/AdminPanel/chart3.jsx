@@ -37,8 +37,8 @@ export default function App() {
   const [MonthlyDataList, setMonthlyData] = useState(null);
   var getDaysArray = function(s,e) {for(var a=[],d=new Date(s);d<=new Date(e);d.setDate(d.getDate()+1)){ a.push(new Date(d));}return a;};
   const body = {
-      "start_date": "2022-06-10",
-      "end_date": "2022-06-19"
+      "start_date": "2023-03-20",
+      "end_date": "2023-03-27"
     }
   useEffect(() => {
     console.log('body' ,body);
@@ -55,7 +55,7 @@ export default function App() {
         let result_tour = data['added_daily_tour']
         let result_exprience = data['added_daily_experience']
         let result_special = data['added_daily_special_user']
-        var daylist = getDaysArray(new Date('2022-06-10'),new Date('2022-07-20'));
+        var daylist = getDaysArray(new Date('2023-03-20'),new Date('2023-03-27'));
         var arrDate =  daylist.map((v)=>v.toISOString().slice(0,10))
         console.log(arrDate) 
         let styledData = arrDate.map((month)=>{
