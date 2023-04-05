@@ -21,6 +21,9 @@ import axios from 'axios';
 
 function DiscountSystemTab() {
   const { id } = useParams();
+
+  const [selectedTour,setSelectedTour] = useState(null);
+
   const [discountCodes, setDiscountCodes] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
 
@@ -44,9 +47,6 @@ function DiscountSystemTab() {
   const handleClose = () =>{ 
     setOpen(false);
   }
-  const getSelectedTourId = async() =>{
-    
-  }
 
   const endDatePickerRef = useRef(null);
 
@@ -56,15 +56,12 @@ function DiscountSystemTab() {
       .get(`/tours/${id}/discount-codes`)
       .then(res => res.data)
       .then(data => {
-        console.log(data);
         setDiscountCodes(data);
       })
       .catch(error => {
         console.log(error);
       })
       .finally(() => setPageLoading(false));
-      // const {data} = apiInstance.get(`/tours/${id}`) ;
-      // console.log('data is : ',data);
   }, []);
 
   const handlePercentageChange = e => {
@@ -130,7 +127,6 @@ function DiscountSystemTab() {
       .then(res => res.data)
       .then(data => {
         toast.success('کد تخفیف با موفقیت اضافه شد.');
-        console.log(data);
         setDiscountCodes(old => [...old, data]);
         setCode('');
         setEndDate(null);
@@ -138,17 +134,43 @@ function DiscountSystemTab() {
         setEndDateBlured(false);
       })
       .catch(error => {
-        console.log(error);
         toast.error('مشکلی در سامانه رخ داده‌است.');
       })
       .finally(() => setLoading(false));
   };
-  const handleChangeCode = (discId) =>{
-    console.log('changeCode is : ',changeCode);
-    axios.put(`https://api.quilco.ir/tours/${id}/discount-codes/${discId}/`,{
-      code:changeCode,
-    }) 
-  }
+  const handleChangeCode = async (discId) => {
+    const token = localStorage.getItem('access-token');
+    if (!token) {
+      toast.error('برای ویرایش کد تخفیف باید وارد شوید.');
+      return;
+    }
+  
+    try {
+      await axios.patch(
+        `https://api.quilco.ir/tours/${id}/discount-codes/${discId}/`,
+        {
+          off_percentage: changeCode,
+        },
+        {
+          headers: {
+            Authorization: `JWT ${token}`,
+          },
+        }
+      );
+      toast.success('کد تخفیف با موفقیت ویرایش شد.');
+      setDiscountCodes(old => old.map(item => {
+        if (item.id === discId) {
+          return {...item, off_percentage: changeCode};
+        }
+        return item;
+      }));
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+      toast.error('مشکلی در سامانه رخ داده‌است.');
+    }
+  };
+  
 
   return (
     <div className="tour-dashboard-discounts">
@@ -222,12 +244,10 @@ function DiscountSystemTab() {
                         .delete(`/tours/${id}/discount-codes/${discountCode.id}/`)
                         .then(res => res.data)
                         .then(data => {
-                          console.log(data);
                           toast.success('کد با موفقیت حذف شد.');
                           setDiscountCodes(old => old.filter(item => item.id !== discountCode.id));
                         })
                         .catch(error => {
-                          console.log(error);
                           toast.error('مشکلی در سامانه رخ داده‌است.');
                         });
                     }}
@@ -238,7 +258,11 @@ function DiscountSystemTab() {
                   </Button>
                   <Button 
                     className="tour-dashboard-discounts__code-card-edit"
-                    onClick={() => setOpen(true)}
+                    onClick={
+                      () => {setOpen(true)
+                      setSelectedTour(discountCode.id);
+                      }
+                    }
                   >
                     ویرایش 
                   </Button>
@@ -249,13 +273,15 @@ function DiscountSystemTab() {
                         type="text"
                         value={changeCode}
                         onChange={(e) =>setChangeCode(e.target.value)}
-
+                        className='tour-dashboard-discounts__code-card-changeCode'
 
                       />
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={() => setOpen(false)}>بستن</Button>
-                      <Button onClick={() => handleChangeCode(discountCode.id)}>آپدیت</Button>
+                      <Button variant="red" onClick={() => setOpen(false)}>بستن</Button>
+                      <Button variant="green" onClick={() => {
+                        handleChangeCode(selectedTour)
+                        }}>آپدیت</Button>
                     </DialogActions>
                   </Dialog>
                 </div>
