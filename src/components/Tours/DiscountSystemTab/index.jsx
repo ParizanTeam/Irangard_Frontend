@@ -217,6 +217,7 @@ function DiscountSystemTab() {
           }}
           calendar={persian}
           locale={persian_fa}
+          minDate={new Date()}
         />
       </form>
       {pageLoading && <div>در حال بارگیری کدها...</div>}
