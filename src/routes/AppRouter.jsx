@@ -22,7 +22,6 @@ import ChatLayout from 'src/components/Chat/ChatLayout';
 import CityExperiences from '../components/CityExperiences';
 import AddPlaces from 'src/components/AddPlaces';
 import PlaceFilters from 'src/components/PlaceFilters';
-import TestConponent from '../components/Tours/Testforconsole/test';
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -44,7 +43,6 @@ const AppRouter = () => {
         <Route path="/experiences/:id" element={<ExperienceDetail />} />
         <Route path="/city-experiences/:city" element={<CityExperiences />} />
         <Route path="/tours" element={<ToursList />} />
-        <Route path='/testfor' element={<TestConponent/>} />
         <Route path="/tours/new" element={<AddTour />} />
         <Route path="/tours/:id" element={<ToursDetailPage />} />
         <Route path="/tours/:id/dashboard" element={<TourDashboard />} />
