@@ -104,6 +104,7 @@ export default function App() {
         console.log(error);
       });
   }, []);
+  console.log(DailyDataList);
   useEffect(() => {
     console.log(' ----------- MonthlyDataList')
     console.log(MonthlyDataList)

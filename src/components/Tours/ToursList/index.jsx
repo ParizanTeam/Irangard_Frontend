@@ -7,6 +7,8 @@ import TourCard from '../TourCard';
 import useAuth from '../../../context/AuthContext';
 import './style.scss';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { baseUrl } from '../../../utils/constants';
 
 function ToursList() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,24 @@ function ToursList() {
         console.log(error);
       })
       .finally(() => setLoading(false));
+      getSpecialUserTours();
   }, []);
+
+  
+
+  const getSpecialUserTours = () => {
+    const access_token = localStorage.getItem('access-token');
+    if (access_token) {
+      const headers = {
+        Authorization: `JWT ${access_token}`,
+      };
+  
+      axios.get(`${baseUrl}/accounts/special-users/tours`, { headers })
+        .then(res => console.log('res :', res))
+        .catch(err => console.log('error', err));
+    }
+  };
+  
   return (
     <Layout title="لیست تورها">
       {loading && <Loader />}
