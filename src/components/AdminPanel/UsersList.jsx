@@ -23,6 +23,7 @@ import apiInstance from '../../config/axios';
 import { baseUrl } from '../../utils/constants';
 import axios from 'axios';
 
+
 function removeUser(username){
     apiInstance
       .post(`${baseUrl}/accounts/admin/remove-user/`,
@@ -47,12 +48,20 @@ function Generate(element) {
                   </Avatar>*/}
         </ListItemAvatar>
         <div className='doNotShow' style={{width:'155px',marginRight: '30px',textAlign:'right'}}>
-        <ListItemText primary={element.full_name} sx={{margin:'auto',justifyContent:'center'}}/></div>
+        <ListItemText primary={element.full_name === null ? 'کاربر ایرانگرد' : element.full_name } sx={{margin:'auto',justifyContent:'center'}}/></div>
         <div style={{width:'130px',marginRight: '30px',marginLeft: '2px',textAlign:'center'}}>
         <ListItemText primary={element.username} sx={{margin:'auto',justifyContent:'center'}}/></div>
         
-        <ListItemText className='doNotShow' sx={{ marginLeft: '40px'}} primary={element.follower_number}/>
-        <Button onClick={() => {removeUser(element.username)}} >
+        <ListItemText className='doNotShow' sx={{ marginLeft: '40px'}} primary={`تعداد دنبال کننده : ${element.follower_number}`}/>
+        <Button sx={{
+            backgroundColor: 'white',
+            border: '1px solid green',
+            transition: 'background-color 0.3s ease-in-out',
+            '&:hover': {
+            backgroundColor: 'yellow',
+            color: 'white',
+          },
+  }} onClick={() => {removeUser(element.username)}} >
             <DeleteOutlineIcon color="primary"/>
         </Button>
       </ListItem>
@@ -72,15 +81,23 @@ export default function RecievedList() {
   const [UsersList, setUsersList] = useState(null);
 
   useEffect(() => {
-    apiInstance
-      .get(`${baseUrl}/accounts/users`)
-      .then(res => {
+
+    const fetchData = async () =>{
+      try {
+        const res = await apiInstance.get(`${baseUrl}/accounts/users`);
         setUsersList(res.data);
-        console.log('UsersList', res.data);
-      })
-      .catch(err => {
-        console.log('error: ', err);
-      });
+        // setLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000);
+
+    return () => clearInterval(interval);
+
   }, []);
 
   /*useEffect(() => {

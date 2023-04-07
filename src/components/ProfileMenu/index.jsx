@@ -20,6 +20,7 @@ import apiInstance from '../../config/axios';
 import useAuth from 'src/context/AuthContext';
 import defaultProfileImg from '../../assets/images/profile.jpeg';
 import './style.scss';
+import toast from 'react-hot-toast';
 
 const style = {
   position: 'absolute',
@@ -163,6 +164,7 @@ export default function AccountMenu() {
           onClick={() => {
             auth.logout();
             window.location.reload(false);
+            toast.error('شما از سایت خارج شدید!')
           }}
         >
           <ListItemIcon>
